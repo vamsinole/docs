@@ -3,15 +3,16 @@
   "theme": "mint",
   "name": "ContactSwing Docs",
   "colors": {
-    "primary": "#310fec",
-    "light": "#0026ff",
+    "primary": "#1d48f5",
+    "light": "#1d48f5",
     "dark": "#000000"
   },
   "favicon": "https://app.contactswing.ai/favicon.png",
   "logo": {
     "light": "https://app.contactswing.ai/assets/contactswingNewLogo-DwDUbe2A.png",
     "dark": "/logo/dark_logo.png",
-    "height": 29
+    "height": 29,
+    "href": "https://contactswing.ai"
   },
   "navigation": {
     "tabs": [
