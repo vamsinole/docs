@@ -1,11 +1,11 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Contactswing Docs",
+  "name": "ContactSwing Docs",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#310fec",
+    "light": "#0026ff",
+    "dark": "#000000"
   },
   "favicon": "https://app.contactswing.ai/favicon.png",
   "logo": {
@@ -67,7 +67,15 @@
               "essentials/docs/WorkFlows/google",
               "essentials/docs/WorkFlows/automate",
               "essentials/docs/WorkFlows/sheets",
-              "essentials/docs/WorkFlows/tasks"
+              "essentials/docs/WorkFlows/tasks",
+              "essentials/docs/WorkFlows/airtable",
+              "essentials/docs/WorkFlows/microsoftexcel",
+              "essentials/docs/WorkFlows/notion",
+              "essentials/docs/WorkFlows/airparser",
+              "essentials/docs/WorkFlows/aitable",
+              "essentials/docs/Workflows/attio",
+              "essentials/docs/Workflows/close",
+              "essentials/docs/Workflows/clickup"
             ]
           },
           {
@@ -187,7 +195,8 @@
           {
             "group": "Resources",
             "pages": [
-              "essentials/docs/Resources/faq"
+              "essentials/docs/Resources/faq",
+              "essentials/docs/support"
             ]
           }
         ]
