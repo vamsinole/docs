@@ -1,0 +1,132 @@
+# 📝 Prompting guide
+
+Learn to craft effective prompts for your AI agents and boost their performance. This guide covers actionable strategies, best practices, and real-world examples to help you get the most from your AI. 🤖✨
+
+## What is prompt engineering?
+
+Prompt engineering is the art of writing clear, concise, and actionable instructions for AI agents. Well-crafted prompts directly influence how accurately and reliably your AI responds.
+
+## Why is prompt engineering important?
+
+Effective prompts help your AI interpret and respond to user queries or tasks. Good prompts lead to accurate, relevant, and context-sensitive outputs. Poor prompts can cause confusion or incorrect results.
+
+## How do you measure success?
+
+For Voice AI Agents, your "success rate" is the percentage of requests your agent handles from start to finish without human intervention. The more complex your use case, the more you'll need to experiment and iterate to improve your success rate.
+
+---
+
+## The process
+
+Follow these steps to improve your prompts:
+
+1. **Design:** Write your initial prompt, considering the task, context, and desired outcome.
+2. **Test:** Run the prompt and see if the AI's response meets your expectations.
+3. **Refine:** Adjust the prompt to improve clarity and results.
+4. **Repeat:** Iterate until you get the best possible output.
+
+---
+
+## General principles
+
+### Organize prompts into sections
+
+Break down system prompts into clear sections:
+- **Identity:** Define the AI's persona and role.
+- **Style:** Set guidelines for tone, formality, or humor.
+- **Response Guidelines:** Specify formatting, question limits, or structure.
+- **Task & Goals:** Outline objectives and steps.
+
+**Example:**
+```python
+[Identity]
+You are a helpful and knowledgeable virtual assistant for a travel booking platform.
+
+[Style]
+- Be informative and comprehensive.
+- Maintain a professional and polite tone.
+- Be concise, as you are currently operating as a Voice Conversation.
+
+[Response Guideline]
+- Present dates in a clear format (e.g., January 15, 2024).
+- Offer up to three travel options based on user preferences.
+
+[Task]
+1. Greet the user and inquire about their desired travel destination.
+2. Ask about travel dates and preferences (e.g., budget, interests).
+3. Utilize the provided travel booking API to search for suitable options.
+4. Present the top three options to the user, highlighting key features.
+```
+
+### Break down complex tasks
+
+For complex interactions, use step-by-step instructions and conditional logic to guide the agent's responses.
+
+### Control response timing
+
+Tell the agent when to wait for the user's response before moving to the next step.
+
+### Integrate tools explicitly
+
+Specify when and how the agent should use external tools or APIs. Reference tools by name and describe their function.
+
+### Use silent transfers
+
+If the AI needs to transfer a user, don't send a text response—just call the transfer tool for a seamless experience.
+
+### Include fallback and error handling
+
+Always add fallback options and error handling so the agent can gracefully handle unclear inputs or system errors.
+
+**Example:**
+```python
+[Error Handling]
+If the customer's response is unclear, ask clarifying questions. If you encounter any issues, inform the customer politely and ask to repeat.
+```
+
+---
+
+## Additional tips
+
+- Iterate and experiment with your prompts for better results.
+- Use Markdown formatting to structure your content.
+- Use emotional prompting to shape the AI's tone (e.g., "Can you tell me a cozy bedtime story that's warm and comforting?").
+- Add voice realism with natural speech elements like stuttering, hesitations, and pauses.
+- Spell out numbers for more natural-sounding responses.
+- Add personality and tone to make the assistant sound more human.
+
+---
+
+## Examples of great prompts
+
+**Appointment Setter**
+```python
+[Role]
+You're Susan, an AI assistant for xxx. Your primary task is to interact with the customer, ask questions, and gather information for appointment booking.
+
+[Context]
+You're engaged with the customer to book an appointment. Stay focused on this context and provide relevant information. Once connected to a customer, proceed to the Conversation Flow section. Do not invent information not drawn from the context. Answer only questions related to the context.
+
+[Response Handling]
+When asking any question from the 'Conversation Flow' section, evaluate the customer's response to determine if it qualifies as a valid answer. Use context awareness to assess relevance and appropriateness. If the response is valid, proceed to the next relevant question or instructions. Avoid infinite loops by moving forward when a clear answer cannot be obtained.
+
+[Warning]
+Do not modify or attempt to correct user input parameters or user input, Pass them directly into the function or tool as given.
+
+[Response Guidelines]
+- Keep responses brief.
+- Ask one question at a time, but combine related questions where appropriate.
+- Maintain a calm, empathetic, and professional tone.
+- Answer only the question posed by the user.
+- Begin responses with direct answers, without introducing additional data.
+- If unsure or data is unavailable, ask specific clarifying questions instead of a generic response.
+- Present dates in a clear format (e.g., January Twenty Four) and Do not mention years in dates.
+- Present time in a clear format (e.g., Four Thirty PM) like: 11 pm can be spelled: eleven pee em.
+- Speak dates gently using English words instead of numbers.
+- Never say the word 'function' nor 'tools' nor the name of the Available functions.
+- Never say ending phrases like "ending message" "call ending," etc.
+```
+
+---
+
+Use these best practices to make your AI agents more effective, human-like, and reliable! 💡

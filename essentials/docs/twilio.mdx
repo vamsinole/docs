@@ -1,0 +1,49 @@
+# 📞 Twilio setup for voice & SMS integration
+
+Integrate Twilio with your assistant to enable inbound voice calls and SMS. This guide walks you through the setup for both services. 📲🔗
+
+## 🎥 Video walkthrough
+
+<div class="card-video">
+  <video src="https://storage.googleapis.com/helpsessionvideos/Contactswing/Videos/twilio.mp4" autoplay playsinline controls title="Twilio Setup"></video>
+</div>
+
+
+[Go to Twilio Console](https://www.twilio.com/console/projects/summary?_gl=1*16zzkzr*_ga*MzAyODgwNTU1LjE3MzcxMjA0MzU.*_ga_RRP8K4M4F3*MTczNzEzMDM5NC4yLjEuMTczNzEzMDQxNC4wLjAuMA..)
+
+---
+
+## Voice call integration
+
+**Webhook URL for calls:**
+```
+https://prod-contactswing-calls-962560522883.us-central1.run.app/inbound_call?assistant_id=ENTER_YOUR_ASSISTANT_ID_HERE
+```
+
+- Enter your assistant key in the Twilio Console under Voice configuration.
+- Go to the Phone Numbers section, select your number, and set the Voice webhook to the above URL (replace with your assistant ID).
+
+---
+
+## SMS integration
+
+**Webhook URL for SMS:**
+```
+https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/receive/sms?workspace_key=YOUR_AUTH_KEY_HERE&assistant_id=ENTER_YOUR_ASSISTANT_ID_HERE
+```
+
+- Enter your assistant key in the Twilio Console under Messaging configuration.
+- Go to the Phone Numbers section, select your number, and set the Messaging webhook to the above URL (replace with your auth key and assistant ID).
+
+---
+
+## Final steps
+
+- Make sure both Voice and Messaging webhooks are correctly linked to your assistant.
+- You can manage these configurations directly in the Twilio Console.
+
+---
+
+## Success! 🎉
+
+Your Twilio account is now set up to handle both voice calls and SMS messages with your assistant.

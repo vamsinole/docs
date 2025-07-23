@@ -1,0 +1,40 @@
+# ☎️ Inbound SIP call
+
+Enable inbound SIP calls to your assistants for flexible, cost-effective communication. This guide explains what SIP is, why it's beneficial, and how to set up inbound SIP calls. 🌐📞
+
+## What is SIP?
+**Session Initiation Protocol (SIP)** is a protocol for starting, managing, and ending real-time voice and video calls over the internet. SIP uses VoIP (Voice over Internet Protocol), so you can make calls online instead of using traditional phone lines.
+
+## Why use SIP?
+SIP offers several advantages over traditional calling:
+- **Cost-effective**: Make calls over the internet and reduce long-distance charges.
+- **Scalable**: Add or remove phone numbers without extra hardware.
+- **Flexible**: Make and receive calls from computers, mobile devices, or VoIP phones.
+- **High call quality**: Enjoy better audio with a stable internet connection.
+- **Business integration**: Connect SIP with CRM, call centers, and other tools for efficiency.
+
+---
+
+## SIP domain for incoming calls
+Send calls to this SIP domain:
+```
+bluespace.sip.twilio.com
+```
+
+---
+
+## Call routing
+Configure your phone number to an assistant. For example, if assistant ID 443 is linked to `+12359845123`, initiate the SIP call to:
+```
++12359845123@bluespace.sip.twilio.com
+```
+
+Our system automatically identifies the number and routes the call to **Assistant 443** for handling. 🤖
+
+---
+
+## Important note
+The assistant must be an **inbound assistant** to receive calls using phone/SIP.
+
+
+
