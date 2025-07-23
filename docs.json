@@ -196,27 +196,49 @@
         "tab": "API reference",
         "groups": [
           {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
+            "group": "Actions",
             "pages": [
               "api-reference/endpoint/get",
               "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook",
+              "api-reference/endpoint/actions-get-by-id",
+              "api-reference/endpoint/actions-put",
+              "api-reference/endpoint/actions-delete"
+            ]
+          },
+          {
+            "group": "API Keys",
+            "pages": [
               "api-reference/endpoint/apikeys-get",
-              "api-reference/endpoint/apikeys-post",
+              "api-reference/endpoint/apikeys-post"
+            ]
+          },
+          {
+            "group": "Assistants",
+            "pages": [
               "api-reference/endpoint/assistants-get",
-              "api-reference/endpoint/assistants-post",
+              "api-reference/endpoint/assistants-post"
+            ]
+          },
+          {
+            "group": "Campaigns",
+            "pages": [
               "api-reference/endpoint/campaigns-get",
-              "api-reference/endpoint/campaigns-post",
+              "api-reference/endpoint/campaigns-post"
+            ]
+          },
+          {
+            "group": "Customers",
+            "pages": [
               "api-reference/endpoint/customers-get",
               "api-reference/endpoint/customers-post",
-              "api-reference/endpoint/knowledgebase-get"
+              "api-reference/endpoint/delete"
+            ]
+          },
+          {
+            "group": "Knowledge Base",
+            "pages": [
+              "api-reference/endpoint/knowledgebase-get",
+              "api-reference/endpoint/webhook"
             ]
           }
         ]
@@ -231,11 +253,11 @@
       },
       {
         "label": "Pricing",
-        "href": "https://www.contactswing.ai/pricing"
+        "href": "https://contactswing.ai/pricing"
       },
       {
         "label": "Dashboard",
-        "href": "https://www.contactswing.ai/"
+        "href": "https://contactswing.ai"
       }
     ]
   },

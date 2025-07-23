@@ -1,0 +1,17 @@
+---
+title: Update Action
+---
+
+**PUT** `/v2/_actions/{action_id}`
+
+Update an action by ID.
+
+**Path Parameter:**
+- `action_id` (string, required)
+
+**Request Body:**
+- JSON: ActionRequest (see OpenAPI spec)
+
+**Response:**
+- 200: Action updated successfully
+- 404: Action not found 
