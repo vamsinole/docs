@@ -7,7 +7,7 @@
     "light": "#1d48f5",
     "dark": "#000000"
   },
-  "favicon": "https://app.contactswing.ai/favicon.png",
+  "favicon": "favicon.svg",
   "logo": {
     "light": "https://app.contactswing.ai/assets/contactswingNewLogo-DwDUbe2A.png",
     "dark": "/logo/dark_logo.png",
