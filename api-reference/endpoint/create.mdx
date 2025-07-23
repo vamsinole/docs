@@ -1,4 +1,14 @@
 ---
-title: 'Create Plant'
-openapi: 'POST /plants'
+title: Create Action
 ---
+
+**POST** `/v2/_actions`
+
+Create a new action.
+
+**Request Body:**
+- JSON: ActionRequest (see OpenAPI spec)
+
+**Response:**
+- 201: Action created successfully
+- 400: Invalid input

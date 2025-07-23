@@ -200,6 +200,24 @@
             "pages": [
               "api-reference/introduction"
             ]
+          },
+          {
+            "group": "Endpoint examples",
+            "pages": [
+              "api-reference/endpoint/get",
+              "api-reference/endpoint/create",
+              "api-reference/endpoint/delete",
+              "api-reference/endpoint/webhook",
+              "api-reference/endpoint/apikeys-get",
+              "api-reference/endpoint/apikeys-post",
+              "api-reference/endpoint/assistants-get",
+              "api-reference/endpoint/assistants-post",
+              "api-reference/endpoint/campaigns-get",
+              "api-reference/endpoint/campaigns-post",
+              "api-reference/endpoint/customers-get",
+              "api-reference/endpoint/customers-post",
+              "api-reference/endpoint/knowledgebase-get"
+            ]
           }
         ]
       }

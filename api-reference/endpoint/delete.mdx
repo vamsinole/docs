@@ -1,4 +1,14 @@
 ---
-title: 'Delete Plant'
-openapi: 'DELETE /plants/{id}'
+title: Delete Customer
 ---
+
+**DELETE** `/v2/_customers/{customer_id}`
+
+Delete a customer by ID.
+
+**Path Parameter:**
+- `customer_id` (string, required)
+
+**Response:**
+- 201: Customer deleted successfully
+- 400: Invalid input
