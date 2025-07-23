@@ -12,6 +12,7 @@
     "light": "https://app.contactswing.ai/assets/contactswingNewLogo-DwDUbe2A.png",
     "dark": "/logo/dark_logo.png",
     "height": 29,
+    "width": 150,
     "href": "https://contactswing.ai"
   },
   "navigation": {
