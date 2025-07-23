@@ -209,21 +209,29 @@
             "group": "API Keys",
             "pages": [
               "api-reference/endpoint/apikeys-get",
-              "api-reference/endpoint/apikeys-post"
+              "api-reference/endpoint/apikeys-post",
+              "api-reference/endpoint/apikeys-get-by-id",
+              "api-reference/endpoint/apikeys-put",
+              "api-reference/endpoint/apikeys-delete"
             ]
           },
           {
             "group": "Assistants",
             "pages": [
               "api-reference/endpoint/assistants-get",
-              "api-reference/endpoint/assistants-post"
+              "api-reference/endpoint/assistants-post",
+              "api-reference/endpoint/assistants-get-by-id",
+              "api-reference/endpoint/assistants-put",
+              "api-reference/endpoint/assistants-delete"
             ]
           },
           {
             "group": "Campaigns",
             "pages": [
               "api-reference/endpoint/campaigns-get",
-              "api-reference/endpoint/campaigns-post"
+              "api-reference/endpoint/campaigns-post",
+              "api-reference/endpoint/campaigns-get-by-id",
+              "api-reference/endpoint/campaigns-delete"
             ]
           },
           {
@@ -231,14 +239,19 @@
             "pages": [
               "api-reference/endpoint/customers-get",
               "api-reference/endpoint/customers-post",
-              "api-reference/endpoint/delete"
+              "api-reference/endpoint/customers-get-by-id",
+              "api-reference/endpoint/customers-put",
+              "api-reference/endpoint/customers-delete"
             ]
           },
           {
             "group": "Knowledge Base",
             "pages": [
               "api-reference/endpoint/knowledgebase-get",
-              "api-reference/endpoint/webhook"
+              "api-reference/endpoint/webhook",
+              "api-reference/endpoint/knowledgebase-get-by-id",
+              "api-reference/endpoint/knowledgebase-put",
+              "api-reference/endpoint/knowledgebase-delete"
             ]
           }
         ]
