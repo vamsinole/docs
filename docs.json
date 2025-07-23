@@ -3,10 +3,9 @@
   "theme": "mint",
   "name": "Contactswing Docs",
   "colors": {
-    "accentPrimary": {
-      "dark": "#310fec",
-      "light": "#0026ff"
-    }
+    "primary": "#16A34A",
+    "light": "#07C983",
+    "dark": "#15803D"
   },
   "favicon": "/docs/assets/site.png",
   "logo": {
