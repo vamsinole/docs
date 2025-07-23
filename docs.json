@@ -7,10 +7,10 @@
     "light": "#07C983",
     "dark": "#15803D"
   },
-  "favicon": "/docs/assets/site.png",
+  "favicon": "https://app.contactswing.ai/favicon.png",
   "logo": {
-    "light": "/docs/assets/contactswing-logo.png",
-    "dark": "/docs/assets/site.png",
+    "light": "https://app.contactswing.ai/assets/contactswingNewLogo-DwDUbe2A.png",
+    "dark": "https://app.contactswing.ai/assets/contactswingNewLogo-DwDUbe2A.png",
     "height": 29
   },
   "navigation": {
