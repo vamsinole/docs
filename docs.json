@@ -207,12 +207,6 @@
         "tab": "API reference",
         "groups": [
           {
-            "group": "Overview",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
             "group": "Actions",
             "pages": [
               "api-reference/endpoint/get",
