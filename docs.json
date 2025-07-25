@@ -75,9 +75,9 @@
               "essentials/docs/WorkFlows/notion",
               "essentials/docs/WorkFlows/airparser",
               "essentials/docs/WorkFlows/aitable",
-              "essentials/docs/Workflows/attio",
-              "essentials/docs/Workflows/close",
-              "essentials/docs/Workflows/clickup"
+              "essentials/docs/WorkFlows/attio",
+              "essentials/docs/WorkFlows/close",
+              "essentials/docs/WorkFlows/clickup"
             ]
           },
           {
@@ -206,6 +206,12 @@
       {
         "tab": "API reference",
         "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "api-reference/introduction"
+            ]
+          },
           {
             "group": "Actions",
             "pages": [
