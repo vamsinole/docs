@@ -1,0 +1,11 @@
+{
+    "name": "my-mintlify-docs",
+    "version": "1.0.0",
+    "scripts": {
+      "dev": "npx @mintlify/cli@latest dev"
+    },
+    "dependencies": {
+      "@mintlify/cli": "latest"
+    }
+}
+  
