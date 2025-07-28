@@ -31,6 +31,7 @@
           {
             "group": "AI Agents",
             "pages": [
+
               "essentials/docs/AI Agents/Types/intro",
               "essentials/docs/AI Agents/Types/emailai",
               "essentials/docs/AI Agents/Types/voiceai",
