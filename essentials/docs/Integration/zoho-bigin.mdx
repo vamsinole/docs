@@ -121,8 +121,21 @@ The integration leverages Zoho Bigin's embedded app framework and API endpoints 
 3. Set up AI agents and communication templates
 4. Configure campaign settings and scheduling
 
+### Extension Configuration
+The ContactSwing extension stores authentication keys in the extension configuration, which are then used across all campaign sections:
+
+**Authentication Setup**
+- Store ContactSwing API credentials in the extension config
+- Configure authentication tokens for secure API access
+- Set up webhook endpoints for real-time data synchronization
+
+**Campaign Integration**
+- Use stored auth keys automatically in all campaign operations
+- Seamless integration with Bigin campaign workflows
+- No need to re-enter credentials for each campaign
+
 ### Configuration
-- **API Key Setup**: Configure ContactSwing API credentials
+- **API Key Setup**: Configure ContactSwing API credentials in extension settings
 - **Agent Configuration**: Set up AI agents for different communication types
 - **Campaign Mapping**: Link ContactSwing campaigns with Bigin campaigns
 - **Timezone Settings**: Configure appropriate timezone for campaign execution
