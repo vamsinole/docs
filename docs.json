@@ -24,9 +24,7 @@
             "group": "Getting Started",
             "icon": "rocket",
             "pages": [
-              "essentials/docs/pages/concepts",
-              "essentials/docs/Register/register",
-              "essentials/docs/dashboard"
+              "essentials/docs/pages/concepts"
             ]
           },
           {
