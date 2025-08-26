@@ -318,6 +318,18 @@
               "api-reference/endpoint/knowledgebase-put",
               "api-reference/endpoint/knowledgebase-delete"
             ]
+          },
+          {
+            "group": "Call",
+            "icon": "bolt",
+            "pages": [
+              "api-reference/endpoint/get",
+              "api-reference/endpoint/create",
+              "api-reference/endpoint/actions-get-by-id",
+              "api-reference/endpoint/actions-put",
+              "api-reference/endpoint/actions-delete",
+              "api-reference/endpoint/make-call"
+            ]
           }
         ]
       }
