@@ -261,7 +261,8 @@
               "api-reference/endpoint/create",
               "api-reference/endpoint/actions-get-by-id",
               "api-reference/endpoint/actions-put",
-              "api-reference/endpoint/actions-delete"
+              "api-reference/endpoint/actions-delete",
+              "api-reference/endpoint/make-call"
             ]
           },
           {
