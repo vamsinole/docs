@@ -1,0 +1,19 @@
+---
+title: 'Make Call'
+description: 'Initiate an outbound call using the ContactSwing API'
+---
+
+**POST** `/v2/_calls`
+
+Initiate an outbound call.
+
+**Request Body:**
+- `phone_number` (string, required) - Phone number in E.164 format
+- `agent_id` (string, required) - ID of the AI agent to handle the call
+- `customer_name` (string, optional) - Name of the person being called
+- `call_purpose` (string, optional) - Purpose or reason for the call
+
+**Response:**
+- 200: Call initiated successfully
+- 400: Invalid request parameters
+- 401: Unauthorized

@@ -1,0 +1,288 @@
+---
+title: Zoho CRM Integration
+description: Integrate ContactSwing with Zoho CRM to execute AI-driven multi-channel campaigns using extension-stored auth keys.
+---
+
+## ContactSwing for Zoho CRM — Installation and User Guide
+
+This guide gives exact steps to install, configure, and use the ContactSwing Zoho CRM extension. It also covers permissions, data flow, technical integration, and troubleshooting.
+
+## Overview
+
+ContactSwing integrates directly into Zoho CRM to provide AI-driven, multi-channel communication from within the CRM. Launch campaigns, manage AI agents, and perform automated outreach against Leads without switching tools. The extension listens to Zoho embedded events to detect selected records and operates within Zoho’s security model.
+
+## Key Features
+- **Multi-Channel Communication**
+  - Voice calls: AI-powered outbound calling with natural conversations
+  - SMS: automated text messaging with intelligent replies
+  - Email: personalized email campaigns with dynamic content
+  - WhatsApp: automated messaging via WhatsApp Business API
+- **AI Agent Management**
+  - Pre-configured agents per channel
+  - Customizable agent instructions and prompts
+  - Real-time campaign monitoring and analytics
+  - Lead scoring/qualification through AI interactions
+- **Campaign Management**
+  - Works with existing Zoho CRM campaigns and leads
+  - Flexible scheduling with timezone support
+  - Contact selection from CRM modules (current: Leads)
+  - Automated follow-up sequences
+
+## Prerequisites
+- **Zoho CRM admin**: Marketplace install permissions
+- **ContactSwing account + API key**
+- **Supported modules**: Leads (current version)
+- **Browser**: Disable strict ad-blockers on your Zoho CRM domain
+
+## Install the Extension
+1. In Zoho CRM, go to Setup → Marketplace → Browse.
+2. Search “ContactSwing” → Install.
+3. Select users/profiles who can access it.
+4. Grant requested permissions/scopes when prompted.
+5. Finish install.
+
+## Where to Open the App
+- **Web Tab**: The extension adds a tab named “ContactSwing”.
+- **From Leads**: Open the “ContactSwing” tab while a Leads list or detail page is open. The app auto-detects selected leads via Zoho embedded events.
+
+Tip: For best results, select leads in Leads → List View first (checkboxes), then open the “ContactSwing” tab.
+
+## User Interface
+
+### Main Integration Points
+
+The extension appears as a native web tab within Zoho CRM and integrates with existing CRM workflows and data.
+
+#### Contact Selection
+- Select leads in List View (checkboxes) or open a Lead detail page. The app detects the selected/current record via Zoho events.
+
+#### Communication Type Selection
+- Choose one of: Voice Call, SMS, Email, WhatsApp.
+
+#### Campaign Configuration
+- **CRM Module Integration**
+  - Choose from existing ContactSwing campaigns
+  - Select specific leads (from Zoho)
+  - Link communications to sales stages (optional)
+  - Integrate with automation workflows (optional)
+- **AI Agent Selection**
+  - Select agents per channel
+  - Configure instructions and behavior
+  - Assign phone numbers or email addresses
+  - Define qualification criteria
+- **Content Configuration**
+  - SMS: templates with dynamic field mapping
+  - Email: subject + content with personalization; provider selection
+  - Voice: background info and call scripts
+  - WhatsApp: approved templates with variables
+- **Scheduling Settings**
+  - Operating hours (start/end)
+  - Timezone preferences
+  - Execution windows
+  - Optional CRM calendar alignment
+
+## First-Time Setup (API Key)
+The app stores your ContactSwing API key in a Zoho org variable `contactswing_api_key`.
+
+### Option A — set from the app
+1. Open the “ContactSwing” tab in Zoho CRM.
+2. If prompted, paste your ContactSwing API key and save.
+3. The key is saved to `contactswing_api_key` for your org.
+
+### Option B — set manually in Zoho
+1. Setup → Developer Space → Variables.
+2. Add variable with name: `contactswing_api_key` (case sensitive).
+3. Value: your ContactSwing API key.
+4. Save and reload the app tab.
+
+**Verification**: The app should load without “missing API key” errors, and your user should be detected.
+
+## Permissions and Scopes Used
+- **Read access**: Leads, Current User, basic org config
+- **Embedded events**: `PageLoad`, `List_SelectionChanged`
+- **Data writes**: None unless you launch a campaign (then activity metadata may be synced back via ContactSwing backend if configured)
+
+## Selecting Leads (Required)
+- From Leads → List View: check one or more records. Then open the “ContactSwing” tab. The app detects selection automatically.
+- From Lead detail: open the Lead, then open the “ContactSwing” tab. The app detects the current Lead.
+
+Notes: Current version targets the Leads module. Contacts/Accounts support may be added in future versions.
+
+## Creating a Campaign
+1. Open “ContactSwing” tab (ensure leads are selected or a lead is open).
+2. Choose Communication Type:
+   - Voice Call
+   - SMS
+   - Email
+   - WhatsApp
+3. Select AI Agent:
+   - Pick an agent compatible with the chosen channel.
+   - Optional: add agent instructions/context.
+4. Choose Campaign and Touchpoint:
+   - Select an existing ContactSwing campaign.
+   - Pick the touchpoint (e.g., “Initial Outreach”, “Follow‑up 1”).
+5. Channel-specific content:
+   - **SMS**: message template (supports personalization)
+   - **Email**: subject + HTML/text content; choose “From” address/provider
+   - **Voice**: caller number/brand + guidance to the AI agent
+   - **WhatsApp**: approved template + variables
+6. Scheduling:
+   - Timezone
+   - Start hour and end hour windows
+   - Execution window rules
+7. Review and Launch:
+   - Confirm selected Leads count
+   - Confirm channel, agent, content, schedule
+   - Launch
+
+The app calls ContactSwing’s backend to create and run the campaign. Status is shown in-app; optional CRM sync writes outcomes back (if enabled in your ContactSwing account).
+
+## Technical Integration
+
+### Authentication
+- Runs as a Zoho embedded app; user authentication/session is handled by Zoho OAuth 2.0.
+- No separate OAuth configuration is required inside the extension for Zoho access.
+- ContactSwing API access uses an org variable `contactswing_api_key` stored in Zoho (set once per org).
+
+### Data Synchronization
+- Real-time retrieval of selected Lead data from CRM
+- Optional sync of campaign results back to CRM (notes/activities/custom fields)
+- Embedded app event handling for record selection
+- Continuous updates via ContactSwing backend when campaigns execute
+
+### API Integration
+- Uses Zoho CRM APIs to:
+  - Fetch current user context
+  - Retrieve selected Lead records
+  - Listen/respond to embedded events (`PageLoad`, `List_SelectionChanged`)
+- Uses ContactSwing APIs to:
+  - Create campaigns and schedule executions
+  - Manage agents, templates, and providers (configured in ContactSwing)
+  - Optionally push execution outcomes to CRM
+
+## Data Flow
+- **Read from Zoho CRM**: current user, selected Leads’ core fields (Name, Email, Phone, Company)
+- **Sent to ContactSwing**: normalized lead identifiers + selected campaign configuration
+- **Optional sync-back**: campaign run metadata can be pushed back to CRM (notes/activities/custom fields) if configured in ContactSwing
+
+## Use Cases
+
+### Sales Outreach
+- Automated follow-up calls for prospects by pipeline stage
+- SMS reminders for appointments and follow-ups
+- Email nurturing based on lead behavior
+- WhatsApp engagement for high-value prospects
+
+### Customer Support
+- AI-powered service calls
+- Automated status updates via SMS
+- Personalized email communications
+- Proactive support outreach
+
+### Marketing Campaigns
+- Multi-channel campaign execution
+- Lead nurturing sequences
+- Event promotion and follow-up
+- Customer re-engagement campaigns
+
+### Lead Management
+- Automated lead qualification calls
+- SMS-based nurturing
+- Email drip sequences
+- Lead scoring via AI interactions
+
+## Benefits
+
+### For Sales Teams
+- Increased productivity via automation
+- Consistent communication quality
+- Better engagement and conversion
+- Works inside CRM workflows
+
+### For Marketing Teams
+- Scalable multi-channel execution
+- Template-driven personalization
+- Campaign ROI tracking (via ContactSwing)
+- Strong lead nurturing capabilities
+
+### For Customer Support
+- 24/7 automated assistance
+- Reduced response times
+- Personalized interactions
+- Proactive engagement
+
+## Daily Use Workflow
+- **Sales**: Select target Leads → open “ContactSwing” → choose channel + agent → schedule → launch.
+- **Marketing**: Configure campaigns and templates in ContactSwing → run from Zoho on targeted Leads.
+- **Support**: Use Voice/SMS to automate status updates/outreach for selected Leads.
+
+## Troubleshooting
+- **App keeps loading/hangs**:
+  - Reload the “ContactSwing” tab.
+  - Ensure you’re on a Zoho CRM domain (e.g., crm.zoho.com or your sandbox domain).
+  - Wait up to 30 seconds on first init (Zoho embedded app init).
+  - Disable ad blockers for the Zoho domain.
+- **No leads detected**:
+  - In Leads → List View, select records with checkboxes first, then open the “ContactSwing” tab.
+  - From a specific lead’s detail page, open the tab; the app should detect the current record.
+- **Missing/invalid API key**:
+  - Set `contactswing_api_key` via the in‑app prompt or Setup → Developer Space → Variables.
+  - Paste a valid key from your ContactSwing account.
+- **Permission errors**:
+  - Reinstall/repair the extension in Setup → Marketplace → Installed Extensions → ContactSwing → Configure.
+  - Ensure users have access to the extension and Leads module.
+- **Sandbox vs Production**:
+  - Verify you installed the extension and configured the API key in the same environment (sandbox keys won’t work in production and vice versa).
+
+## Admin Operations
+- **Configure/Repair**: Setup → Marketplace → Installed Extensions → ContactSwing → Configure
+- **Update**: Accept updates in Marketplace when prompted
+- **Uninstall**: Setup → Marketplace → Installed Extensions → ContactSwing → Uninstall
+
+## Security
+- **API key storage**: Zoho org variable `contactswing_api_key`.
+- **Access control**: Respects Zoho profile/role permissions.
+- **Scopes**: Only required scopes are requested; no external data is pulled without your action.
+
+## Notes on Channels
+- **Voice**: Requires outbound numbers configured in ContactSwing.
+- **SMS**: Requires SMS provider configured in ContactSwing.
+- **Email**: Configure SendGrid/SMTP options in ContactSwing; choose “From” in app.
+- **WhatsApp**: Requires WhatsApp Business API provider configured in ContactSwing.
+
+## Support
+- **ContactSwing Support**: via your ContactSwing dashboard
+- **Zoho CRM Extension Management**: Setup → Marketplace → Installed Extensions → ContactSwing
+
+## Implementation
+
+### Installation (Marketplace)
+1. Setup → Marketplace → Browse → search “ContactSwing”.
+2. Install, choose users/profiles, grant scopes, finish.
+
+### Extension Configuration
+**Authentication Setup**
+- Store `contactswing_api_key` in Zoho org variables (in-app or Setup → Developer Space → Variables).
+- Zoho OAuth is handled by the platform (no extra steps needed).
+- Optional: configure ContactSwing-side webhooks to sync outcomes to CRM.
+
+**Campaign Integration**
+- Stored auth keys are used automatically for campaign operations.
+- Integrates with Zoho workflows; no need to re-enter credentials.
+- Data synchronization between systems is automatic once configured.
+
+## Configuration
+- **API Key Setup**: Set `contactswing_api_key` once per org.
+- **CRM Module Mapping**: Current version targets Leads; future updates may add Contacts/Accounts.
+- **Agent Configuration**: Set up channel-specific agents and instructions in ContactSwing.
+- **Campaign Mapping**: Link runs to existing ContactSwing campaigns/touchpoints.
+- **Timezone Settings**: Choose timezone and operating hours in the app.
+- **Field Mapping**: Use personalization variables in SMS/Email templates (mapped from CRM fields).
+
+## Documentation
+- ContactSwing API Documentation
+- Zoho CRM Integration Guide
+- Best Practices for Campaign Configuration
+- CRM Module Integration Examples
+
+This document is a complete help guide for installing, configuring, and operating the ContactSwing Zoho CRM extension with accurate, step-by-step instructions and full feature coverage of the current version.

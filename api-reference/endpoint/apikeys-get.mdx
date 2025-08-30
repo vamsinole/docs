@@ -1,0 +1,15 @@
+---
+title: Get API Keys
+description: List all workspace API keys via the ContactSwing API.
+---
+
+**GET** `/v2/_api_keys`
+
+Returns all API keys.
+
+**Query Parameters:**
+- `page` (integer, default: 1)
+- `per_page` (integer, default: 10)
+
+**Response:**
+- 200: `{ data: [object], pagination: PaginationInfo }`

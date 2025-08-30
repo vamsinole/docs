@@ -1,0 +1,357 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "ContactSwing Docs",
+  "colors": {
+    "primary": "#4e4ef0",
+    "light": "#4e4ef0",
+    "dark": "#000000"
+  },
+  "favicon": "favicon.svg",
+  "logo": {
+    "light": "https://app.contactswing.ai/assets/contactswingLogoImage-CyuYiVqo.png",
+    "dark": "/logo/dark_logo.png",
+    "height": 29,
+    "width": 150,
+    "href": "https://contactswing.ai"
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "icon": "rocket",
+            "pages": [
+              "essentials/docs/pages/concepts"
+            ]
+          },
+          {
+            "group": "AI Agents",
+            "icon": "robot",
+            "pages": [
+              "essentials/docs/AI Agents/Types/intro",
+              {
+                "group": "Types",
+                "pages": [
+                  "essentials/docs/AI Agents/Types/emailai",
+                  "essentials/docs/AI Agents/Types/voiceai",
+                  "essentials/docs/AI Agents/Types/chatai",
+                  "essentials/docs/AI Agents/Types/smsai",
+                  "essentials/docs/AI Agents/Types/whatsappai"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Knowledge Base",
+            "icon": "book-open",
+            "pages": [
+              "essentials/docs/KnowledgeBase/intro",
+              "essentials/docs/KnowledgeBase/createkb",
+              "essentials/docs/KnowledgeBase/Addfaq",
+              "essentials/docs/KnowledgeBase/Addfiles",
+              "essentials/docs/KnowledgeBase/Addurl"
+            ]
+          },
+          {
+            "group": "Generative AI",
+            "icon": "sparkles",
+            "pages": [
+              "essentials/docs/Genai/intro",
+              "essentials/docs/Genai/AiResponder",
+              "essentials/docs/Genai/Mailhandler"
+            ]
+          },
+          {
+            "group": "Phone Number Management",
+            "icon": "phone",
+            "pages": [
+              "essentials/docs/PhoneNumbers/phone"
+            ]
+          },
+          {
+            "group": "Workflow",
+            "icon": "arrow-right-arrow-left",
+            "pages": [
+              "essentials/docs/WorkFlows/AllWorkflows",
+              {
+                "group": "Types",
+                "pages": [
+                  "essentials/docs/WorkFlows/google",
+                  "essentials/docs/WorkFlows/automate",
+                  "essentials/docs/WorkFlows/sheets",
+                  "essentials/docs/WorkFlows/tasks",
+                  "essentials/docs/WorkFlows/airtable",
+                  "essentials/docs/WorkFlows/microsoftexcel",
+                  "essentials/docs/WorkFlows/notion",
+                  "essentials/docs/WorkFlows/airparser",
+                  "essentials/docs/WorkFlows/aitable",
+                  "essentials/docs/WorkFlows/attio",
+                  "essentials/docs/WorkFlows/close",
+                  "essentials/docs/WorkFlows/clickup"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Integrations",
+            "icon": "puzzle",
+            "pages": [
+              "essentials/docs/Integration/intro",
+              {
+                "group": "Integrations",
+                "pages": [
+                  "essentials/docs/Integration/Aircall",
+                  "essentials/docs/Integration/cartesia",
+                  "essentials/docs/Integration/deepgram",
+                  "essentials/docs/Integration/elevenlabs",
+                  "essentials/docs/Integration/gohighlevel",
+                  "essentials/docs/Integration/google",
+                  "essentials/docs/Integration/gpt",
+                  "essentials/docs/Integration/hubspot",
+                  "essentials/docs/Integration/jobrob",
+                  "essentials/docs/Integration/playht",
+                  "essentials/docs/Integration/salesforce",
+                  "essentials/docs/Integration/sendgrid",
+                  "essentials/docs/Integration/shopify",
+                  "essentials/docs/Integration/simply",
+                  "essentials/docs/Integration/smtp",
+                  "essentials/docs/Integration/twilio",
+                  "essentials/docs/Integration/whatsapp",
+                  "essentials/docs/Integration/zoho",
+                  "essentials/docs/Integration/zoho-bigin",
+                  "essentials/docs/Integration/zoho-crm"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Webhooks",
+            "icon": "webhook",
+            "pages": [
+              "essentials/docs/twilio"
+            ]
+          },
+          {
+            "group": "Inbox",
+            "icon": "inbox",
+            "pages": [
+              "essentials/docs/Inbox/intro",
+              "essentials/docs/Inbox/call",
+              "essentials/docs/Inbox/chat",
+              "essentials/docs/Inbox/email",
+              "essentials/docs/Inbox/sms",
+              "essentials/docs/Inbox/whatsapp"
+            ]
+          },
+          {
+            "group": "Extension",
+            "icon": "puzzle-piece",
+            "pages": [
+              "essentials/docs/Extension/intro"
+            ]
+          },
+          {
+            "group": "Actions",
+            "icon": "bolt",
+            "pages": [
+              "essentials/docs/Actions/intro",
+              "essentials/docs/Actions/Aircall",
+              "essentials/docs/Actions/api",
+              "essentials/docs/Actions/call",
+              "essentials/docs/Actions/data",
+              "essentials/docs/Actions/email",
+              "essentials/docs/Actions/rtb",
+              "essentials/docs/Actions/shopify",
+              "essentials/docs/Actions/sms",
+              "essentials/docs/Actions/whatsapp"
+            ]
+          },
+          {
+            "group": "Campaigns",
+            "icon": "megaphone",
+            "pages": [
+              "essentials/docs/campaigns/intro",
+              {
+                "group": "Types",
+                "pages": [
+                  "essentials/docs/campaigns/call",
+                  "essentials/docs/campaigns/email",
+                  "essentials/docs/campaigns/sms"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Customers",
+            "icon": "users",
+            "pages": [
+              "essentials/docs/customers/intro"
+            ]
+          },
+          {
+            "group": "Token Analytics",
+            "icon": "chart-bar",
+            "pages": [
+              "essentials/docs/token"
+            ]
+          },
+          {
+            "group": "Settings",
+            "icon": "gear",
+            "pages": [
+              "essentials/docs/settings/general"
+            ]
+          },
+          {
+            "group": "SIP Trunking",
+            "icon": "phone-arrow-up-right",
+            "pages": [
+              "essentials/docs/sip/intro",
+              "essentials/docs/sip/inbound",
+              "essentials/docs/sip/outbound"
+            ]
+          },
+          {
+            "group": "Best Practices",
+            "icon": "star",
+            "pages": [
+              "essentials/docs/prompting"
+            ]
+          },
+          {
+            "group": "Prompt Examples",
+            "icon": "code",
+            "pages": [
+              "essentials/docs/AI Agents/Prompts/bank",
+              "essentials/docs/AI Agents/Prompts/car",
+              "essentials/docs/AI Agents/Prompts/care",
+              "essentials/docs/AI Agents/Prompts/ecommerce",
+              "essentials/docs/AI Agents/Prompts/estate",
+              "essentials/docs/AI Agents/Prompts/restaurant"
+            ]
+          },
+          {
+            "group": "Resources",
+            "icon": "book",
+            "pages": [
+              "essentials/docs/Resources/faq",
+              "essentials/docs/support"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API reference",
+        "groups": [
+          {
+            "group": "Overview",
+            "icon": "book-open",
+            "pages": [
+              "api-reference/introduction"
+            ]
+          },
+          {
+            "group": "Actions",
+            "icon": "bolt",
+            "pages": [
+              "api-reference/endpoint/get",
+              "api-reference/endpoint/create",
+              "api-reference/endpoint/actions-get-by-id",
+              "api-reference/endpoint/actions-put",
+              "api-reference/endpoint/actions-delete",
+              "api-reference/endpoint/make-call"
+            ]
+          },
+          {
+            "group": "API Keys",
+            "icon": "key",
+            "pages": [
+              "api-reference/endpoint/apikeys-get",
+              "api-reference/endpoint/apikeys-post",
+              "api-reference/endpoint/apikeys-get-by-id",
+              "api-reference/endpoint/apikeys-put",
+              "api-reference/endpoint/apikeys-delete"
+            ]
+          },
+          {
+            "group": "Assistants",
+            "icon": "robot",
+            "pages": [
+              "api-reference/endpoint/assistants-get",
+              "api-reference/endpoint/assistants-post",
+              "api-reference/endpoint/assistants-get-by-id",
+              "api-reference/endpoint/assistants-put",
+              "api-reference/endpoint/assistants-delete"
+            ]
+          },
+          {
+            "group": "Campaigns",
+            "icon": "megaphone",
+            "pages": [
+              "api-reference/endpoint/campaigns-get",
+              "api-reference/endpoint/campaigns-post",
+              "api-reference/endpoint/campaigns-get-by-id",
+              "api-reference/endpoint/campaigns-delete"
+            ]
+          },
+          {
+            "group": "Customers",
+            "icon": "users",
+            "pages": [
+              "api-reference/endpoint/customers-get",
+              "api-reference/endpoint/customers-post",
+              "api-reference/endpoint/customers-get-by-id",
+              "api-reference/endpoint/customers-put",
+              "api-reference/endpoint/customers-delete"
+            ]
+          },
+          {
+            "group": "Knowledge Base",
+            "icon": "book-open",
+            "pages": [
+              "api-reference/endpoint/knowledgebase-get",
+              "api-reference/endpoint/webhook",
+              "api-reference/endpoint/knowledgebase-get-by-id",
+              "api-reference/endpoint/knowledgebase-put",
+              "api-reference/endpoint/knowledgebase-delete"
+            ]
+          },
+          {
+            "group": "Call",
+            "icon": "bolt",
+            "pages": [
+              "api-reference/endpoint/get",
+              "api-reference/endpoint/create",
+              "api-reference/endpoint/actions-get-by-id",
+              "api-reference/endpoint/actions-put",
+              "api-reference/endpoint/actions-delete",
+              "api-reference/endpoint/make-call"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Blog",
+        "href": "https://www.contactswing.ai/blogs"
+      },
+      {
+        "label": "Pricing",
+        "href": "https://contactswing.ai/pricing"
+      },
+      {
+        "label": "Dashboard",
+        "href": "https://contactswing.ai"
+      }
+    ]
+  },
+  "experimental": {
+    "openapi-parser-v3": true
+  }
+} 

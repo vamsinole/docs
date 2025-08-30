@@ -1,0 +1,17 @@
+---
+title: Update Assistant
+description: Update an existing assistant by its ID via the ContactSwing API.
+---
+
+**PUT** `/v2/_assistants/{assistant_id}`
+
+Update an assistant by ID.
+
+**Path Parameter:**
+- `assistant_id` (string, required)
+
+**Request Body:**
+- JSON: AssistantRequest (see OpenAPI spec)
+
+**Response:**
+- 200: Assistant updated successfully

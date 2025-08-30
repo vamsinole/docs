@@ -1,0 +1,732 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "ContactSwing API - External Endpoints",
+    "description": "External API endpoints for ContactSwing modules: Actions, API Keys, Assistants, Campaigns, Customers, Knowledge Base, and Voice Calls",
+    "version": "2.0.0",
+    "contact": {
+      "name": "ContactSwing API Support",
+      "url": "https://contactswing.ai"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2",
+      "description": "Production server"
+    },
+    {
+      "url": "https://dev-contactswing-fastapi-962560522883.us-central1.run.app/v2",
+      "description": "Development server"
+    }
+  ],
+  "security": [
+    {
+      "WorkspaceAuth": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "WorkspaceAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Workspace-Key",
+        "description": "Workspace API key for authentication"
+      }
+    },
+    "schemas": {
+      "MakeCallRequest": {
+        "type": "object",
+        "properties": {
+          "phone_number": {
+            "type": "string",
+            "description": "The phone number to call"
+          },
+          "message": {
+            "type": "string",
+            "description": "Initial message for the call"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Additional metadata for the call"
+          }
+        },
+        "required": ["phone_number"]
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "message": {"type": "string"},
+          "code": {"type": "integer"}
+        }
+      },
+      "Success": {
+        "type": "object",
+        "properties": {
+          "message": {"type": "string"},
+          "data": {"type": "object"},
+          "code": {"type": "integer"}
+        }
+      },
+      "PaginationInfo": {
+        "type": "object",
+        "properties": {
+          "page": {"type": "integer"},
+          "per_page": {"type": "integer"},
+          "total": {"type": "integer"},
+          "total_pages": {"type": "integer"}
+        }
+      },
+      "ShopifyWebhook": {
+        "type": "object",
+        "title": "Shopify",
+        "properties": {
+          "type": {"type": "string", "const": "SHOPIFY"},
+          "url": {"type": "string"},
+          "shop_name": {"type": "string"},
+          "access_token": {"type": "string"}
+        },
+        "required": ["type", "url", "shop_name", "access_token"]
+      },
+      "ActionRequest": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string", "minLength": 1, "maxLength": 56},
+          "description": {"type": "string"},
+          "type": {"type": "string", "enum": ["SHOPIFY", "SINGLEDATAEXTRACTION", "AIRCALL", "SEND_EMAIL", "SEND_SMS", "CALL_TRANSFER", "WEBHOOK", "APPOINTMENT", "DATAEXTRACTION", "SEND_WHATSAPP", "LABOREDGE"]},
+          "action_timing": {"type": "string", "enum": ["before", "during", "after"]},
+          "is_active": {"type": "boolean"},
+          "webhook": {
+            "oneOf": [
+              {
+                "type": "object",
+                "title": "Shopify",
+                "properties": {
+                  "type": {"type": "string", "const": "SHOPIFY"},
+                  "url": {"type": "string"},
+                  "shop_name": {"type": "string"},
+                  "access_token": {"type": "string"}
+                },
+                "required": ["type", "url", "shop_name", "access_token"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "title": "Single Data Extraction",
+                "properties": {
+                  "type": {"type": "string", "const": "SINGLEDATAEXTRACTION"},
+                  "data_field": {"type": "string"},
+                  "extraction_prompt": {"type": "string"},
+                  "variable_name": {"type": "string"}
+                },
+                "required": ["type", "data_field", "variable_name"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "title": "Aircall",
+                "properties": {
+                  "type": {"type": "string", "const": "AIRCALL"},
+                  "action_type": {"type": "string", "enum": ["create_contact", "update_contact", "create_call", "log_activity"]},
+                  "mapping": {"type": "object"}
+                },
+                "required": ["type", "action_type"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "title": "Webhook",
+                "properties": {
+                  "type": {"type": "string", "const": "WEBHOOK"},
+                  "url": {"type": "string"},
+                  "method": {"type": "string", "enum": ["GET", "POST", "PUT", "DELETE"], "default": "POST"},
+                  "headers": {"type": "object"},
+                  "body": {"type": "object"},
+                  "parameters": {"type": "object"},
+                  "auth_type": {"type": "string", "enum": ["none", "bearer", "basic", "api_key"]},
+                  "auth_token": {"type": "string"}
+                },
+                "required": ["type", "url", "method"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "title": "Appointment",
+                "properties": {
+                  "type": {"type": "string", "const": "APPOINTMENT"},
+                  "calendar_id": {"type": "string"},
+                  "duration": {"type": "integer"},
+                  "title": {"type": "string"},
+                  "description": {"type": "string"},
+                  "timezone": {"type": "string"}
+                },
+                "required": ["type", "calendar_id", "duration"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "title": "Data Extraction",
+                "properties": {
+                  "type": {"type": "string", "const": "DATAEXTRACTION"},
+                  "parameters": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "field_name": {"type": "string"},
+                        "field_type": {"type": "string", "enum": ["string", "number", "boolean", "date"]},
+                        "description": {"type": "string"},
+                        "required": {"type": "boolean", "default": false},
+                        "validation_regex": {"type": "string"}
+                      },
+                      "required": ["field_name", "field_type", "description"]
+                    }
+                  }
+                },
+                "required": ["type", "parameters"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "title": "Send WhatsApp",
+                "properties": {
+                  "type": {"type": "string", "const": "SEND_WHATSAPP"},
+                  "to": {"type": "string"},
+                  "template_name": {"type": "string"},
+                  "variables": {"type": "object"}
+                },
+                "required": ["type", "to"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "title": "LaborEdge",
+                "properties": {
+                  "type": {"type": "string", "const": "LABOREDGE"},
+                  "api_endpoint": {"type": "string"},
+                  "action_type": {"type": "string", "enum": ["create_lead", "update_lead", "get_jobs"]},
+                  "mapping": {"type": "object"}
+                },
+                "required": ["type", "api_endpoint", "action_type"],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "email": {
+            "type": "object",
+            "properties": {
+              "to": {"type": "object"},
+              "from": {"type": "string"},
+              "from_type": {"type": "string"},
+              "user_id": {"type": "string"},
+              "subject": {"type": "object"},
+              "body": {"type": "object"}
+            }
+          },
+          "sms": {
+            "type": "object",
+            "properties": {
+              "to": {"type": "string"},
+              "from": {"type": "string"},
+              "body": {"type": "string"}
+            }
+          },
+          "phone_number": {"type": "string"}
+        }
+      },
+      "ApiKeyRequest": {
+        "type": "object",
+        "properties": {
+          "type": {"type": "string", "enum": ["TWILIO", "ELEVEN_LABS", "PLAY_HT", "CARTESIA", "AZURE_VOICE", "OTHER", "SEND_GRID", "DEEPGRAM", "VONAGE", "GOOGLE_VOICE", "POLLY", "OPENAI", "GEMINI", "JOBROBOTIX", "SIMPLYRETS", "SIP", "SMTP", "AIRCALL", "LABOREDGE", "TELNYX", "AZURE", "GROQ", "STRIPE", "DEEPSEEK", "SARVAM"]},
+          "notes": {"type": "object"},
+          "is_active": {"type": "boolean"},
+          "is_default": {"type": "boolean"},
+          "runtime_config": {"type": "object"},
+          "integration_key": {
+            "oneOf": [
+              {
+                "type": "object",
+                "title": "Twilio",
+                "properties": {
+                  "type": {"type": "string", "const": "TWILIO"},
+                  "sid": {"type": "string"},
+                  "token": {"type": "string"},
+                  "number": {"type": "string"}
+                },
+                "required": ["type", "sid", "token"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "title": "OpenAI",
+                "properties": {
+                  "type": {"type": "string", "const": "OPENAI"},
+                  "api_key": {"type": "string"}
+                },
+                "required": ["type", "api_key"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "title": "ElevenLabs",
+                "properties": {
+                  "type": {"type": "string", "const": "ELEVEN_LABS"},
+                  "api_key": {"type": "string"}
+                },
+                "required": ["type", "api_key"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "title": "Play HT",
+                "properties": {
+                  "type": {"type": "string", "const": "PLAY_HT"},
+                  "api_key": {"type": "string"}
+                },
+                "required": ["type", "api_key"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "title": "Cartesia",
+                "properties": {
+                  "type": {"type": "string", "const": "CARTESIA"},
+                  "api_key": {"type": "string"}
+                },
+                "required": ["type", "api_key"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "title": "Smtp",
+                "properties": {
+                  "type": {"type": "string", "const": "SMTP"},
+                  "smtp_server": {"type": "string"},
+                  "smtp_port": {"type": "integer"},
+                  "smtp_username": {"type": "string"},
+                  "smtp_password": {"type": "string"}
+                },
+                "required": ["type", "smtp_server", "smtp_port", "smtp_username", "smtp_password"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "title": "Aircall",
+                "properties": {
+                  "type": {"type": "string", "const": "AIRCALL"},
+                  "api_key": {"type": "string"},
+                  "api_id": {"type": "string"}
+                },
+                "required": ["type", "api_key", "api_id"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "title": "Laboredge",
+                "properties": {
+                  "type": {"type": "string", "const": "LABOREDGE"},
+                  "username": {"type": "string"},
+                  "api_key": {"type": "string"},
+                  "organization_code": {"type": "string"},
+                  "domain_url": {"type": "string", "const": "https://api-uat.laboredge.com"},
+                  "authorization": {"type": "string", "const": "Basic dm1zOnZtc1NlY3JldCMk"},
+                  "content_type": {"type": "string", "const": "application/json"}
+                },
+                "required": ["type", "username", "api_key", "organization_code", "domain_url", "authorization", "content_type"],
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      },
+      "AssistantRequest": {
+        "type": "object",
+        "required": ["name", "type", "instructions", "prompts"],
+        "properties": {
+          "name": {"type": "string"},
+          "type": {"type": "string", "enum": ["VOICE_INCOMING", "VOICE_OUTGOING", "SMS", "EMAIL", "WHATSAPP"]},
+          "instructions": {"type": "string"},
+          "model": {"type": "string"},
+          "prompts": {
+            "type": "object",
+            "properties": {
+              "agent": {"type": "string"},
+              "goal": {"type": "string"}
+            }
+          },
+          "version": {"type": "string", "enum": ["v1", "v2"]},
+          "status": {"type": "boolean"},
+          "phone_number": {"type": "string"},
+          "incoming_call_greeting": {"type": "string"},
+          "outgoing_call_greeting": {"type": "string"},
+          "synthesizer": {"type": "string", "enum": ["AZURE", "DEEPGRAM", "GROK", "OPENAI", "CARTESIA", "ELEVEN_LABS", "PLAY_HT"]},
+          "enable_recordings": {"type": "boolean"},
+          "kb_id": {"type": "string"},
+          "language": {"type": "string"},
+          "action_ids": {"type": "array", "items": {"type": "string"}},
+          "additional_settings": {"type": "object"}
+        }
+      },
+      "CustomerRequest": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "email": {"type": "string", "format": "email"},
+          "address": {"type": "string"},
+          "phone": {"type": "string"},
+          "customer_timezone": {"type": "string"},
+          "working_hours": {"type": "object"},
+          "website": {"type": "string"},
+          "state": {"type": "string"},
+          "city": {"type": "string"},
+          "zipcode": {"type": "string"},
+          "customer_type": {"type": "string"},
+          "status": {"type": "string"},
+          "is_active": {"type": "boolean"},
+          "customFields": {"type": "object"}
+        }
+      },
+      "KnowledgeBaseRequest": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string", "minLength": 1, "maxLength": 255},
+          "urls": {"type": "array", "items": {"type": "string"}},
+          "faqs": {"type": "array", "items": {"type": "object", "properties": {"question": {"type": "string"}, "answer": {"type": "string"}}}}
+        }
+      }
+    }
+  },
+  "paths": {
+    "_voicecalls/{agent_id}/makeCall": {
+      "post": {
+        "tags": ["Voice Calls"],
+        "summary": "Make an outbound voice call",
+        "description": "Initiate an outbound voice call using the specified AI agent",
+        "operationId": "makeCall",
+        "security": [{"WorkspaceAuth": []}],
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "ID of the AI agent to handle the call"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MakeCallRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Call initiated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {"type": "string"},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "call_id": {"type": "string"},
+                        "status": {"type": "string"}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {"description": "Invalid input"},
+          "401": {"description": "Unauthorized"},
+          "403": {"description": "Permission denied"},
+          "500": {"description": "Internal server error"}
+        }
+      }
+    },
+    "_actions": {
+      "get": {
+        "tags": ["Actions"],
+        "summary": "Get all actions",
+        "operationId": "getActions",
+        "security": [{"WorkspaceAuth": []}],
+        "parameters": [
+          {"name": "page", "in": "query", "schema": {"type": "integer", "minimum": 1, "default": 1}},
+          {"name": "per_page", "in": "query", "schema": {"type": "integer", "minimum": 1, "default": 10}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Actions retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {"type": "array", "items": {"type": "object"}},
+                    "pagination": {"$ref": "#/components/schemas/PaginationInfo"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Actions"],
+        "summary": "Create new action",
+        "operationId": "createAction",
+        "security": [{"WorkspaceAuth": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {"$ref": "#/components/schemas/ActionRequest"}
+            }
+          }
+        },
+        "responses": {
+          "201": {"description": "Action created successfully"},
+          "400": {"description": "Invalid input"}
+        }
+      }
+    },
+    "_api_keys": {
+      "get": {
+        "tags": ["API Keys"],
+        "summary": "Get all API keys",
+        "operationId": "getApiKeys",
+        "security": [{"WorkspaceAuth": []}],
+        "parameters": [
+          {"name": "page", "in": "query", "schema": {"type": "integer", "minimum": 1, "default": 1}},
+          {"name": "per_page", "in": "query", "schema": {"type": "integer", "minimum": 1, "default": 10}}
+        ],
+        "responses": {
+          "200": {
+            "description": "API keys retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {"type": "array", "items": {"type": "object"}},
+                    "pagination": {"$ref": "#/components/schemas/PaginationInfo"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["API Keys"],
+        "summary": "Create new API key",
+        "operationId": "createApiKey",
+        "security": [{"WorkspaceAuth": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {"$ref": "#/components/schemas/ApiKeyRequest"}
+            }
+          }
+        },
+        "responses": {
+          "201": {"description": "API key created successfully"},
+          "400": {"description": "Invalid input"}
+        }
+      }
+    },
+    "_assistants": {
+      "get": {
+        "tags": ["Assistants"],
+        "summary": "Get all assistants",
+        "operationId": "getAssistants",
+        "security": [{"WorkspaceAuth": []}],
+        "parameters": [
+          {"name": "page", "in": "query", "schema": {"type": "integer", "minimum": 1, "default": 1}},
+          {"name": "per_page", "in": "query", "schema": {"type": "integer", "minimum": 1, "default": 10}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Assistants retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {"type": "array", "items": {"type": "object"}},
+                    "pagination": {"$ref": "#/components/schemas/PaginationInfo"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Assistants"],
+        "summary": "Create new assistant",
+        "operationId": "createAssistant",
+        "security": [{"WorkspaceAuth": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {"$ref": "#/components/schemas/AssistantRequest"}
+            }
+          }
+        },
+        "responses": {
+          "201": {"description": "Assistant created successfully"},
+          "400": {"description": "Invalid input"}
+        }
+      }
+    },
+    "_campaigns": {
+      "get": {
+        "tags": ["Campaigns"],
+        "summary": "Get all campaigns",
+        "operationId": "getCampaigns",
+        "security": [{"WorkspaceAuth": []}],
+        "parameters": [
+          {"name": "page", "in": "query", "schema": {"type": "integer", "minimum": 1, "default": 1}},
+          {"name": "per_page", "in": "query", "schema": {"type": "integer", "minimum": 1, "default": 10}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaigns retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {"type": "array", "items": {"type": "object"}},
+                    "pagination": {"$ref": "#/components/schemas/PaginationInfo"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Campaigns"],
+        "summary": "Create new campaign",
+        "operationId": "createCampaign",
+        "security": [{"WorkspaceAuth": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {"$ref": "#/components/schemas/CampaignRequest"}
+            }
+          }
+        },
+        "responses": {
+          "201": {"description": "Campaign created successfully"},
+          "400": {"description": "Invalid input"}
+        }
+      }
+    },
+    "_customers": {
+      "get": {
+        "tags": ["Customers"],
+        "summary": "Get all customers",
+        "operationId": "getCustomers",
+        "security": [{"WorkspaceAuth": []}],
+        "parameters": [
+          {"name": "page", "in": "query", "schema": {"type": "integer", "minimum": 1, "default": 1}},
+          {"name": "per_page", "in": "query", "schema": {"type": "integer", "minimum": 1, "default": 10}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Customers retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {"type": "array", "items": {"type": "object"}},
+                    "pagination": {"$ref": "#/components/schemas/PaginationInfo"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Customers"],
+        "summary": "Create new customer",
+        "operationId": "createCustomer",
+        "security": [{"WorkspaceAuth": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {"$ref": "#/components/schemas/CustomerRequest"}
+            }
+          }
+        },
+        "responses": {
+          "201": {"description": "Customer created successfully"},
+          "400": {"description": "Invalid input"}
+        }
+      }
+    },
+    "_knowledge_base": {
+      "get": {
+        "tags": ["Knowledge Base"],
+        "summary": "Get all knowledge bases",
+        "operationId": "getKnowledgeBases",
+        "security": [{"WorkspaceAuth": []}],
+        "parameters": [
+          {"name": "page", "in": "query", "schema": {"type": "integer", "minimum": 1, "default": 1}},
+          {"name": "per_page", "in": "query", "schema": {"type": "integer", "minimum": 1, "default": 10}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Knowledge bases retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {"type": "array", "items": {"type": "object"}},
+                    "pagination": {"$ref": "#/components/schemas/PaginationInfo"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Knowledge Base"],
+        "summary": "Create new knowledge base",
+        "operationId": "createKnowledgeBase",
+        "security": [{"WorkspaceAuth": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {"$ref": "#/components/schemas/KnowledgeBaseRequest"}
+            }
+          }
+        },
+        "responses": {
+          "201": {"description": "Knowledge base created successfully"},
+          "400": {"description": "Invalid input"}
+        }
+      }
+    }
+  }
+}
