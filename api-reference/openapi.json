@@ -34,39 +34,8 @@
       }
     },
     "schemas": {
-      "MakeCallRequest": {
-        "type": "object",
-        "properties": {
-          "phone_number": {
-            "type": "string",
-            "description": "The phone number to call"
-          },
-          "message": {
-            "type": "string",
-            "description": "Initial message for the call"
-          },
-          "metadata": {
-            "type": "object",
-            "description": "Additional metadata for the call"
-          }
-        },
-        "required": ["phone_number"]
-      },
-      "Error": {
-        "type": "object",
-        "properties": {
-          "message": {"type": "string"},
-          "code": {"type": "integer"}
-        }
-      },
-      "Success": {
-        "type": "object",
-        "properties": {
-          "message": {"type": "string"},
-          "data": {"type": "object"},
-          "code": {"type": "integer"}
-        }
-      },
+
+
       "PaginationInfo": {
         "type": "object",
         "properties": {
@@ -229,9 +198,23 @@
               "from": {"type": "string"},
               "body": {"type": "string"}
             }
-          },
-          "phone_number": {"type": "string"}
+          }
         }
+      },
+      "CampaignRequest": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "description": {"type": "string"},
+          "type": {"type": "string"},
+          "status": {"type": "string"},
+          "is_active": {"type": "boolean"},
+          "start_date": {"type": "string", "format": "date-time"},
+          "end_date": {"type": "string", "format": "date-time"},
+          "target_audience": {"type": "object"},
+          "settings": {"type": "object"}
+        },
+        "required": ["name", "type"]
       },
       "ApiKeyRequest": {
         "type": "object",
@@ -392,16 +375,93 @@
           "urls": {"type": "array", "items": {"type": "string"}},
           "faqs": {"type": "array", "items": {"type": "object", "properties": {"question": {"type": "string"}, "answer": {"type": "string"}}}}
         }
+      },
+      "CallRequest": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string",
+            "enum": ["v1", "v2"],
+            "default": "v1",
+            "description": "API version to use (v1: traditional HTTP API, v2: LiveKit SIP integration)"
+          },
+          "phone_number": {
+            "type": "string",
+            "description": "Phone number in E.164 format"
+          },
+          "agent_id": {
+            "type": "string",
+            "description": "ID of the AI agent to handle the call"
+          },
+          "customer_name": {
+            "type": "string",
+            "description": "Name of the person being called"
+          },
+          "call_purpose": {
+            "type": "string",
+            "description": "Purpose or reason for the call"
+          }
+        },
+        "required": ["phone_number", "agent_id"]
       }
     }
   },
   "paths": {
+    "_call": {
+      "post": {
+        "tags": ["Voice Calls"],
+        "summary": "Unified voice call API",
+        "description": "Unified voice call API that supports both v1 and v2 implementations. v1: Traditional voice calls via HTTP API (Twilio-based), v2: Modern voice calls via LiveKit SIP integration. The version is determined by the 'version' field in the request body.",
+        "operationId": "createUnifiedCall",
+        "security": [{"WorkspaceAuth": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CallRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "Call initiated successfully"},
+          "400": {"description": "Invalid input"},
+          "401": {"description": "Unauthorized"},
+          "403": {"description": "Permission denied"},
+          "429": {"description": "Rate limit exceeded (10 calls per minute)"},
+          "500": {"description": "Internal server error"}
+        }
+      }
+    },
+    "_calls": {
+      "get": {
+        "tags": ["Voice Calls"],
+        "summary": "Get list of voice calls",
+        "description": "Get list of voice calls for the workspace. Returns essential call information: id (Session/Call ID), from (From phone number), to (To phone number), provider (Provider/Medium used), status (Call status), created_at (Call creation timestamp). Supports pagination with page and per_page parameters.",
+        "operationId": "getCallsList",
+        "security": [{"WorkspaceAuth": []}],
+        "parameters": [
+          {"name": "page", "in": "query", "schema": {"type": "integer", "minimum": 1, "default": 1}, "description": "Page number (must be >= 1)"},
+          {"name": "per_page", "in": "query", "schema": {"type": "integer", "minimum": 1, "maximum": 100, "default": 10}, "description": "Items per page (1-100)"}
+        ],
+        "responses": {
+          "200": {"description": "Calls list retrieved successfully"},
+          "400": {"description": "Invalid pagination parameters"},
+          "401": {"description": "Unauthorized"},
+          "403": {"description": "Permission denied"},
+          "429": {"description": "Rate limit exceeded (30 calls per minute)"},
+          "500": {"description": "Internal server error"}
+        }
+      }
+    },
     "_voicecalls/{agent_id}/makeCall": {
       "post": {
         "tags": ["Voice Calls"],
         "summary": "Make an outbound voice call",
         "description": "Initiate an outbound voice call using the specified AI agent",
         "operationId": "makeCall",
+
         "security": [{"WorkspaceAuth": []}],
         "parameters": [
           {
@@ -419,36 +479,72 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MakeCallRequest"
+                "$ref": "#/components/schemas/CallRequest"
               }
             }
           }
         },
         "responses": {
-          "200": {
-            "description": "Call initiated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {"type": "string"},
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "call_id": {"type": "string"},
-                        "status": {"type": "string"}
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
+          "200": {"description": "Call initiated successfully"},
           "400": {"description": "Invalid input"},
           "401": {"description": "Unauthorized"},
           "403": {"description": "Permission denied"},
           "500": {"description": "Internal server error"}
+        }
+      }
+    },
+    "_calls/{call_id}": {
+      "get": {
+        "tags": ["Voice Calls"],
+        "summary": "Get detailed information for a specific call",
+        "description": "Get detailed information for a specific voice call. Returns comprehensive call information including: Complete session details, All conversations in the call, All processed actions during the call. The call_id should be the session ID of the voice call.",
+        "operationId": "getCallDetail",
+        "security": [{"WorkspaceAuth": []}],
+        "parameters": [
+          {"name": "call_id", "in": "path", "required": true, "schema": {"type": "string"}, "description": "Session ID of the voice call"}
+        ],
+        "responses": {
+          "200": {"description": "Call detail retrieved successfully"},
+          "400": {"description": "Call ID is required"},
+          "401": {"description": "Unauthorized"},
+          "403": {"description": "Permission denied"},
+          "429": {"description": "Rate limit exceeded (30 calls per minute)"},
+          "500": {"description": "Internal server error"}
+        }
+      }
+    },
+    "_call/fallback/{fallback_number}": {
+      "post": {
+        "tags": ["Voice Calls"],
+        "summary": "Fallback call endpoint",
+        "description": "Fallback call endpoint that redirects calls to a specified fallback number. Returns XML response for Twilio integration.",
+        "operationId": "fallbackCall",
+        "parameters": [
+          {"name": "fallback_number", "in": "path", "required": true, "schema": {"type": "string"}, "description": "Fallback phone number to redirect calls to"}
+        ],
+        "responses": {
+          "200": {
+            "description": "Fallback call response",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "string",
+                  "example": "<Response><Dial>+1234567890</Dial></Response>"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error response",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "string",
+                  "example": "<Response><Say>Sorry, we're unable to complete your call right now.</Say></Response>"
+                }
+              }
+            }
+          }
         }
       }
     },

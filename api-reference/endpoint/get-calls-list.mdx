@@ -1,0 +1,19 @@
+---
+title: 'Get Calls List'
+description: 'Get list of voice calls for the workspace with pagination support'
+---
+
+**GET** `/_calls`
+
+Returns essential call information with pagination support.
+
+**Query Parameters:**
+- `page` (integer, optional) - Page number. Defaults to 1, must be >= 1
+- `per_page` (integer, optional) - Items per page. Defaults to 10, must be between 1 and 100
+
+**Response:**
+- **200**: Calls list retrieved successfully
+- **400**: Invalid pagination parameters
+- **401**: Unauthorized
+- **429**: Rate limit exceeded (30 calls per minute)
+- **500**: Internal server error

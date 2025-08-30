@@ -1,0 +1,19 @@
+---
+title: 'Get Call Detail'
+description: 'Get detailed information for a specific voice call including session details, conversations, and processed actions'
+---
+
+**GET** `/_calls/{call_id}`
+
+Returns comprehensive call information including complete session details, all conversations, and all processed actions during the call.
+
+**Path Parameters:**
+- `call_id` (string, required) - Session ID of the voice call
+
+**Response:**
+- **200**: Call detail retrieved successfully
+- **400**: Call ID is required
+- **401**: Unauthorized
+- **404**: Call not found
+- **429**: Rate limit exceeded (30 calls per minute)
+- **500**: Internal server error

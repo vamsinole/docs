@@ -1,0 +1,15 @@
+---
+title: 'Fallback Call'
+description: 'Fallback call endpoint that redirects calls to a specified fallback number'
+---
+
+**POST** `/_call/fallback/{fallback_number}`
+
+Redirects incoming calls to a fallback phone number when the primary call flow cannot be completed.
+
+**Path Parameters:**
+- `fallback_number` (string, required) - Fallback phone number to redirect calls to
+
+**Response:**
+- **200**: Fallback call response (XML)
+- **500**: Error response (XML)
