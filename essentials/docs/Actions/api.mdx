@@ -1,0 +1,79 @@
+---
+title: API Action
+---
+
+Learn how to integrate external APIs into your workflows. This guide shows you how to configure and use API actions effectively.
+
+## 🎥 Video walkthrough
+
+<div class="card-video">
+  <video src="https://storage.googleapis.com/helpsessionvideos/Contactswing/Videos/APIA.mp4" autoplay playsinline controls title="API Action Setup"></video>
+</div>
+
+## Step-by-step guide
+
+Follow these steps to create your API action:
+
+### 1. Select API action
+
+Choose **API Action** from the available action types to get started.
+
+<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/at.jpg" alt="API Action" />
+
+### 2. Configure your API action
+
+Fill in the required fields:
+- **Name**: Enter a name for your action (e.g., "My API Action").
+- **Description**: Briefly describe your API action (e.g., "Action for making API calls during calls").
+- **Speech**: Specify when to run this action (e.g., "Run this action before the call starts").
+- **API Endpoint**: Enter the URL for the API you want to call (e.g., `https://api.example.com/endpoint`).
+- **Method**: Select the HTTP method (e.g., POST).
+- **Headers**: Define any required headers (e.g., `Content-Type: application/json`).
+- **Body**: If needed, specify the request body (e.g., a JSON object with parameters).
+- **Authentication**: Choose the authentication method (e.g., API Key, OAuth).
+- **Variables**: Define variables to be replaced before the action starts:
+  - **Variable Name**: (e.g., userID)
+  - **Example Value**: (e.g., 12345)
+  - **Key**: (e.g., id)
+  - **Value**: (e.g., 12345)
+
+<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/ac1.jpg" alt="Variables Example 1" />
+<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/ac2.jpg" alt="Variables Example 2" />
+<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/ac3.jpg" alt="Variables Example 3" />
+<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/ac4.jpg" alt="Variables Example 4" />
+
+### 3. Test the API call
+
+Click **Test the API Call** to generate a sample response using your test values.
+
+### 4. Create a prompt for API response integration
+
+Write a prompt explaining how to use the API response in the conversation (e.g., "Integrate API response into dialogue for personalized feedback"). Initialize the action before setting up the prompt.
+
+<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/ac6.jpg" alt="Prompt Example" />
+
+### 5. Create the action
+
+After filling in all required fields, click **Create Action** to save your API action. 🎉
+
+<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/ac6.jpg" alt="Action Created" />
+
+---
+
+## Example API action setup
+
+- **Name**: My API Action  
+- **Description**: Action for making API calls during calls  
+- **Speech**: Run this action before the call starts  
+- **API Endpoint**: `https://api.example.com/endpoint`  
+- **Method**: POST  
+- **Headers**: `Content-Type: application/json`  
+- **Body**: `{"key": "value"}`  
+- **Authentication**: API Key  
+- **Variables**:  
+    - **Key**: userID  
+    - **Value**: 12345
+
+By following these steps, you can create a new API action and enhance your application with powerful integrations.
+<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/ac5.jpg" alt="API Action Example" />
+

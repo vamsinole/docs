@@ -1,0 +1,46 @@
+---
+title: 'Introduction'
+description: 'ContactSwing API documentation for external endpoints'
+---
+
+## Welcome
+
+<Card
+  title="ContactSwing API Endpoints"
+  icon="phone"
+  href="/api-reference/endpoint/get"
+>
+  View the ContactSwing OpenAPI specification file
+</Card>
+
+## Base URL
+
+All API requests should be made to the following base URL:
+
+```
+https://api.contactswing.ai
+```
+
+**Example endpoint:**
+```
+https://api.contactswing.ai/v2/_actions
+```
+
+## Authentication
+
+All API endpoints are authenticated using a Workspace API key, provided in the `X-Workspace-Key` header. This is defined in the OpenAPI specification as an API key security scheme.
+
+```json
+"security": [
+  {
+    "WorkspaceAuth": []
+  }
+]
+```
+
+The header must be included in every request:
+
+```http
+X-Workspace-Key: <your-workspace-api-key>
+```
+

@@ -1,0 +1,17 @@
+---
+title: Update Customer
+description: Update an existing customer by its ID via the ContactSwing API.
+---
+
+**PUT** `/v2/_customers/{customer_id}`
+
+Update a customer by ID.
+
+**Path Parameter:**
+- `customer_id` (string, required)
+
+**Request Body:**
+- JSON: CustomerRequest (see OpenAPI spec)
+
+**Response:**
+- 200: Customer updated successfully

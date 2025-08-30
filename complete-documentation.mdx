@@ -1,0 +1,1064 @@
+---
+title: "Complete ContactSwing Documentation"
+description: "Complete guide to ContactSwing's AI-powered communication platform with full API reference"
+---
+
+# ContactSwing Complete Documentation
+
+## Welcome to ContactSwing
+
+Transform your business communication with AI-powered agents for voice, SMS, email, and WhatsApp.
+
+<Card
+  title="Get Started"
+  icon="rocket"
+  href="/quickstart"
+  horizontal
+>
+  Set up your first AI agent in minutes with our quickstart guide.
+</Card>
+
+## Core Features
+
+Build intelligent communication workflows that scale your business.
+
+<Columns cols={2}>
+  <Card
+    title="AI Agents"
+    icon="robot"
+    href="/essentials/ai-agents"
+  >
+    Create voice, SMS, email, and WhatsApp AI agents that handle customer interactions automatically.
+  </Card>
+  <Card
+    title="Knowledge Base"
+    icon="book-open"
+    href="/essentials/knowledge-base"
+  >
+    Build comprehensive knowledge bases to power your AI agents with accurate information.
+  </Card>
+  <Card
+    title="Integrations"
+    icon="plug"
+    href="/essentials/integrations"
+  >
+    Connect with 20+ platforms including Twilio, OpenAI, Salesforce, and more.
+  </Card>
+  <Card
+    title="API Reference"
+    icon="terminal"
+    href="/api-reference/endpoint/get"
+  >
+    Access our complete API documentation for custom integrations and automation.
+  </Card>
+</Columns>
+
+## Build & Deploy
+
+Everything you need to create world-class AI communication solutions.
+
+<Columns cols={2}>
+  <Card
+    title="Voice AI Agents"
+    icon="phone"
+    href="/essentials/voice-agents"
+  >
+    Set up incoming and outgoing voice calls with natural conversation AI.
+  </Card>
+  <Card
+    title="SMS & WhatsApp"
+    icon="message-circle"
+    href="/essentials/messaging"
+  >
+    Deploy AI agents for SMS and WhatsApp customer support.
+  </Card>
+  <Card
+    title="Email Automation"
+    icon="mail"
+    href="/essentials/email-automation"
+  >
+    Automate email responses and lead nurturing with AI.
+  </Card>
+  <Card
+    title="Campaigns"
+    icon="bullhorn"
+    href="/essentials/campaigns"
+  >
+    Run multi-channel campaigns with intelligent touchpoints and follow-ups.
+  </Card>
+</Columns>
+
+## Advanced Features
+
+<Card
+  title="Explore Advanced Features"
+  icon="stars"
+  href="/essentials/advanced"
+>
+  Discover workflows, actions, SIP trunking, and enterprise features.
+</Card>
+
+---
+
+# API Reference
+
+## Introduction
+
+<Card
+  title="ContactSwing API Endpoints"
+  icon="phone"
+  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
+>
+  View the ContactSwing OpenAPI specification file
+</Card>
+
+## Authentication
+
+All API endpoints are authenticated using a Workspace API key, provided in the `X-Workspace-Key` header. This is defined in the OpenAPI specification as an API key security scheme.
+
+```json
+"security": [
+  {
+    "WorkspaceAuth": []
+  }
+]
+```
+
+The header must be included in every request:
+
+```http
+X-Workspace-Key: <your-workspace-api-key>
+```
+
+## Try It Now
+
+Test the ContactSwing API directly from this documentation:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json"
+  width="100%" 
+  height="800px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
+  title="ContactSwing API Playground"
+/>
+
+---
+
+# API Endpoints
+
+## Actions
+
+### Get Actions
+
+**GET** `/v2/_actions`
+
+Returns all actions.
+
+**Query Parameters:**
+- `page` (integer, default: 1)
+- `per_page` (integer, default: 10)
+
+**Response:**
+- 200: `{ data: [object], pagination: PaginationInfo }`
+- See schema in OpenAPI spec.
+
+#### Try This Endpoint
+
+Test the Get Actions API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Actions/getActions"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Get Actions API Playground"
+/>
+
+### Create Action
+
+**POST** `/v2/_actions`
+
+Creates a new action.
+
+**Request Body:** ActionRequest schema
+**Response:**
+- 201: Action created successfully
+- 400: Invalid input
+
+#### Try This Endpoint
+
+Test the Create Action API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Actions/createAction"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Create Action API Playground"
+/>
+
+### Get Action by ID
+
+**GET** `/v2/_actions/{action_id}`
+
+Returns a specific action by ID.
+
+**Path Parameters:**
+- `action_id` (string, required)
+
+**Response:**
+- 200: Action retrieved successfully
+- 404: Action not found
+
+#### Try This Endpoint
+
+Test the Get Action by ID API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Actions/getActionById"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Get Action by ID API Playground"
+/>
+
+### Update Action
+
+**PUT** `/v2/_actions/{action_id}`
+
+Updates an existing action.
+
+**Path Parameters:**
+- `action_id` (string, required)
+
+**Request Body:** ActionRequest schema
+**Response:**
+- 200: Action updated successfully
+- 404: Action not found
+
+#### Try This Endpoint
+
+Test the Update Action API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Actions/updateAction"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Update Action API Playground"
+/>
+
+### Delete Action
+
+**DELETE** `/v2/_actions/{action_id}`
+
+Deletes an action.
+
+**Path Parameters:**
+- `action_id` (string, required)
+
+**Response:**
+- 200: Action deleted successfully
+- 404: Action not found
+
+#### Try This Endpoint
+
+Test the Delete Action API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Actions/deleteAction"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Delete Action API Playground"
+/>
+
+---
+
+## API Keys
+
+### Get API Keys
+
+**GET** `/v2/_api_keys`
+
+Returns all API keys.
+
+**Query Parameters:**
+- `page` (integer, default: 1)
+- `per_page` (integer, default: 10)
+
+**Response:**
+- 200: `{ data: [object], pagination: PaginationInfo }`
+
+#### Try This Endpoint
+
+Test the Get API Keys API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/API%20Keys/getApiKeys"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Get API Keys API Playground"
+/>
+
+### Create API Key
+
+**POST** `/v2/_api_keys`
+
+Creates a new API key.
+
+**Request Body:** ApiKeyRequest schema
+**Response:**
+- 201: API key created successfully
+- 400: Invalid input
+
+#### Try This Endpoint
+
+Test the Create API Key API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/API%20Keys/createApiKey"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Create API Key API Playground"
+/>
+
+### Get API Key by ID
+
+**GET** `/v2/_api_keys/{apikey_id}`
+
+Returns a specific API key by ID.
+
+**Path Parameters:**
+- `apikey_id` (string, required)
+
+**Response:**
+- 200: API key retrieved successfully
+
+#### Try This Endpoint
+
+Test the Get API Key by ID API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/API%20Keys/getApiKeyById"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Get API Key by ID API Playground"
+/>
+
+### Update API Key
+
+**PUT** `/v2/_api_keys/{id}`
+
+Updates an existing API key.
+
+**Path Parameters:**
+- `id` (integer, required)
+
+**Request Body:** ApiKeyRequest schema
+**Response:**
+- 200: API key updated successfully
+
+#### Try This Endpoint
+
+Test the Update API Key API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/API%20Keys/updateApiKey"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Update API Key API Playground"
+/>
+
+### Delete API Key
+
+**DELETE** `/v2/_api_keys/{id}`
+
+Deletes an API key.
+
+**Path Parameters:**
+- `id` (integer, required)
+
+**Response:**
+- 200: API key deleted successfully
+
+#### Try This Endpoint
+
+Test the Delete API Key API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/API%20Keys/deleteApiKey"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Delete API Key API Playground"
+/>
+
+---
+
+## Assistants
+
+### Get Assistants
+
+**GET** `/v2/_assistants`
+
+Returns all assistants.
+
+**Query Parameters:**
+- `page` (integer, default: 1)
+- `per_page` (integer, default: 10)
+
+**Response:**
+- 200: `{ data: [object], pagination: PaginationInfo }`
+
+#### Try This Endpoint
+
+Test the Get Assistants API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Assistants/getAssistants"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Get Assistants API Playground"
+/>
+
+### Create Assistant
+
+**POST** `/v2/_assistants`
+
+Creates a new assistant.
+
+**Request Body:** AssistantRequest schema
+**Response:**
+- 201: Assistant created successfully
+- 400: Invalid input
+
+#### Try This Endpoint
+
+Test the Create Assistant API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Assistants/createAssistant"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Create Assistant API Playground"
+/>
+
+### Get Assistant by ID
+
+**GET** `/v2/_assistants/{assistant_id}`
+
+Returns a specific assistant by ID.
+
+**Path Parameters:**
+- `assistant_id` (integer, required)
+
+**Response:**
+- 200: Assistant retrieved successfully
+
+#### Try This Endpoint
+
+Test the Get Assistant by ID API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Assistants/getAssistantById"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Get Assistant by ID API Playground"
+/>
+
+### Update Assistant
+
+**PUT** `/v2/_assistants/{assistant_id}`
+
+Updates an existing assistant.
+
+**Path Parameters:**
+- `assistant_id` (string, required)
+
+**Request Body:** AssistantRequest schema
+**Response:**
+- 200: Assistant updated successfully
+
+#### Try This Endpoint
+
+Test the Update Assistant API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Assistants/updateAssistant"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Update Assistant API Playground"
+/>
+
+### Delete Assistant
+
+**DELETE** `/v2/_assistants/{assistant_id}`
+
+Deletes an assistant.
+
+**Path Parameters:**
+- `assistant_id` (string, required)
+
+**Response:**
+- 200: Assistant deleted successfully
+
+#### Try This Endpoint
+
+Test the Delete Assistant API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Assistants/deleteAssistant"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Delete Assistant API Playground"
+/>
+
+---
+
+## Campaigns
+
+### Get Campaigns
+
+**GET** `/v2/_campaigns`
+
+Returns all campaigns.
+
+**Query Parameters:**
+- `page` (integer, default: 1)
+- `per_page` (integer, default: 10)
+
+**Response:**
+- 200: `{ data: [object], pagination: PaginationInfo }`
+
+#### Try This Endpoint
+
+Test the Get Campaigns API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Campaigns/getCampaigns"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Get Campaigns API Playground"
+/>
+
+### Create Campaign
+
+**POST** `/v2/_campaigns`
+
+Creates a new campaign.
+
+**Request Body:** CampaignRequest schema
+**Response:**
+- 201: Campaign created successfully
+- 400: Invalid input
+
+#### Try This Endpoint
+
+Test the Create Campaign API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Campaigns/createCampaign"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Create Campaign API Playground"
+/>
+
+### Get Campaign by ID
+
+**GET** `/v2/_campaigns/{campaign_id}`
+
+Returns a specific campaign by ID.
+
+**Path Parameters:**
+- `campaign_id` (string, required)
+
+**Response:**
+- 200: Campaign retrieved successfully
+
+#### Try This Endpoint
+
+Test the Get Campaign by ID API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Campaigns/getCampaignById"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Get Campaign by ID API Playground"
+/>
+
+### Delete Campaign
+
+**DELETE** `/v2/_campaigns/{id}`
+
+Deletes a campaign.
+
+**Path Parameters:**
+- `id` (string, required)
+
+**Response:**
+- 200: Campaign deleted successfully
+
+#### Try This Endpoint
+
+Test the Delete Campaign API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Campaigns/deleteCampaign"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Delete Campaign API Playground"
+/>
+
+---
+
+## Customers
+
+### Get Customers
+
+**GET** `/v2/_customers`
+
+Returns all customers.
+
+**Query Parameters:**
+- `page` (integer, default: 1)
+- `per_page` (integer, default: 10, max: 100)
+
+**Response:**
+- 200: `{ data: [object], pagination: PaginationInfo }`
+
+#### Try This Endpoint
+
+Test the Get Customers API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Customers/getCustomers"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Get Customers API Playground"
+/>
+
+### Create Customer
+
+**POST** `/v2/_customers`
+
+Creates a new customer.
+
+**Request Body:** CustomerRequest schema
+**Response:**
+- 201: Customer created successfully
+- 400: Invalid input
+
+#### Try This Endpoint
+
+Test the Create Customer API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Customers/createCustomer"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Create Customer API Playground"
+/>
+
+### Get Customer by ID
+
+**GET** `/v2/_customers/{customer_id}`
+
+Returns a specific customer by ID.
+
+**Path Parameters:**
+- `customer_id` (string, required)
+
+**Response:**
+- 200: Customer retrieved successfully
+
+#### Try This Endpoint
+
+Test the Get Customer by ID API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Customers/getCustomerById"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Get Customer by ID API Playground"
+/>
+
+### Update Customer
+
+**PUT** `/v2/_customers/{customer_id}`
+
+Updates an existing customer.
+
+**Path Parameters:**
+- `customer_id` (string, required)
+
+**Request Body:** CustomerRequest schema
+**Response:**
+- 200: Customer updated successfully
+
+#### Try This Endpoint
+
+Test the Update Customer API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Customers/updateCustomer"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Update Customer API Playground"
+/>
+
+### Delete Customer
+
+**DELETE** `/v2/_customers/{customer_id}`
+
+Deletes a customer.
+
+**Path Parameters:**
+- `customer_id` (string, required)
+
+**Response:**
+- 200: Customer deleted successfully
+
+#### Try This Endpoint
+
+Test the Delete Customer API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Customers/deleteCustomer"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Delete Customer API Playground"
+/>
+
+---
+
+## Knowledge Base
+
+### Get Knowledge Bases
+
+**GET** `/v2/_knowledge_base`
+
+Returns all knowledge bases.
+
+**Query Parameters:**
+- `page` (integer, default: 1)
+- `per_page` (integer, default: 10)
+
+**Response:**
+- 200: `{ data: [object], pagination: PaginationInfo }`
+
+#### Try This Endpoint
+
+Test the Get Knowledge Bases API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Knowledge%20Base/getKnowledgeBases"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Get Knowledge Bases API Playground"
+/>
+
+### Create Knowledge Base
+
+**POST** `/v2/_knowledge_base`
+
+Creates a new knowledge base.
+
+**Request Body:** KnowledgeBaseRequest schema
+**Response:**
+- 201: Knowledge base created successfully
+- 400: Invalid input
+
+#### Try This Endpoint
+
+Test the Create Knowledge Base API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Knowledge%20Base/createKnowledgeBase"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Create Knowledge Base API Playground"
+/>
+
+### Get Knowledge Base by ID
+
+**GET** `/v2/_knowledge_base/{id}`
+
+Returns a specific knowledge base by ID.
+
+**Path Parameters:**
+- `id` (string, required)
+
+**Response:**
+- 200: Knowledge base retrieved successfully
+
+#### Try This Endpoint
+
+Test the Get Knowledge Base by ID API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Knowledge%20Base/getKnowledgeBaseById"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Get Knowledge Base by ID API Playground"
+/>
+
+### Update Knowledge Base
+
+**PUT** `/v2/_knowledge_base/{id}`
+
+Updates an existing knowledge base.
+
+**Path Parameters:**
+- `id` (string, required)
+
+**Request Body:** multipart/form-data with name, files, urls, faqs, uploaded_files
+**Response:**
+- 200: Knowledge base updated successfully
+
+#### Try This Endpoint
+
+Test the Update Knowledge Base API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Knowledge%20Base/updateKnowledgeBase"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Update Knowledge Base API Playground"
+/>
+
+### Delete Knowledge Base
+
+**DELETE** `/v2/_knowledge_base/{id}`
+
+Deletes a knowledge base.
+
+**Path Parameters:**
+- `id` (string, required)
+
+**Response:**
+- 200: Knowledge base deleted successfully
+
+#### Try This Endpoint
+
+Test the Delete Knowledge Base API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Knowledge%20Base/deleteKnowledgeBase"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Delete Knowledge Base API Playground"
+/>
+
+### Webhook
+
+**POST** `/v2/_knowledge_base/webhook`
+
+Handles webhook events for knowledge base operations.
+
+**Request Body:** Webhook payload
+**Response:**
+- 200: Webhook processed successfully
+
+#### Try This Endpoint
+
+Test the Webhook API directly:
+
+<iframe 
+  src="https://petstore.swagger.io/?url=https://raw.githubusercontent.com/vamsinole/docs/refs/heads/main/api-reference/openapi.json#/Knowledge%20Base/webhook"
+  width="100%" 
+  height="600px"
+  style="border: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;"
+  title="Webhook API Playground"
+/>
+
+---
+
+## API Schema Reference
+
+### Common Schemas
+
+#### Error
+```json
+{
+  "type": "object",
+  "properties": {
+    "message": {"type": "string"},
+    "code": {"type": "integer"}
+  }
+}
+```
+
+#### Success
+```json
+{
+  "type": "object",
+  "properties": {
+    "message": {"type": "string"},
+    "data": {"type": "object"},
+    "code": {"type": "integer"}
+  }
+}
+```
+
+#### PaginationInfo
+```json
+{
+  "type": "object",
+  "properties": {
+    "page": {"type": "integer"},
+    "per_page": {"type": "integer"},
+    "total": {"type": "integer"},
+    "total_pages": {"type": "integer"}
+  }
+}
+```
+
+### Request Schemas
+
+#### ActionRequest
+```json
+{
+  "type": "object",
+  "properties": {
+    "name": {"type": "string", "minLength": 1, "maxLength": 56},
+    "description": {"type": "string"},
+    "type": {"type": "string", "enum": ["SHOPIFY", "SINGLEDATAEXTRACTION", "AIRCALL", "SEND_EMAIL", "SEND_SMS", "CALL_TRANSFER", "WEBHOOK", "APPOINTMENT", "DATAEXTRACTION", "SEND_WHATSAPP", "LABOREDGE"]},
+    "action_timing": {"type": "string", "enum": ["before", "during", "after"]},
+    "is_active": {"type": "boolean"},
+    "webhook": {"oneOf": [/* webhook configurations */]},
+    "email": {"type": "object"},
+    "sms": {"type": "object"},
+    "phone_number": {"type": "string"}
+  }
+}
+```
+
+#### ApiKeyRequest
+```json
+{
+  "type": "object",
+  "properties": {
+    "type": {"type": "string", "enum": ["TWILIO", "ELEVEN_LABS", "PLAY_HT", "CARTESIA", "AZURE_VOICE", "OTHER", "SEND_GRID", "DEEPGRAM", "VONAGE", "GOOGLE_VOICE", "POLLY", "OPENAI", "GEMINI", "JOBROBOTIX", "SIMPLYRETS", "SIP", "SMTP", "AIRCALL", "LABOREDGE", "TELNYX", "AZURE", "GROQ", "STRIPE", "DEEPSEEK", "SARVAM"]},
+    "notes": {"type": "object"},
+    "is_active": {"type": "boolean"},
+    "is_default": {"type": "boolean"},
+    "runtime_config": {"type": "object"},
+    "integration_key": {"oneOf": [/* integration configurations */]}
+  }
+}
+```
+
+#### AssistantRequest
+```json
+{
+  "type": "object",
+  "required": ["name", "type", "instructions", "prompts"],
+  "properties": {
+    "name": {"type": "string"},
+    "type": {"type": "string", "enum": ["VOICE_INCOMING", "VOICE_OUTGOING", "SMS", "EMAIL", "WHATSAPP"]},
+    "instructions": {"type": "string"},
+    "model": {"type": "string"},
+    "prompts": {
+      "type": "object",
+      "properties": {
+        "agent": {"type": "string"},
+        "goal": {"type": "string"}
+      }
+    },
+    "version": {"type": "string", "enum": ["v1", "v2"]},
+    "status": {"type": "boolean"},
+    "phone_number": {"type": "string"},
+    "incoming_call_greeting": {"type": "string"},
+    "outgoing_call_greeting": {"type": "string"},
+    "synthesizer": {"type": "string", "enum": ["AZURE", "DEEPGRAM", "GROK", "OPENAI", "CARTESIA", "ELEVEN_LABS", "PLAY_HT"]},
+    "enable_recordings": {"type": "boolean"},
+    "kb_id": {"type": "string"},
+    "language": {"type": "string"},
+    "action_ids": {"type": "array", "items": {"type": "string"}},
+    "additional_settings": {"type": "object"}
+  }
+}
+```
+
+#### CustomerRequest
+```json
+{
+  "type": "object",
+  "properties": {
+    "name": {"type": "string"},
+    "email": {"type": "string", "format": "email"},
+    "address": {"type": "string"},
+    "phone": {"type": "string"},
+    "customer_timezone": {"type": "string"},
+    "working_hours": {"type": "object"},
+    "website": {"type": "string"},
+    "state": {"type": "string"},
+    "city": {"type": "string"},
+    "zipcode": {"type": "string"},
+    "customer_type": {"type": "string"},
+    "status": {"type": "string"},
+    "is_active": {"type": "boolean"},
+    "customFields": {"type": "object"}
+  }
+}
+```
+
+#### KnowledgeBaseRequest
+```json
+{
+  "type": "object",
+  "properties": {
+    "name": {"type": "string", "minLength": 1, "maxLength": 255},
+    "urls": {"type": "array", "items": {"type": "string"}},
+    "faqs": {"type": "array", "items": {"type": "object", "properties": {"question": {"type": "string"}, "answer": {"type": "string"}}}}
+  }
+}
+```
+
+---
+
+## Server Information
+
+### Production Server
+- **URL:** `https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2`
+- **Description:** Production server for live applications
+
+### Development Server
+- **URL:** `https://dev-contactswing-fastapi-962560522883.us-central1.run.app/v2`
+- **Description:** Development server for testing
+
+---
+
+## Support
+
+For API support and questions, contact:
+- **Name:** ContactSwing API Support
+- **URL:** https://contactswing.ai
+
+---
+
+*This documentation combines all ContactSwing platform features and API endpoints in a single comprehensive guide.* 
