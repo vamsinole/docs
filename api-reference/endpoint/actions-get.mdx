@@ -1,0 +1,21 @@
+---
+title: 'Get All Actions'
+description: 'Get all actions with pagination support'
+---
+
+# Get All Actions
+
+Get all actions for the workspace.
+
+**GET** `/_actions`
+
+Returns all actions with pagination support.
+
+**Query Parameters:**
+- `page` (integer, optional) - Page number. Defaults to 1
+- `per_page` (integer, optional) - Items per page. Defaults to 10
+
+**Response:**
+- **200**: Actions retrieved successfully
+- **401**: Unauthorized
+- **403**: Permission denied
