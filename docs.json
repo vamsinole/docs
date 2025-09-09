@@ -50,10 +50,7 @@
             "icon": "book-open",
             "pages": [
               "essentials/docs/KnowledgeBase/intro",
-              "essentials/docs/KnowledgeBase/createkb",
-              "essentials/docs/KnowledgeBase/Addfaq",
-              "essentials/docs/KnowledgeBase/Addfiles",
-              "essentials/docs/KnowledgeBase/Addurl"
+              "essentials/docs/KnowledgeBase/createkb"
             ]
           },
           {
