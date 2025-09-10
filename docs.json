@@ -99,7 +99,7 @@
             "pages": [
               "essentials/docs/Integration/intro",
               {
-                "group": "Integrations",
+                "group": "Types",
                 "pages": [
                   "essentials/docs/Integration/Aircall",
                   "essentials/docs/Integration/cartesia",
