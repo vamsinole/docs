@@ -22,61 +22,47 @@ Learn how to integrate Attio with ContactSwing's phone capabilities. This guide 
 
 ## Step-by-step guide
 
-### 1. Set up your Attio connection 🔐
+<Steps>
+    <Step title="Set up your Attio connection">
+        - **Step 1:** Log in to your Attio account at [https://app.attio.com](https://app.attio.com).
+        - **Step 2:** From the dropdown beside your workspace name, click **Workspace settings**.
+        - **Step 3:** Navigate to the **Developers** tab.
+        - **Step 4:** Click on **New Access Token**.
+        - **Step 5:** Set the appropriate **Scopes** for the integration.
+        - **Step 6:** Copy the generated **Access Token**.
 
-- **Step 1:** Log in to your Attio account at [https://app.attio.com](https://app.attio.com).
-- **Step 2:** From the dropdown beside your workspace name, click **Workspace settings**.
-- **Step 3:** Navigate to the **Developers** tab.
-- **Step 4:** Click on **New Access Token**.
-- **Step 5:** Set the appropriate **Scopes** for the integration.
-- **Step 6:** Copy the generated **Access Token**.
+        <img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/att1.jpg" alt="Workflow" />
+    </Step>
+    <Step title="Connect Attio to Contactswing">
+        - Open the **Contactswing** platform.
+        - Click on **Select a connection**.
+        - Paste your **Attio Access Token**.
+        - Select your **workspace space** if prompted.
 
-<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/att1.jpg" alt="Workflow" />
+        <img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/att2.jpg" alt="Workflow" />
+    </Step>
+    <Step title="Choose your Attio Object">
+        - Choose the object that will trigger the workflow:  
+          - `Person`  
+          - `Company`
+        - These objects represent the entities whose creation or update will initiate a phone call through Contactswing.
 
+        <img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/att3.jpg" alt="Workflow" />
+    </Step>
+    <Step title="Configure the Contactswing Call Action">
+        - In Contactswing, choose **CALL** as the response type.
+        - Enter your **Workspace API Key**.
+        - Add the **Webhook URL** provided by Contactswing.
+        - The system will now automatically place a call whenever the selected Attio object is created or updated.
 
----
-
-### 2. Connect Attio to Contactswing 🔗
-
-- Open the **Contactswing** platform.
-- Click on **Select a connection**.
-- Paste your **Attio Access Token**.
-- Select your **workspace space** if prompted.
-
-<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/att2.jpg" alt="Workflow" />
-
-
----
-
-### 3. Choose your Attio Object 🧩
-
-- Choose the object that will trigger the workflow:  
-  - `Person`  
-  - `Company`
-- These objects represent the entities whose creation or update will initiate a phone call through Contactswing.
-
-<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/att3.jpg" alt="Workflow" />
-
-
----
-
-### 4. Configure the Contactswing Call Action 📞
-
-- In Contactswing, choose **CALL** as the response type.
-- Enter your **Workspace API Key**.
-- Add the **Webhook URL** provided by Contactswing.
-- The system will now automatically place a call whenever the selected Attio object is created or updated.
-
-<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/att4.jpg" alt="Workflow" />
-
-
----
-
-### 5. Activate your Agentic AI Flow ⚡
-
-- Review all trigger and action settings.
-- Click **Publish** to activate the flow.
-- Once published, your system will automatically trigger a phone call when a new person or company is added in Attio.
+        <img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/att4.jpg" alt="Workflow" />
+    </Step>
+    <Step title="Activate your Agentic AI Flow">
+        - Review all trigger and action settings.
+        - Click **Publish** to activate the flow.
+        - Once published, your system will automatically trigger a phone call when a new person or company is added in Attio.
+    </Step>
+</Steps>
 
 ---
 

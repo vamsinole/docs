@@ -22,48 +22,38 @@ Learn how to integrate Close CRM with ContactSwing's phone capabilities. This gu
 
 ## Step-by-step guide
 
-### 1. Select your Close object type 🔍
+<Steps>
+    <Step title="Select your Close object type">
+        - When starting your flow, **search for “Close”** in the app list and click on it.
+        - Under **Triggers**, choose your starting event:
+          - `When a new Lead is created`
+          - `When a new Contact is created`
+          - `When a new Opportunity is created`
+        - This selection defines when your Contactswing call will be triggered.
 
-- When starting your flow, **search for “Close”** in the app list and click on it.
-- Under **Triggers**, choose your starting event:
-  - `When a new Lead is created`
-  - `When a new Contact is created`
-  - `When a new Opportunity is created`
-- This selection defines when your Contactswing call will be triggered.
+        <img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/cl1.jpg" alt="Workflow" />
+    </Step>
+    <Step title="Set up the Close connection">
+        - Click on **Select a connection**.
+        - Click **Create a connection**.
+        - Sign in using your **Google Account** or Close credentials to authorize the connection.
 
-<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/cl1.jpg" alt="Workflow" />
+        <img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/cl2.jpg" alt="Workflow" />
+    </Step>
+    <Step title="Configure the Contactswing Call action">
+        - In Contactswing, set the **Response Type** as `CALL`.
+        - Enter your **Workspace API Key**.
+        - Paste the **Webhook URL** provided by Contactswing.
+        - The system will now be ready to trigger a phone call whenever the selected Close event occurs.
 
-
----
-
-### 2. Set up the Close connection 🔐
-
-- Click on **Select a connection**.
-- Click **Create a connection**.
-- Sign in using your **Google Account** or Close credentials to authorize the connection.
-
-<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/cl2.jpg" alt="Workflow" />
-
-
----
-
-### 3. Configure the Contactswing Call action 📞
-
-- In Contactswing, set the **Response Type** as `CALL`.
-- Enter your **Workspace API Key**.
-- Paste the **Webhook URL** provided by Contactswing.
-- The system will now be ready to trigger a phone call whenever the selected Close event occurs.
-
-<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/cl3.jpg" alt="Workflow" />
-
-
----
-
-### 4. Activate your Agentic AI Flow ⚡
-
-- Review all trigger and action configurations.
-- Click **Publish** to activate the flow.
-- Once published, the system will automatically initiate a phone call through Contactswing whenever a new lead, contact, or opportunity is added in Close.
+        <img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/cl3.jpg" alt="Workflow" />
+    </Step>
+    <Step title="Activate your Agentic AI Flow">
+        - Review all trigger and action configurations.
+        - Click **Publish** to activate the flow.
+        - Once published, the system will automatically initiate a phone call through Contactswing whenever a new lead, contact, or opportunity is added in Close.
+    </Step>
+</Steps>
 
 ---
 

@@ -24,34 +24,29 @@ Automate your customer engagement by connecting **Airparser** to **Contactswing*
 
 ## Step-by-step guide
 
-### 1. Set up your Airparser webhook trigger 📝
+<Steps>
+    <Step title="Set up your Airparser webhook trigger">
+        In Airparser, go to **Integrations** and click the **Webhook Connect** button.
+        - Select **Webhook Trigger** and paste the Webhook URL provided by Contactswing.
+        - Click **Create Webhook** to finalize the connection.
+        - Every time a document is parsed in Airparser, this trigger will activate the flow.
 
-- In Airparser, go to **Integrations** and click the **Webhook Connect** button.
-- Select **Webhook Trigger** and paste the Webhook URL provided by Contactswing.
-- Click **Create Webhook** to finalize the connection.
-- Every time a document is parsed in Airparser, this trigger will activate the flow.
+        <img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/ap1.jpg" alt="Workflow" />
+    </Step>
+    <Step title="Configure the Contactswing Call action">
+        In Contactswing, select **CALL** as the response type.
+        - Enter your **Workspace API Key**.
+        - Add the **Webhook URL** provided by Contactswing.
+        - The system will automatically initiate a phone call whenever a document is parsed in Airparser.
 
-<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/ap1.jpg" alt="Workflow" />
-
-
----
-
-### 2. Configure the Contactswing Call action 📞
-
-- In Contactswing, select **CALL** as the response type.
-- Enter your **Workspace API Key**.
-- Add the **Webhook URL** provided by Contactswing.
-- The system will automatically initiate a phone call whenever a document is parsed in Airparser.
-
-<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/ap2.jpg" alt="Workflow" />
-
----
-
-### 3. Activate your Agentic AI Flow ⚡
-
-- Review all settings.
-- Click **Publish** to activate the flow.
-- Once published, the system will trigger the call automatically after every document parsing.
+        <img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/ap2.jpg" alt="Workflow" />
+    </Step>
+    <Step title="Activate your Agentic AI Flow">
+        - Review all settings.
+        - Click **Publish** to activate the flow.
+        - Once published, the system will trigger the call automatically after every document parsing.
+    </Step>
+</Steps>
 
 ---
 

@@ -14,28 +14,29 @@ Learn how to integrate Google Sheets with ContactSwing's AI capabilities. This g
 
 ## Step-by-step guide
 
-### 1. Set up your Google Sheets trigger
-- **Trigger:** New Row
-- **Connection:** `google-sheets`
-- **Spreadsheet:** Select the sheet where you collect content ideas or submissions.
-- **Include Team Drive Sheets:** Choose whether to include Team Drives.
-- **Sheet:** Pick the specific sheet to monitor.
+<Steps>
+    <Step title="Set up your Google Sheets trigger">
+        - **Trigger:** New Row
+        - **Connection:** `google-sheets`
+        - **Spreadsheet:** Select the sheet where you collect content ideas or submissions.
+        - **Include Team Drive Sheets:** Choose whether to include Team Drives.
+        - **Sheet:** Pick the specific sheet to monitor.
 
-<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/gs1.jpg" alt="Workflow" />
+        <img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/gs1.jpg" alt="Workflow" />
+    </Step>
+    <Step title="Configure the Contactswing SMS action 💬">
+        - In Contactswing, select **SMS** as the response type.
+        - Enter your Workspace API KEY.
+        - Add the Webhook URL.
+        - When a new row is added or modified, Contactswing triggers this action automatically.
 
-
-### 2. Configure the Contactswing SMS action 💬
-- In Contactswing, select **SMS** as the response type.
-- Enter your Workspace API KEY.
-- Add the Webhook URL.
-- When a new row is added or modified, Contactswing triggers this action automatically.
-
-<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/gs2.jpg" alt="Workflow" />
-
-
-### 3. Activate your Agentic AI ⚡
-- Activate the flow after you configure both the Google Sheets trigger and Contactswing action.
-- Every new Google Sheet submission now automatically triggers an SMS to the user.
+        <img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/gs2.jpg" alt="Workflow" />
+    </Step>
+    <Step title="Activate your Agentic AI ⚡">
+        - Activate the flow after you configure both the Google Sheets trigger and Contactswing action.
+        - Every new Google Sheet submission now automatically triggers an SMS to the user.
+    </Step>
+</Steps>
 
 ---
 

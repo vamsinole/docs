@@ -25,7 +25,8 @@
             "icon": "rocket",
             "pages": [
               "essentials/docs/dashboard",
-              "essentials/docs/pages/concepts"
+              "essentials/docs/pages/concepts",
+              "essentials/docs/Register/register"
             ]
           },
           {
@@ -107,8 +108,8 @@
                   "essentials/docs/Integration/elevenlabs",
                   "essentials/docs/Integration/gohighlevel",
                   "essentials/docs/Integration/google",
-                  "essentials/docs/Integration/gpt",
-                  "essentials/docs/Integration/hubspot",
+                  "essentials/docs/Integration/calender",
+                  "essentials/docs/Integration/gpt",                  "essentials/docs/Integration/hubspot",
                   "essentials/docs/Integration/jobrob",
                   "essentials/docs/Integration/playht",
                   "essentials/docs/Integration/salesforce",
@@ -118,9 +119,7 @@
                   "essentials/docs/Integration/smtp",
                   "essentials/docs/Integration/twilio",
                   "essentials/docs/Integration/whatsapp",
-                  "essentials/docs/Integration/zoho",
-                  "essentials/docs/Integration/zoho-bigin",
-                  "essentials/docs/Integration/zoho-crm"
+                  "essentials/docs/Integration/zoho"
                 ]
               }
             ]

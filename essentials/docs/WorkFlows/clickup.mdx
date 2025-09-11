@@ -22,65 +22,51 @@ Learn how to integrate ClickUp with ContactSwing's phone capabilities. This guid
 
 ## Step-by-step guide
 
-### 1. Choose your ClickUp trigger event ⚙️
+<Steps>
+    <Step title="Choose your ClickUp trigger event">
+        - Type **ClickUp** in the search bar and click on it.
+        - Under **Triggers**, choose one of the following events:
+          - `Task Created`
+          - `Task Updated`
+          - `Task Deleted`
+          - `Task Priority Updated`
+          - `Task Status Updated`
+          - `Task Tag Updated`
+        - This will define when the Contactswing call is triggered.
 
-- Type **ClickUp** in the search bar and click on it.
-- Under **Triggers**, choose one of the following events:
-  - `Task Created`
-  - `Task Updated`
-  - `Task Deleted`
-  - `Task Priority Updated`
-  - `Task Status Updated`
-  - `Task Tag Updated`
-- This will define when the Contactswing call is triggered.
+        <img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/ck1.jpg" alt="Workflow" />
+    </Step>
+    <Step title="Set up the ClickUp connection">
+        - Click on **Select a connection**.
+        - Choose **Create a connection**.
+        - Sign in with your **Google Account** (or ClickUp credentials) to authorize the integration.
 
-<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/ck1.jpg" alt="Workflow" />
+        <img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/ck2.jpg" alt="Workflow" />
+    </Step>
+    <Step title="Select your ClickUp workspace structure">
+        - After connection, follow these steps to narrow down the task source:
+          - **Select Workspace** → Choose the desired workspace.
+          - **Select Space** → Pick the space where the task is located.
+          - **Select Folder** → Choose the folder within the space.
+          - **Select List** → Pick the list that holds the tasks.
+          - **Select Task ID** → This is used to map the event to a specific task.
 
+        <img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/ck3.jpg" alt="Workflow" />
+    </Step>
+    <Step title="Configure the Contactswing Call action">
+        - In Contactswing, select `CALL` as the response type.
+        - Enter your **Workspace API Key**.
+        - Paste the **Webhook URL** provided by Contactswing.
+        - This will allow the system to initiate a phone call when the task event occurs.
 
----
-
-### 2. Set up the ClickUp connection 🔐
-
-- Click on **Select a connection**.
-- Choose **Create a connection**.
-- Sign in with your **Google Account** (or ClickUp credentials) to authorize the integration.
-
-<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/ck2.jpg" alt="Workflow" />
-
-
----
-
-### 3. Select your ClickUp workspace structure 🧩
-
-- After connection, follow these steps to narrow down the task source:
-  - **Select Workspace** → Choose the desired workspace.
-  - **Select Space** → Pick the space where the task is located.
-  - **Select Folder** → Choose the folder within the space.
-  - **Select List** → Pick the list that holds the tasks.
-  - **Select Task ID** → This is used to map the event to a specific task.
-
-<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/ck3.jpg" alt="Workflow" />
-
-
----
-
-### 4. Configure the Contactswing Call action 📞
-
-- In Contactswing, select `CALL` as the response type.
-- Enter your **Workspace API Key**.
-- Paste the **Webhook URL** provided by Contactswing.
-- This will allow the system to initiate a phone call when the task event occurs.
-
-<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/ck4.jpg" alt="Workflow" />
-
-
----
-
-### 5. Activate your Agentic AI Flow ⚡
-
-- Double-check all trigger and action settings.
-- Click **Publish** to make your automation live.
-- Once activated, Contactswing will call automatically when a task is created, updated, deleted, or modified in ClickUp.
+        <img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/ck4.jpg" alt="Workflow" />
+    </Step>
+    <Step title="Activate your Agentic AI Flow">
+        - Double-check all trigger and action settings.
+        - Click **Publish** to make your automation live.
+        - Once activated, Contactswing will call automatically when a task is created, updated, deleted, or modified in ClickUp.
+    </Step>
+</Steps>
 
 ---
 

@@ -22,35 +22,29 @@ Learn how to integrate Microsoft Excel with ContactSwing's phone capabilities. T
 
 ## Step-by-step guide
 
-### 1. Set up your Microsoft Excel trigger 📝
+<Steps>
+    <Step title="Set up your Microsoft Excel trigger">
+        - **Trigger:** New Row
+        - **Connection:** `Microsoft-Excel`
+        - **Worksheet:** Select the worksheet where you’ll be adding new rows.
+        - Every time you add a new row, this trigger will activate the flow.
 
-- **Trigger:** New Row
-- **Connection:** `Microsoft-Excel`
-- **Worksheet:** Select the worksheet where you’ll be adding new rows.
-- Every time you add a new row, this trigger will activate the flow.
+        <img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/me1.jpg" alt="Workflow" />
+    </Step>
+    <Step title="Configure the Contactswing Call action">
+        - In Contactswing, choose **CALL** as the response type.
+        - Enter your **Workspace API Key**.
+        - Add the **Webhook URL** provided by Contactswing.
+        - Whenever a new row is added in Excel, Contactswing will automatically place a phone call using the configured details.
 
-<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/me1.jpg" alt="Workflow" />
-
-
----
-
-### 2. Configure the Contactswing Call action 📞
-
-- In Contactswing, choose **CALL** as the response type.
-- Enter your **Workspace API Key**.
-- Add the **Webhook URL** provided by Contactswing.
-- Whenever a new row is added in Excel, Contactswing will automatically place a phone call using the configured details.
-
-<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/me2.jpg" alt="Workflow" />
-
-
----
-
-### 3. Activate your Agentic AI Flow ⚡
-
-- Review all trigger and action settings.
-- Click **Publish** to activate the flow.
-- Once published, the system will automatically trigger the phone call every time a new row is added in Microsoft Excel.
+        <img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/me2.jpg" alt="Workflow" />
+    </Step>
+    <Step title="Activate your Agentic AI Flow">
+        - Review all trigger and action settings.
+        - Click **Publish** to activate the flow.
+        - Once published, the system will automatically trigger the phone call every time a new row is added in Microsoft Excel.
+    </Step>
+</Steps>
 
 ---
 
