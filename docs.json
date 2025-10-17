@@ -163,7 +163,8 @@
               "essentials/docs/Actions/rtb",
               "essentials/docs/Actions/shopify",
               "essentials/docs/Actions/sms",
-              "essentials/docs/Actions/whatsapp"
+              "essentials/docs/Actions/whatsapp",
+              "essentials/docs/Actions/dtmf"
             ]
           },
           {
