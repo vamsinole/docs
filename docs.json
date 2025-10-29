@@ -219,13 +219,7 @@
               "essentials/docs/prompting"
             ]
           },
-          {
-            "group": "Staffing",
-            "icon": "robot",
-            "pages": [
-              "essentials/docs/staffing/intro"
-            ]
-          },
+      
           {
             "group": "Prompt Examples",
             "icon": "code",
