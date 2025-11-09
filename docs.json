@@ -239,6 +239,13 @@
               "essentials/docs/Resources/faq",
               "essentials/docs/support"
             ]
+          },
+          {
+            "group": "Staffing",
+            "pages": [
+              "essentials/docs/staffing/intro"
+            ],
+            "hidden": true
           }
         ]
       },
