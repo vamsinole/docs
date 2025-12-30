@@ -2,7 +2,7 @@
 title: Real-time Booking Action
 ---
 
-Set up real-time booking capabilities in your workflows with RTB actions. This guide shows you how to configure and manage booking functionality effectively.
+Enable real-time booking inside your workflows using RTB actions. This guide explains how to configure and use booking functionality for live scheduling during calls.
 
 ## 🎥 Video walkthrough
 
@@ -12,34 +12,42 @@ Set up real-time booking capabilities in your workflows with RTB actions. This g
 
 ## Step-by-step guide
 
-Follow these steps to create your RTB action:
+Follow these steps to set up your RTB action. 
 
 ### 1. Select RTB action
 
-Choose **Real-Time Booking Action** from the available action types to get started.
+Choose **Real-Time Booking Action** from the list of available action types to begin the setup. 
 
-<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/at.jpg" alt="RTB Action" />
+<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/Actions/RTB/new1.png" alt="RTB Action" />
 
 ### 2. Configure your RTB action
 
-Fill in the required fields:
-- **Name**: Enter a name for your action (e.g., "My Real-Time Booking Action").
-- **Description**: Briefly describe your RTB action (e.g., "Action for scheduling bookings during calls").
-- **Schedule a Booking**: Specify the service or person to book with (e.g., "Google Calendar").
+Provide the following details. 
 
-<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/google1.jpg" alt="Google Calendar Example" />
+- **Name**: A clear name for the action (for example, "My Real-Time Booking Action").  
+- **Description**: A short explanation of what this RTB action does (for example, "Action used to schedule bookings during calls").  
+- **Action Timing**: Select when this action should run within the workflow.  
+- **Email Type**: Choose the email provider (for example, "Gmail", "Outlook").  
+- **Email**: Select the specific email address to use for booking communication.  
+- **TimeZone**: Set the time zone that should be used for booking slots.
+- **Buffer Time**: Define the buffer time between bookings, if needed.  
+- **Do not send Email on Confirmation**: Toggle on if you do not want to send a confirmation email after a booking is created. 
+- **Round Robin**: Toggle on to distribute bookings in a round-robin manner; when enabled, the second customer will be assigned to the sub-account email for the call.  
+- **Follow up Type**: Select the follow-up method (for example, "Call", "SMS"). 
+- **Booking Timings**: Choose the time ranges when bookings are allowed.
+
+<img src="https://storage.googleapis.com/helpsessionvideos/Contactswing/images/Actions/RTB/new2.png" alt="Google Calendar Example" />
 
 ### 3. Create the action
 
-After completing all fields and connecting your Google Calendar, click **Create Action** to save your real-time booking action. 🎉
+Once all required fields are filled and your Google Calendar is connected, click **Create Action** to save and activate your real-time booking action. 
 
 ---
 
 ## Example real-time booking action setup
 
-- **Name**: My Real-Time Booking Action  
-- **Description**: Action for scheduling bookings during calls  
-- **Schedule a Booking with**: Google Calendar
+- **Name**: My Real-Time Booking Action 
+- **Description**: Action for scheduling bookings during calls
+- **Schedule a Booking with**: Google Calendar  
 
-By following these steps, you enable efficient scheduling during calls in your application.
-
+Using this configuration, your application can handle live scheduling smoothly while calls are in progress.
