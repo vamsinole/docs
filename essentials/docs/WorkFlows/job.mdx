@@ -1,0 +1,42 @@
+---
+title: Build Automated Job Matching Workflows in ContactSwing Agentic AI
+---
+
+Learn how to build automated workflows in **ContactSwing** that trigger when new jobs are posted and automatically match qualified consultants using webhooks and API authentication.
+
+## 🎥 Video walkthrough
+
+<div class="card-video">
+  <video src="https://storage.googleapis.com/helpsessionvideos/Contactswing/Videos/Workflows/Job-workflow.mp4" autoplay playsinline controls title="Automated Job Matching Workflow Walkthrough"></video>
+</div>
+
+---
+
+## Step-by-step guide
+
+<Steps>
+  <Step title="Configure Job Posted">
+    - **Trigger:** *New Job Posted (Webhook)*  
+    - **Workspace Key:** Enter your authentication key here.
+  </Step>
+
+  <Step title="ContactSwing (Get Matching Consultants)">
+    - **Workspace Key:** Enter your authentication key here.  
+    - **Job ID:** Provide the corresponding Job ID for reference.  
+    - **Model:** Use a supported model such as `gpt-3.5-turbo` or later.
+
+    **Example:**  
+    When a new job is added in the staffing system, this workflow automatically identifies and matches the most suitable consultants for that specific job post.
+  </Step>
+</Steps>
+
+---
+
+## Workflow summary
+
+1. **Trigger:** The workflow activates when a new job is posted via a webhook.  
+2. **Match consultants:** ContactSwing fetches and matches consultants based on job requirements.  
+3. **Generate recommendations:** AI ranks the best-fit consultants.  
+4. **Notify recruiters:** The system automatically alerts the recruitment team with recommended matches.
+
+This automation eliminates repetitive manual searches, enabling faster and more precise consultant-job matching through ContactSwing Agentic AI.
