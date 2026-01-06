@@ -90,7 +90,8 @@
                   "essentials/docs/WorkFlows/attio",
                   "essentials/docs/WorkFlows/close",
                   "essentials/docs/WorkFlows/clickup",
-                  "essentials/docs/WorkFlows/job"
+                  "essentials/docs/WorkFlows/job",
+                  "essentials/docs/WorkFlows/email"
                 ]
               }
             ]

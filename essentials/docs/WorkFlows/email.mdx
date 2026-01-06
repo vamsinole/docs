@@ -1,0 +1,45 @@
+---
+title: Build AI-Powered Email Processing Workflow
+---
+
+Learn how to create an automated email workflow in **ContactSwing** that uses **GPT‑4o** for intelligent data extraction, processes incoming messages, and publishes them to production.
+
+## 🎥 Video walkthrough
+
+<div class="card-video">
+  <video src="https://storage.googleapis.com/helpsessionvideos/Contactswing/Videos/Workflows/email-workflow.mp4" autoplay playsinline controls title="AI-Powered Email Processing Workflow Walkthrough"></video>
+</div>
+
+---
+
+## Step-by-step guide
+
+<Steps>
+  <Step title="Configure Gmail">
+    - **Trigger:** *New Email*  
+    - **Category:** Select the category you want to monitor (e.g., *Inbox*, *Promotions*, or *Social*).  
+  </Step>
+
+  <Step title="Configure ContactSwing AI Data Extractor">
+    - **Trigger:** *AI Data Extractor*  
+    - **AI Provider:** Choose the AI provider you want to use.  
+    - **Model:** Select the AI model for data extraction (for example, *gpt‑4o*).  
+    - **API Key:** Enter your ContactSwing authentication key.  
+    - **Input Text:** Provide the text or email content from which you want the data to be extracted.  
+    - **What to Extract:** Specify the information you want the AI to extract (e.g., sender name, subject line, or message ID).  
+
+    **Example:**  
+    When a new email is received, ContactSwing’s AI Data Extractor automatically identifies and extracts the required details — such as **Message ID**, **Subject**, or **Sender Information** — from the email body or headers for further processing.  
+  </Step>
+</Steps>
+
+---
+
+## Workflow summary
+
+1. **Trigger:** The workflow activates when a new email arrives in Gmail.  
+2. **Data extraction:** ContactSwing’s AI Data Extractor uses GPT‑4o to process the message and extract structured data.  
+3. **Process insights:** Extracted information can be sent to your CRM, database, or workflow for automated handling.  
+4. **Publish results:** The processed data is stored or sent to production systems for downstream tasks.
+
+This automation minimizes manual data entry and enhances email management through intelligent, AI‑driven extraction within ContactSwing.
