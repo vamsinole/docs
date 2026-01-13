@@ -274,17 +274,6 @@
             ]
           },
           {
-            "group": "API Keys",
-            "icon": "key",
-            "pages": [
-              "api-reference/endpoint/apikeys-get",
-              "api-reference/endpoint/apikeys-post",
-              "api-reference/endpoint/apikeys-get-by-id",
-              "api-reference/endpoint/apikeys-put",
-              "api-reference/endpoint/apikeys-delete"
-            ]
-          },
-          {
             "group": "Assistants",
             "icon": "robot",
             "pages": [
@@ -334,8 +323,7 @@
               "api-reference/endpoint/get-calls-list",
               "api-reference/endpoint/make-call",
               "api-reference/endpoint/get-call-detail",
-              "api-reference/endpoint/unified-voice-call",
-              "api-reference/endpoint/fallback-call"
+              "api-reference/endpoint/unified-voice-call"
             ]
           }
         ]

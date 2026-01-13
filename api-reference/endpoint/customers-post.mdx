@@ -1,15 +1,55 @@
 ---
 title: Create Customer
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_customers'
 description: Create a new customer via the ContactSwing API.
 ---
 
-**POST** `/v2/_customers`
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
 
-Create a new customer.
+### Request Body
+**JSON: CustomerRequest** (see OpenAPI spec)
 
-**Request Body:**
-- JSON: CustomerRequest (see OpenAPI spec)
+<ParamField path="name" type="string" required>
+Customer full name
+</ParamField>
 
-**Response:**
-- 201: Customer created successfully
-- 400: Invalid input
+<ParamField path="phone" type="string">
+Phone number `+1234567890`
+</ParamField>
+
+<ParamField path="email" type="string">
+Email address `user@example.com`
+</ParamField>
+
+<ParamField path="tags" type="array">
+Customer tags `["vip", "lead"]`
+</ParamField>
+
+### Response
+
+**201 Created** - Customer created successfully
+
+<ResponseField name="ctx_id" type="string">Request context ID</ResponseField>
+<ResponseField name="data" type="object">
+  <ResponseField name="id" type="string">Customer ID</ResponseField>
+  <ResponseField name="name" type="string">Customer name</ResponseField>
+  <ResponseField name="phone" type="string">Phone number</ResponseField>
+</ResponseField>
+
+**400 Bad Request** - Invalid input
+
+### Example
+```json
+{
+  "name": "John Doe",
+  "phone": "+1234567890",
+  "email": "john@example.com",
+  "tags": ["vip", "lead"]
+}

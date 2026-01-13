@@ -1,19 +1,54 @@
 ---
-title: 'Get Call Detail'
-description: 'Get detailed information for a specific voice call including session details, conversations, and processed actions'
+title: Get Call Detail
+api: 'GET https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_calls/{call_id}'
+description: Get detailed information for a specific voice call including session details, conversations, and processed actions.
 ---
 
-**GET** `/_calls/{call_id}`
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
 
-Returns comprehensive call information including complete session details, all conversations, and all processed actions during the call.
+### Path Parameters
+<ParamField path="call_id" type="string" required>
+Session ID of the voice call from ContactSwing dashboard.
+</ParamField>
 
-**Path Parameters:**
-- `call_id` (string, required) - Session ID of the voice call
+### Response
 
-**Response:**
-- **200**: Call detail retrieved successfully
-- **400**: Call ID is required
-- **401**: Unauthorized
-- **404**: Call not found
-- **429**: Rate limit exceeded (30 calls per minute)
-- **500**: Internal server error
+**200 OK** - Call detail retrieved successfully
+
+<ResponseField name="ctx_id" type="string">
+Request context ID
+</ResponseField>
+
+<ResponseField name="data" type="object">
+Call details including:
+  <ResponseField name="id" type="string">Call ID</ResponseField>
+  <ResponseField name="session_details" type="object">Complete session metadata</ResponseField>
+  <ResponseField name="conversations" type="array">All conversation exchanges</ResponseField>
+  <ResponseField name="processed_actions" type="array">Actions triggered during call</ResponseField>
+</ResponseField>
+
+<ResponseField name="message" type="string">
+"Request processed successfully"
+</ResponseField>
+
+**400 Bad Request** - Call ID is required
+
+**401 Unauthorized** - Invalid or missing token
+
+**404 Not Found** - Call not found
+
+**429 Too Many Requests** - Rate limit exceeded (30 calls per minute)
+
+**500 Internal Server Error** - Server error
+
+### Example Request
+```bash
+curl 'https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_calls/YOUR_CALL_ID' \
+  -H 'Authorization: Bearer YOUR_JWT_TOKEN'

@@ -1,15 +1,58 @@
 ---
 title: Create Action
-description: Create a new action via the ContactSwing API.
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/actions'
+description: Create a new action in ContactSwing workspace with dynamic type selection.
 ---
 
-**POST** `/v2/_actions`
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
 
-Create a new action.
+### Request Body Parameters
 
-**Request Body:**
-- JSON: ActionRequest (see OpenAPI spec)
+<ParamField path="name" type="string" required>
+Action display name. Example: `My SMS Action`
+</ParamField>
 
-**Response:**
-- 201: Action created successfully
-- 400: Invalid input
+<ParamField path="description" type="string" required>
+Action description for when to trigger it.
+</ParamField>
+
+<ParamField path="type" type="string" required>
+**Action Type** (select one):
+- `SEND_SMS` - SMS via Twilio
+- `SEND_EMAIL` - Email automation  
+- `WEBHOOK` - Custom API calls
+- `APPOINTMENT` - Calendar booking
+- `CALL_TRANSFER` - Phone transfers
+- `SEND_WHATSAPP` - WhatsApp messages
+- `DTMF_ACTION` - Phone menu navigation
+- `SINGLEDATAEXTRACTION` - Data extraction
+</ParamField>
+
+<ParamField path="action_timing" type="string" required>
+Timing: `DURING` (during call) or `AFTER`
+</ParamField>
+
+
+
+### Response
+
+**201 Created** - Action created successfully
+
+<ResponseField name="ctx_id" type="string">
+Request context ID
+</ResponseField>
+
+<ResponseField name="data" type="object">
+Newly created action details matching [Get Action by ID](/api/actions/get) format.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+`"Request processed successfully"`
+</ResponseField>

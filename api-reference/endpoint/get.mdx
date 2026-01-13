@@ -1,16 +1,68 @@
 ---
 title: Get Actions
+api: 'GET https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_actions'
 description: List all actions via the ContactSwing API.
 ---
 
-**GET** `/v2/_actions`
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing API key.
+</ParamField>
 
-Returns all actions.
 
-**Query Parameters:**
-- `page` (integer, default: 1)
-- `per_page` (integer, default: 10)
+## Response
 
-**Response:**
-- 200: `{ data: [object], pagination: PaginationInfo }`
-- See schema in OpenAPI spec.
+**200 OK** - Actions list retrieved successfully
+
+<ResponseField name="ctx_id" type="string">
+Request context ID: `eb427c29-b818-4dca-bcab-7f420f30e51a`
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  <ResponseField name="data" type="array">
+  Array of action objects (showing first few examples):
+    
+    **WEBHOOK Action Example:**
+    <ResponseField name="id" type="string">`4808cc67-194e-4dfc-97ad-146ddf3d4126`</ResponseField>
+    <ResponseField name="name" type="string">`My API Action`</ResponseField>
+    <ResponseField name="type" type="string">`WEBHOOK`</ResponseField>
+    <ResponseField name="is_active" type="boolean">`true`</ResponseField>
+    <ResponseField name="webhook.url" type="string">
+    `https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/sample/api/example`
+    </ResponseField>
+
+    **APPOINTMENT Action Example:**
+    <ResponseField name="id" type="string">`e16a8a25-959f-4037-9b2e-ddc8baf0baf5`</ResponseField>
+    <ResponseField name="name" type="string">`My Real-time Booking Action`</ResponseField>
+    <ResponseField name="type" type="string">`APPOINTMENT`</ResponseField>
+    <ResponseField name="webhook.booking_timings" type="object">
+    Weekly availability (Mon-Fri: 09:00-17:00 US/Central)
+    </ResponseField>
+
+    **Other Action Types Available:**
+    - `SEND_WHATSAPP` - WhatsApp messaging
+    - `SEND_EMAIL` - Email actions  
+    - `CALL_TRANSFER` - Phone transfers
+    - `SINGLEDATAEXTRACTION` - Data extraction
+    - `DTMF_ACTION` - Phone menu navigation
+  </ResponseField>
+
+  <ResponseField name="pagination" type="object">
+  Pagination metadata:
+    <ResponseField name="current_page" type="number">`1`</ResponseField>
+    <ResponseField name="per_page" type="number">`10`</ResponseField>
+    <ResponseField name="total_records" type="number">`58`</ResponseField>
+    <ResponseField name="total_pages" type="number">`6`</ResponseField>
+    <ResponseField name="has_next" type="boolean">`true`</ResponseField>
+  </ResponseField>
+</ResponseField>
+
+<ResponseField name="message" type="string">
+`"Request processed successfully"`
+</ResponseField>
+
+

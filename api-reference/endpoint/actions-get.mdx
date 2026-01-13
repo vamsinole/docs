@@ -1,21 +1,58 @@
 ---
-title: 'Get All Actions'
-description: 'Get all actions with pagination support'
+title: Get All Actions
+api: 'GET https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_actions'
+description: Get all actions with pagination support.
 ---
 
-# Get All Actions
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
 
-Get all actions for the workspace.
+### Query Parameters
+<ParamField path="page" type="integer">
+Page number. Default: `1`
+</ParamField>
 
-**GET** `/_actions`
+<ParamField path="per_page" type="integer">
+Items per page. Default: `10`
+</ParamField>
 
-Returns all actions with pagination support.
+### Response
 
-**Query Parameters:**
-- `page` (integer, optional) - Page number. Defaults to 1
-- `per_page` (integer, optional) - Items per page. Defaults to 10
+**200 OK** - Actions retrieved successfully
 
-**Response:**
-- **200**: Actions retrieved successfully
-- **401**: Unauthorized
-- **403**: Permission denied
+<ResponseField name="ctx_id" type="string">
+Request context ID
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  <ResponseField name="data" type="array">
+  Array of action objects
+    <ResponseField name="id" type="string">Action ID</ResponseField>
+    <ResponseField name="name" type="string">Action name</ResponseField>
+    <ResponseField name="type" type="string">Action type</ResponseField>
+  </ResponseField>
+  <ResponseField name="pagination" type="object">
+    <ResponseField name="current_page" type="integer">Current page</ResponseField>
+    <ResponseField name="per_page" type="integer">Items per page</ResponseField>
+    <ResponseField name="total_records" type="integer">Total actions</ResponseField>
+  </ResponseField>
+</ResponseField>
+
+<ResponseField name="message" type="string">
+"Request processed successfully"
+</ResponseField>
+
+**401 Unauthorized** - Invalid or missing token
+
+**403 Forbidden** - Insufficient permissions
+
+### Example Request
+```bash
+curl 'https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_actions?page=1&per_page=20' \
+  -H 'Authorization: Bearer YOUR_JWT_TOKEN'

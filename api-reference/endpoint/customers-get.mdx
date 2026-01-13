@@ -1,15 +1,55 @@
 ---
 title: Get Customers
+api: 'GET https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_customers'
 description: List all customers via the ContactSwing API.
 ---
 
-**GET** `/v2/_customers`
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
 
-Returns all customers.
+### Query Parameters
+<ParamField path="page" type="integer">
+Page number. Default: `1`
+</ParamField>
 
-**Query Parameters:**
-- `page` (integer, default: 1)
-- `per_page` (integer, default: 10)
+<ParamField path="per_page" type="integer">
+Items per page. Default: `10`
+</ParamField>
 
-**Response:**
-- 200: `{ data: [object], pagination: PaginationInfo }`
+### Response
+
+**200 OK** - Customers retrieved successfully
+
+<ResponseField name="ctx_id" type="string">
+Request context ID
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  <ResponseField name="data" type="array">
+  Array of customer objects
+    <ResponseField name="id" type="string">Customer ID</ResponseField>
+    <ResponseField name="name" type="string">Customer name</ResponseField>
+    <ResponseField name="phone" type="string">Phone number</ResponseField>
+    <ResponseField name="email" type="string">Email address</ResponseField>
+  </ResponseField>
+  <ResponseField name="pagination" type="object">
+    <ResponseField name="current_page" type="integer">Current page</ResponseField>
+    <ResponseField name="per_page" type="integer">Items per page</ResponseField>
+    <ResponseField name="total_records" type="integer">Total customers</ResponseField>
+  </ResponseField>
+</ResponseField>
+
+<ResponseField name="message" type="string">
+"Request processed successfully"
+</ResponseField>
+
+### Example Request
+```bash
+curl 'https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_customers?page=1&per_page=20' \
+  -H 'Authorization: Bearer YOUR_JWT_TOKEN'

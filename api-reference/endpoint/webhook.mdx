@@ -1,14 +1,44 @@
 ---
 title: Create Knowledge Base
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_knowledge_base'
+description: Create a new knowledge base via the ContactSwing API.
 ---
 
-**POST** `/v2/_knowledge_base`
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
 
-Create a new knowledge base.
+### Request Body
+**JSON: KnowledgeBaseRequest** (see OpenAPI spec)
 
-**Request Body:**
-- JSON: KnowledgeBaseRequest (see OpenAPI spec)
+<ParamField path="name" type="string" required>
+Knowledge base display name
+</ParamField>
 
-**Response:**
-- 201: Knowledge base created successfully
-- 400: Invalid input
+<ParamField path="description" type="string">
+Knowledge base purpose
+</ParamField>
+
+### Response
+
+**201 Created** - Knowledge base created successfully
+
+<ResponseField name="ctx_id" type="string">Request context ID</ResponseField>
+<ResponseField name="data" type="object">
+  <ResponseField name="id" type="string">Knowledge base ID</ResponseField>
+  <ResponseField name="name" type="string">Knowledge base name</ResponseField>
+</ResponseField>
+
+**400 Bad Request** - Invalid input
+
+### Example
+```json
+{
+  "name": "Product Documentation",
+  "description": "Technical docs and FAQs"
+}

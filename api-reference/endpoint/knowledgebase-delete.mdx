@@ -1,15 +1,42 @@
 ---
 title: Delete Knowledge Base
+api: 'DELETE https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_knowledgebase/{id}'
 description: Delete a knowledge base by its ID via the ContactSwing API.
 ---
 
-**DELETE** `/v2/_knowledgebase/{id}`
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
 
-Delete a knowledge base by ID.
+### Path Parameters
+<ParamField path="id" type="string" required>
+Unique knowledge base identifier from ContactSwing dashboard.
+</ParamField>
 
-**Path Parameter:**
-- `id` (string, required)
+### Response
 
-**Response:**
-- 200: Knowledge base deleted successfully
-- 404: Knowledge base not found
+**200 OK** - Knowledge base deleted successfully
+
+<ResponseField name="ctx_id" type="string">
+Request context ID
+</ResponseField>
+
+<ResponseField name="data" type="object">
+Deletion confirmation details
+</ResponseField>
+
+<ResponseField name="message" type="string">
+"Request processed successfully"
+</ResponseField>
+
+**404 Not Found** - Knowledge base not found
+
+### Example Request
+```bash
+curl -X DELETE 'https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_knowledgebase/YOUR_KB_ID' \
+  -H 'Authorization: Bearer YOUR_JWT_TOKEN'

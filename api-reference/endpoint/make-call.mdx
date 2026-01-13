@@ -1,22 +1,65 @@
 ---
-title: 'Make Call'
-description: 'Initiate an outbound voice call using the specified AI agent'
+title: Make Call
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_voicecalls/{agent_id}/makeCall'
+description: Initiate an outbound voice call using the specified AI agent.
 ---
 
-**POST** `/_voicecalls/{agent_id}/makeCall`
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
 
-Initiate an outbound voice call using the specified AI agent.
+### Path Parameters
+<ParamField path="agent_id" type="string" required>
+ID of the AI agent to handle the call.
+</ParamField>
 
-**Path Parameters:**
-- `agent_id` (integer, required) - ID of the AI agent to handle the call.
+### Request Body
 
-**Request Body:**
-- `phone_number` (string, required) - Phone number in E.164 format
-- `customer_name` (string, optional) - Name of the person being called
-- `call_purpose` (string, optional) - Purpose or reason for the call
+<ParamField path="phone_number" type="string" required>
+Phone number in E.164 format. Example: `+1234567890`
+</ParamField>
 
-**Response:**
-- **200**: Call initiated successfully
-- **400**: Invalid request parameters
-- **401**: Unauthorized
-- **500**: Internal server error
+<ParamField path="customer_name" type="string">
+Name of the person being called. Example: `John Doe`
+</ParamField>
+
+<ParamField path="call_purpose" type="string">
+Purpose or reason for the call. Example: `Appointment confirmation`
+</ParamField>
+
+### Response
+
+**200 OK** - Call initiated successfully
+
+<ResponseField name="ctx_id" type="string">
+Request context ID
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  <ResponseField name="call_id" type="string">Initiated call session ID</ResponseField>
+  <ResponseField name="status" type="string">Call status</ResponseField>
+  <ResponseField name="agent_id" type="string">Agent handling the call</ResponseField>
+</ResponseField>
+
+<ResponseField name="message" type="string">
+"Request processed successfully"
+</ResponseField>
+
+**400 Bad Request** - Invalid request parameters
+
+**401 Unauthorized** - Invalid or missing token
+
+**500 Internal Server Error** - Server error
+
+### Example
+```json
+{
+  "phone_number": "+1234567890",
+  "customer_name": "John Doe", 
+  "call_purpose": "Follow-up appointment"
+}

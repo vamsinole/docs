@@ -6,7 +6,11 @@
     "version": "2.0.0",
     "contact": {
       "name": "ContactSwing API Support",
-      "url": "https://contactswing.ai"
+      "url": "https://contactswing.ai",
+      "auth": {
+        "method":"bearer",
+        "inputPrefix": "Bearer"
+      }
     }
   },
   "servers": [
@@ -407,7 +411,7 @@
     }
   },
   "paths": {
-    "_call": {
+    "/_call": {
       "post": {
         "tags": ["Voice Calls"],
         "summary": "Unified voice call API",
@@ -434,7 +438,7 @@
         }
       }
     },
-    "_calls": {
+    "/_calls": {
       "get": {
         "tags": ["Voice Calls"],
         "summary": "Get list of voice calls",
@@ -548,7 +552,7 @@
         }
       }
     },
-    "_actions": {
+    "?_actions": {
       "get": {
         "tags": ["Actions"],
         "summary": "Get all actions",
@@ -594,7 +598,7 @@
         }
       }
     },
-    "_api_keys": {
+    "/_api_keys": {
       "get": {
         "tags": ["API Keys"],
         "summary": "Get all API keys",

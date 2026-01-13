@@ -1,15 +1,60 @@
 ---
 title: Get Action by ID
+api: 'GET https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_actions/{action_id}'
 description: Retrieve a single action by its ID via the ContactSwing API.
 ---
 
-**GET** `/v2/_actions/{action_id}`
 
-Get an action by ID.
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing API key.
+</ParamField>
 
-**Path Parameter:**
-- `action_id` (string, required)
+### Path Parameters
 
-**Response:**
-- 200: Action retrieved successfully
-- 404: Action not found
+<ParamField path="action_id" type="string" required>
+  Unique action identifier from ContactSwing dashboard.
+</ParamField>
+
+
+### Response
+
+**200 OK** - Action retrieved successfully
+
+<ResponseField name="ctx_id" type="string">
+Request context ID: `d0bacbd1-1531-4f19-80ee-c411c464473a`
+</ResponseField>
+
+<ResponseField name="data" type="object">
+Action details object containing full configuration.
+  <ResponseField name="id" type="string">
+  Unique action ID: `4808cc67-194e-4dfc-97ad-146ddf3d4126`
+  </ResponseField>
+  <ResponseField name="company_id" type="string">
+  Company identifier: `7fdacb94-632f-4522-a829-609579a88b50`
+  </ResponseField>
+  <ResponseField name="name" type="string">
+  Action name: `My API Action`
+  </ResponseField>
+  <ResponseField name="description" type="string">
+  Action description: `Trigger this when user is requesting any data`
+  </ResponseField>
+  <ResponseField name="type" type="string">
+  Action type: `WEBHOOK`
+  </ResponseField>
+  <ResponseField name="is_active" type="boolean">
+  Action status: `true`
+  </ResponseField>
+  <ResponseField name="webhook" type="object">
+  Webhook configuration details including URL, method, headers, and body schema.
+  </ResponseField>
+</ResponseField>
+
+<ResponseField name="message" type="string">
+Success message: `Request processed successfully`
+</ResponseField>
+

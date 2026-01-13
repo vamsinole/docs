@@ -1,18 +1,34 @@
 ---
-title: Update Action
+title: Update Action by ID
+api: 'PUT https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/actions/{action_id}'
 description: Update an existing action by its ID via the ContactSwing API.
 ---
 
-**PUT** `/v2/_actions/{action_id}`
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
 
-Update an action by ID.
+### Path Parameters
+<ParamField path="action_id" type="string" required>
+Unique action identifier. Example: `6f439f98-32f6-4b44-928c-6e890e298d51`
+</ParamField>
 
-**Path Parameter:**
-- `action_id` (string, required)
+### Request Body Parameters
 
-**Request Body:**
-- JSON: ActionRequest (see OpenAPI spec)
+<ParamField path="name" type="string" required>
+Updated action display name. Example: `My SMS Action1`
+</ParamField>
 
-**Response:**
-- 200: Action updated successfully
-- 404: Action not found
+<ParamField path="type" type="array" required>
+Action type: `SEND_SMS`, `SEND_EMAIL`, `WEBHOOK`, `APPOINTMENT`, `CALL_TRANSFER`, `SEND_WHATSAPP`, `DTMF_ACTION`, `SINGLEDATAEXTRACTION`
+</ParamField>
+
+
+<ParamField path="sms.to.value" type="array" required>
+Recipient numbers: `[]`
+</ParamField>

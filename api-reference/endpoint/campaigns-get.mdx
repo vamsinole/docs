@@ -1,15 +1,54 @@
 ---
 title: Get Campaigns
+api: 'GET https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_campaigns'
 description: List all campaigns via the ContactSwing API.
 ---
 
-**GET** `/v2/_campaigns`
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
 
-Returns all campaigns.
+### Query Parameters
+<ParamField path="page" type="integer">
+Page number. Default: `1`
+</ParamField>
 
-**Query Parameters:**
-- `page` (integer, default: 1)
-- `per_page` (integer, default: 10)
+<ParamField path="per_page" type="integer">
+Items per page. Default: `10`
+</ParamField>
 
-**Response:**
-- 200: `{ data: [object], pagination: PaginationInfo }`
+### Response
+
+**200 OK** - Campaigns retrieved successfully
+
+<ResponseField name="ctx_id" type="string">
+Request context ID
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  <ResponseField name="data" type="array">
+  Array of campaign objects
+    <ResponseField name="id" type="string">Campaign ID</ResponseField>
+    <ResponseField name="name" type="string">Campaign name</ResponseField>
+    <ResponseField name="status" type="string">Campaign status</ResponseField>
+  </ResponseField>
+  <ResponseField name="pagination" type="object">
+    <ResponseField name="current_page" type="integer">Current page</ResponseField>
+    <ResponseField name="per_page" type="integer">Items per page</ResponseField>
+    <ResponseField name="total_records" type="integer">Total campaigns</ResponseField>
+  </ResponseField>
+</ResponseField>
+
+<ResponseField name="message" type="string">
+"Request processed successfully"
+</ResponseField>
+
+### Example Request
+```bash
+curl 'https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_campaigns?page=1&per_page=20' \
+  -H 'Authorization: Bearer YOUR_JWT_TOKEN'

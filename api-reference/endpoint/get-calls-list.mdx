@@ -1,19 +1,63 @@
 ---
-title: 'Get Calls List'
-description: 'Get list of voice calls for the workspace with pagination support'
+title: Get Calls List
+api: 'GET https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_calls'
+description: Get list of voice calls for the workspace with pagination support.
 ---
 
-**GET** `/_calls`
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
 
-Returns essential call information with pagination support.
+### Query Parameters
+<ParamField path="page" type="integer">
+Page number. Default: `1`, must be >= `1`
+</ParamField>
 
-**Query Parameters:**
-- `page` (integer, optional) - Page number. Defaults to 1, must be >= 1
-- `per_page` (integer, optional) - Items per page. Defaults to 10, must be between 1 and 100
+<ParamField path="per_page" type="integer">
+Items per page. Default: `10`, must be between `1` and `100`
+</ParamField>
 
-**Response:**
-- **200**: Calls list retrieved successfully
-- **400**: Invalid pagination parameters
-- **401**: Unauthorized
-- **429**: Rate limit exceeded (30 calls per minute)
-- **500**: Internal server error
+### Response
+
+**200 OK** - Calls list retrieved successfully
+
+<ResponseField name="ctx_id" type="string">
+Request context ID
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  <ResponseField name="data" type="array">
+  Array of call objects
+    <ResponseField name="id" type="string">Call ID</ResponseField>
+    <ResponseField name="customer_name" type="string">Customer name</ResponseField>
+    <ResponseField name="status" type="string">Call status</ResponseField>
+    <ResponseField name="duration" type="integer">Call duration (seconds)</ResponseField>
+  </ResponseField>
+  <ResponseField name="pagination" type="object">
+    <ResponseField name="current_page" type="integer">Current page</ResponseField>
+    <ResponseField name="per_page" type="integer">Items per page</ResponseField>
+    <ResponseField name="total_records" type="integer">Total calls</ResponseField>
+  </ResponseField>
+</ResponseField>
+
+<ResponseField name="message" type="string">
+"Request processed successfully"
+</ResponseField>
+
+**400 Bad Request** - Invalid pagination parameters
+
+**401 Unauthorized** - Invalid or missing token
+
+**429 Too Many Requests** - Rate limit exceeded (30 calls per minute)
+
+**500 Internal Server Error** - Server error
+
+### Example Request
+```bash
+curl 'https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_calls?page=1&per_page=20' \
+  -H 'Authorization: Bearer YOUR_JWT_TOKEN'

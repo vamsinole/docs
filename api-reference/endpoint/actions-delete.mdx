@@ -1,15 +1,40 @@
 ---
-title: Delete Action
-description: Delete an action by its ID via the ContactSwing API.
+title: Delete Action by ID
+api: 'DELETE https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_actions/{action_id}'
+description: Delete an action by its ID via the ContactSwing API..
 ---
 
-**DELETE** `/v2/_actions/{action_id}`
 
-Delete an action by ID.
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing API key.
+</ParamField>
 
-**Path Parameter:**
-- `action_id` (string, required)
+### Path Parameters
 
-**Response:**
-- 200: Action deleted successfully
-- 404: Action not found 
+<ParamField path="action_id" type="string" required>
+  Unique action identifier from ContactSwing dashboard.
+</ParamField>
+
+
+### Response
+
+**200 OK** - Action deleted successfully
+
+<ResponseField name="ctx_id" type="string">
+Request context ID: `d0bacbd1-1531-4f19-80ee-c411c464473a`
+</ResponseField>
+
+<ResponseField name="data" type="object">
+Action details object containing full configuration.
+  <ResponseField name="message" type="string">
+  Action deleted successfully`
+  </ResponseField>
+</ResponseField>
+<ResponseField name="message" type="string">
+Success message: `Request processed successfully`
+</ResponseField>

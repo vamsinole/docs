@@ -1,17 +1,69 @@
 ---
 title: Update Knowledge Base
+api: 'PUT https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_knowledgebase/{id}'
 description: Update a knowledge base by its ID via the ContactSwing API.
 ---
 
-**PUT** `/v2/_knowledgebase/{id}`
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
 
-Update a knowledge base by ID.
+### Path Parameters
+<ParamField path="id" type="string" required>
+Unique knowledge base identifier from ContactSwing dashboard.
+</ParamField>
 
-**Path Parameter:**
-- `id` (string, required)
+### Request Body
+**multipart/form-data**
 
-**Request Body:**
-- multipart/form-data: name, files, urls, faqs, uploaded_files
+<ParamField path="name" type="string">
+Updated knowledge base name
+</ParamField>
 
-**Response:**
-- 200: Knowledge base updated successfully
+<ParamField path="files" type="file[]" >
+Document files to upload
+</ParamField>
+
+<ParamField path="urls" type="string[]" >
+URLs of documents to index
+</ParamField>
+
+<ParamField path="faqs" type="string[]" >
+FAQ question-answer pairs
+</ParamField>
+
+<ParamField path="uploaded_files" type="file[]" >
+Additional uploaded files
+</ParamField>
+
+### Response
+
+**200 OK** - Knowledge base updated successfully
+
+<ResponseField name="ctx_id" type="string">
+Request context ID
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  <ResponseField name="id" type="string">Knowledge base ID</ResponseField>
+  <ResponseField name="name" type="string">Updated name</ResponseField>
+  <ResponseField name="document_count" type="integer">Total documents</ResponseField>
+</ResponseField>
+
+<ResponseField name="message" type="string">
+"Request processed successfully"
+</ResponseField>
+
+### Example Request
+```bash
+curl -X PUT 'https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_knowledgebase/YOUR_KB_ID' \
+  -H 'Authorization: Bearer YOUR_JWT_TOKEN' \
+  -F 'name=Updated KB Name' \
+  -F 'files=@document.pdf' \
+  -F 'urls[]="https://example.com/docs.pdf"' \
+  -F 'faqs[]="Q: What is this?|A: Answer here"'

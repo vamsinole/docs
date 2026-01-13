@@ -1,15 +1,64 @@
 ---
 title: Create Campaign
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_campaigns'
 description: Create a new campaign via the ContactSwing API.
 ---
 
-**POST** `/v2/_campaigns`
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
 
-Create a new campaign.
+### Request Body
+**JSON: CampaignRequest** (see OpenAPI spec)
 
-**Request Body:**
-- JSON: CampaignRequest (see OpenAPI spec)
+<ParamField path="name" type="string" required>
+Campaign display name
+</ParamField>
 
-**Response:**
-- 201: Campaign created successfully
-- 400: Invalid input
+<ParamField path="description" type="string">
+Campaign purpose
+</ParamField>
+
+<ParamField path="type" type="string" required>
+Campaign type: `sms` | `email` | `whatsapp`
+</ParamField>
+
+<ParamField path="recipients" type="array" required>
+Recipient phone numbers/emails `["+1234567890"]`
+</ParamField>
+
+<ParamField path="content" type="string" required>
+Message content
+</ParamField>
+
+<ParamField path="schedule_at" type="string">
+ISO 8601 scheduled date (optional)
+</ParamField>
+
+### Response
+
+**201 Created** - Campaign created successfully
+
+<ResponseField name="ctx_id" type="string">Request context ID</ResponseField>
+<ResponseField name="data" type="object">
+  <ResponseField name="id" type="string">Campaign ID</ResponseField>
+  <ResponseField name="name" type="string">Campaign name</ResponseField>
+  <ResponseField name="status" type="string">Campaign status</ResponseField>
+</ResponseField>
+
+**400 Bad Request** - Invalid input
+
+### Example
+```json
+{
+  "name": "January SMS Promo",
+  "type": "sms",
+  "recipients": ["+1234567890", "+1987654321"],
+  "content": "50% off this weekend only! Shop now.",
+  "schedule_at": "2026-01-15T10:00:00Z"
+}
