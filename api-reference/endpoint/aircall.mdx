@@ -1,0 +1,69 @@
+---
+title: Create Aircall Action
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/actions'
+description: Create Aircall telephony integration actions for call routing and management.
+---
+
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
+
+### Request Body
+
+<ParamField path="name" type="string" required>
+Action display name. Example: `My Aircall Action`
+</ParamField>
+
+<ParamField path="description" type="string">
+Action purpose. Example: `Test`
+</ParamField>
+
+<ParamField path="action_timing" type="string" required>
+When to trigger: `"DURING"`
+</ParamField>
+
+<ParamField path="type" type="string" required>
+Action type: `"AIRCALL"`
+</ParamField>
+
+<ParamField path="webhook" type="object" required>
+Aircall webhook configuration
+</ParamField>
+
+<ParamField path="tags" type="array">
+Call tags `[]`
+</ParamField>
+
+### Aircall Configuration
+
+<ParamField path="webhook.from" type="integer" required>
+Source number ID. Example: `1768408427`
+</ParamField>
+
+<ParamField path="webhook.to" type="integer" required>
+Destination number ID. Example: `1768408427`
+</ParamField>
+
+<ParamField path="webhook.mandatory" type="boolean">
+Require Aircall response before proceeding
+</ParamField>
+
+### Response
+
+**201 Created** - Aircall action created successfully
+
+<ResponseField name="ctx_id" type="string">Request context ID</ResponseField>
+<ResponseField name="data" type="object">
+  <ResponseField name="action_id" type="string">New Aircall action ID</ResponseField>
+  <ResponseField name="name" type="string">Action name</ResponseField>
+  <ResponseField name="type" type="string">"AIRCALL"</ResponseField>
+</ResponseField>
+
+**400 Bad Request** - Invalid Aircall number IDs or configuration
+
+**401 Unauthorized** - Invalid token

@@ -1,0 +1,104 @@
+---
+title: Create Email Action
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/actions'
+description: Create email notification actions with Gmail integration.
+---
+
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
+
+### Request Body
+
+<ParamField path="name" type="string" required>
+Action display name. Example: `My Email Action`
+</ParamField>
+
+<ParamField path="description" type="string" required>
+Action purpose. Example: `Send email when user requests communication`
+</ParamField>
+
+<ParamField path="action_timing" type="string" required>
+When to trigger: `"DURING"`
+</ParamField>
+
+<ParamField path="type" type="string" required>
+Action type: `"SEND_EMAIL"`
+</ParamField>
+
+<ParamField path="webhook" type="object">
+Webhook configuration
+</ParamField>
+
+<ParamField path="email" type="object" required>
+Email configuration object
+</ParamField>
+
+### Email Configuration
+
+<ParamField path="email.to" type="object">
+Recipient email addresses
+<ResponseField name="value" type="array">`["priyank@bluespacetech.com"]`</ResponseField>
+</ParamField>
+
+<ParamField path="email.from" type="string">
+Sender email. Example: `"math.space.me@gmail.com"`
+</ParamField>
+
+<ParamField path="email.from_type" type="string">
+Email provider: `"gmail"`
+</ParamField>
+
+<ParamField path="email.user_id" type="string">
+User ID for authentication
+</ParamField>
+
+<ParamField path="email.cc" type="string">
+CC recipients (comma-separated)
+</ParamField>
+
+<ParamField path="email.bcc" type="string">
+BCC recipients (comma-separated)
+</ParamField>
+
+<ParamField path="email.subject" type="object">
+Email subject line
+<ResponseField name="value" type="string">`"Welcome to Contactswing"`</ResponseField>
+</ParamField>
+
+<ParamField path="email.body" type="object">
+Email content (HTML supported)
+<ResponseField name="value" type="string">`"<p>Hello</p>"`</ResponseField>
+</ParamField>
+
+<ParamField path="email.attachment" type="object">
+File attachments `{}`
+</ParamField>
+
+<ParamField path="email.send_static_contect" type="boolean">
+Send static content flag
+</ParamField>
+
+<ParamField path="email.response_message_context" type="string">
+Response message context
+</ParamField>
+
+### Response
+
+**201 Created** - Email action created successfully
+
+<ResponseField name="ctx_id" type="string">Request context ID</ResponseField>
+<ResponseField name="data" type="object">
+  <ResponseField name="action_id" type="string">New email action ID</ResponseField>
+  <ResponseField name="name" type="string">Action name</ResponseField>
+  <ResponseField name="type" type="string">"SEND_EMAIL"</ResponseField>
+</ResponseField>
+
+**400 Bad Request** - Invalid email configuration
+
+**401 Unauthorized** - Invalid token

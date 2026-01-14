@@ -1,0 +1,78 @@
+---
+title: Create Real Time Booking Action
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_actions'
+description: Create automated actions for appointments, webhooks, and call triggers.
+---
+
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
+
+### Request Body
+
+<ParamField path="name" type="string" required>
+Action display name. Example: `My Real-time Booking Action`
+</ParamField>
+
+<ParamField path="description" type="string" required>
+Action purpose. Example: `Trigger this action if user wants to book a slot.`
+</ParamField>
+
+<ParamField path="action_timing" type="string" required>
+When to trigger: `"DURING"` | `"AFTER"` | `"BEFORE"`
+</ParamField>
+
+<ParamField path="type" type="string" required>
+Action type: `"APPOINTMENT"`
+</ParamField>
+
+<ParamField path="webhook" type="array" required>
+Array of webhook configurations `[]`
+</ParamField>
+
+### Webhook Object
+
+<ParamField path="webhook[].email" type="string" required>
+Google Calendar email for booking
+</ParamField>
+
+<ParamField path="webhook[].type" type="string" required>
+`"google"` calendar integration
+</ParamField>
+
+<ParamField path="webhook[].mandatory" type="boolean">
+Require booking confirmation
+</ParamField>
+
+<ParamField path="webhook[].timezone" type="string">
+IANA timezone. Example: `"Africa/Algiers"`
+</ParamField>
+
+<ParamField path="webhook[].buffer_time" type="integer">
+Buffer minutes between bookings
+</ParamField>
+
+<ParamField path="webhook[].booking_timings" type="object">
+Weekly availability schedule
+</ParamField>
+
+
+
+### Response
+
+**201 Created** - Action created successfully
+
+<ResponseField name="ctx_id" type="string">Request context ID</ResponseField>
+<ResponseField name="data" type="object">
+  <ResponseField name="action_id" type="string">New action ID</ResponseField>
+  <ResponseField name="name" type="string">Action name</ResponseField>
+</ResponseField>
+
+**400 Bad Request** - Invalid webhook array or missing required fields
+
+**401 Unauthorized** - Invalid token

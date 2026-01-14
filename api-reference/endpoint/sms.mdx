@@ -1,0 +1,83 @@
+---
+title: Create SMS Action
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/actions'
+description: Create SMS notification actions with Twilio integration.
+---
+
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
+
+### Request Body
+
+<ParamField path="name" type="string" required>
+Action display name. Example: `My SMS Action`
+</ParamField>
+
+<ParamField path="description" type="string" required>
+Action purpose. Example: `Trigger SMS when user requests messaging`
+</ParamField>
+
+<ParamField path="action_timing" type="string" required>
+When to trigger: `"DURING"`
+</ParamField>
+
+<ParamField path="type" type="string" required>
+Action type: `"SEND_SMS"`
+</ParamField>
+
+<ParamField path="webhook" type="object">
+Webhook configuration
+</ParamField>
+
+<ParamField path="sms" type="object" required>
+SMS configuration object
+</ParamField>
+
+### SMS Configuration
+
+<ParamField path="sms.to" type="object">
+Recipient phone numbers
+<ResponseField name="value" type="array">`[]` - Array of E.164 phone numbers</ResponseField>
+</ParamField>
+
+<ParamField path="sms.provider" type="string">
+SMS provider: `"TWILIO"`
+</ParamField>
+
+<ParamField path="sms.from" type="string">
+Sender phone number. Example: `"+13465507166"`
+</ParamField>
+
+<ParamField path="sms.cc" type="array">
+CC recipients `[]`
+</ParamField>
+
+<ParamField path="sms.body" type="object">
+SMS message content
+<ResponseField name="value" type="string">Message template</ResponseField>
+</ParamField>
+
+<ParamField path="sms.response_message_context" type="string">
+Context for response messages
+</ParamField>
+
+### Response
+
+**201 Created** - SMS action created successfully
+
+<ResponseField name="ctx_id" type="string">Request context ID</ResponseField>
+<ResponseField name="data" type="object">
+  <ResponseField name="action_id" type="string">New SMS action ID</ResponseField>
+  <ResponseField name="name" type="string">Action name</ResponseField>
+  <ResponseField name="type" type="string">"SEND_SMS"</ResponseField>
+</ResponseField>
+
+**400 Bad Request** - Invalid SMS configuration or missing fields
+
+**401 Unauthorized** - Invalid token

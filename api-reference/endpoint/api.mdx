@@ -1,0 +1,78 @@
+---
+title: Create Data Extraction Action
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/actions'
+description: Create single data extraction actions for user intent capture.
+---
+
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
+
+### Request Body
+
+<ParamField path="name" type="string" required>
+Action display name. Example: `My Data Extraction Action`
+</ParamField>
+
+<ParamField path="action_timing" type="string" required>
+When to trigger: `"DURING"`
+</ParamField>
+
+<ParamField path="type" type="string" required>
+Action type: `"SINGLEDATAEXTRACTION"`
+</ParamField>
+
+<ParamField path="webhook" type="object" required>
+Data extraction webhook configuration
+</ParamField>
+
+### Data Extraction Configuration
+
+<ParamField path="webhook.mandatory" type="boolean">
+Require user response before proceeding
+</ParamField>
+
+<ParamField path="webhook.name" type="string">
+Data field name
+</ParamField>
+
+<ParamField path="webhook.description" type="string">
+User prompt/description. Example: `"user interested on buying the product"`
+</ParamField>
+
+<ParamField path="webhook.type" type="string">
+Response type: `"yes/no"`
+</ParamField>
+
+<ParamField path="webhook.sync_data" type="boolean">
+Sync extracted data automatically
+</ParamField>
+
+<ParamField path="webhook.sync_module" type="string">
+Target module: `"customers"`
+</ParamField>
+
+<ParamField path="webhook.sync_field" type="string">
+Database field to store data
+</ParamField>
+
+### Response
+
+**201 Created** - Data extraction action created successfully
+
+<ResponseField name="ctx_id" type="string">Request context ID</ResponseField>
+<ResponseField name="data" type="object">
+  <ResponseField name="action_id" type="string">New extraction action ID</ResponseField>
+  <ResponseField name="name" type="string">Action name</ResponseField>
+  <ResponseField name="type" type="string">"SINGLEDATAEXTRACTION"</ResponseField>
+</ResponseField>
+
+**400 Bad Request** - Invalid webhook configuration
+
+**401 Unauthorized** - Invalid token
+

@@ -1,0 +1,61 @@
+---
+title: Create Laboredge Action
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/actions'
+description: Create Laboredge job search and candidate management integration actions.
+---
+
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
+
+### Request Body
+
+<ParamField path="name" type="string" required>
+Action display name. Example: `My Laboredge Action`
+</ParamField>
+
+<ParamField path="description" type="string" required>
+Action purpose. Example: `Search Jobs - Trigger if user is looking for jobs`
+</ParamField>
+
+<ParamField path="action_timing" type="string" required>
+When to trigger: `"DURING"`
+</ParamField>
+
+<ParamField path="type" type="string" required>
+Action type: `"LABOREDGE"`
+</ParamField>
+
+<ParamField path="webhook" type="object" required>
+Laboredge webhook configuration
+</ParamField>
+
+### Laboredge Configuration
+
+<ParamField path="webhook.type" type="string" required>
+Operation type. Example: `"upsert_candidate"`
+</ParamField>
+
+<ParamField path="webhook.mandatory" type="boolean">
+Require Laboredge response before proceeding
+</ParamField>
+
+### Response
+
+**201 Created** - Laboredge action created successfully
+
+<ResponseField name="ctx_id" type="string">Request context ID</ResponseField>
+<ResponseField name="data" type="object">
+  <ResponseField name="action_id" type="string">New Laboredge action ID</ResponseField>
+  <ResponseField name="name" type="string">Action name</ResponseField>
+  <ResponseField name="type" type="string">"LABOREDGE"</ResponseField>
+</ResponseField>
+
+**400 Bad Request** - Invalid Laboredge webhook configuration
+
+**401 Unauthorized** - Invalid token

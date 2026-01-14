@@ -1,0 +1,93 @@
+---
+title: Create WhatsApp Action
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/actions'
+description: Create WhatsApp messaging actions with template support and dynamic parameters.
+---
+
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
+
+### Request Body
+
+<ParamField path="name" type="string" required>
+Action display name. Example: `My Whatsapp Action`
+</ParamField>
+
+<ParamField path="description" type="string" required>
+Action purpose. Example: `Send WhatsApp when user requests messaging`
+</ParamField>
+
+<ParamField path="type" type="string" required>
+Action type: `"SEND_WHATSAPP"`
+</ParamField>
+
+<ParamField path="is_active" type="boolean">
+Enable/disable action
+</ParamField>
+
+<ParamField path="action_timing" type="string" required>
+When to trigger: `"during"`
+</ParamField>
+
+<ParamField path="phone_number" type="string">
+Override phone number (optional)
+</ParamField>
+
+<ParamField path="webhook" type="object" required>
+WhatsApp webhook configuration
+</ParamField>
+
+### WhatsApp Configuration
+
+<ParamField path="webhook.to" type="string" required>
+Recipient WhatsApp number. Example: `"12817126508"`
+</ParamField>
+
+<ParamField path="webhook.from" type="string" required>
+Sender WhatsApp ID. Example: `"650175178190170"`
+</ParamField>
+
+<ParamField path="webhook.template_name" type="string" required>
+WhatsApp template name. Example: `"call_permession_request"`
+</ParamField>
+
+<ParamField path="webhook.body_params" type="array">
+Template body parameters `[]`
+</ParamField>
+
+<ParamField path="webhook.header_params" type="array">
+Template header parameters `[]`
+</ParamField>
+
+<ParamField path="webhook.button_params" type="array">
+Template button parameters `[]`
+</ParamField>
+
+<ParamField path="webhook.language_code" type="string">
+Template language. Example: `"en"`
+</ParamField>
+
+<ParamField path="webhook.mandatory" type="boolean">
+Require WhatsApp response before proceeding
+</ParamField>
+
+### Response
+
+**201 Created** - WhatsApp action created successfully
+
+<ResponseField name="ctx_id" type="string">Request context ID</ResponseField>
+<ResponseField name="data" type="object">
+  <ResponseField name="action_id" type="string">New WhatsApp action ID</ResponseField>
+  <ResponseField name="name" type="string">Action name</ResponseField>
+  <ResponseField name="type" type="string">"SEND_WHATSAPP"</ResponseField>
+</ResponseField>
+
+**400 Bad Request** - Invalid WhatsApp template or numbers
+
+**401 Unauthorized** - Invalid token

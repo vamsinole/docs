@@ -111,7 +111,8 @@
                   "essentials/docs/Integration/gohighlevel",
                   "essentials/docs/Integration/google",
                   "essentials/docs/Integration/calender",
-                  "essentials/docs/Integration/gpt",                  "essentials/docs/Integration/hubspot",
+                  "essentials/docs/Integration/gpt",
+                  "essentials/docs/Integration/hubspot",
                   "essentials/docs/Integration/jobrob",
                   "essentials/docs/Integration/playht",
                   "essentials/docs/Integration/salesforce",
@@ -222,7 +223,6 @@
               "essentials/docs/prompting"
             ]
           },
-      
           {
             "group": "Prompt Examples",
             "icon": "code",
@@ -267,10 +267,26 @@
             "icon": "bolt",
             "pages": [
               "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
               "api-reference/endpoint/actions-get-by-id",
               "api-reference/endpoint/actions-put",
-              "api-reference/endpoint/actions-delete"
+              "api-reference/endpoint/actions-delete",
+              {
+                "group": "Create-Action",
+                "pages": [
+                  "api-reference/endpoint/rtb",
+                  "api-reference/endpoint/sms",
+                  "api-reference/endpoint/email",
+                  "api-reference/endpoint/call-",
+                  "api-reference/endpoint/data",
+                  "api-reference/endpoint/api",
+                  "api-reference/endpoint/whatsapp",
+                  "api-reference/endpoint/shopify",
+                  "api-reference/endpoint/aircall",
+                  "api-reference/endpoint/laboredge",
+                  "api-reference/endpoint/dtmf"
+
+                ]
+              }
             ]
           },
           {
@@ -349,4 +365,4 @@
   "experimental": {
     "openapi-parser-v3": true
   }
-} 
+}

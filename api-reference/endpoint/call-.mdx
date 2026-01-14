@@ -1,0 +1,69 @@
+---
+title: Create Call Transfer Action
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/actions'
+description: Create call transfer actions to human agents during conversations.
+---
+
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
+
+### Request Body
+
+<ParamField path="name" type="string" required>
+Action display name. Example: `My Call Transfer Action`
+</ParamField>
+
+<ParamField path="description" type="string" required>
+Action purpose. Example: `Transfer to human when user requests agent or is unhappy`
+</ParamField>
+
+<ParamField path="action_timing" type="string" required>
+When to trigger: `"DURING"`
+</ParamField>
+
+<ParamField path="type" type="string" required>
+Action type: `"CALL_TRANSFER"`
+</ParamField>
+
+<ParamField path="phone_number" type="string" required>
+Destination phone number. Example: `"12817126508"`
+</ParamField>
+
+<ParamField path="webhook" type="object">
+Webhook configuration
+</ParamField>
+
+<ParamField path="speech" type="string">
+Custom speech prompt before transfer
+</ParamField>
+
+<ParamField path="runBeforeCall" type="boolean">
+Execute actions before transfer
+</ParamField>
+
+### Webhook Configuration
+
+<ParamField path="webhook.extension_enabled" type="boolean">
+Enable extension dialing
+</ParamField>
+
+### Response
+
+**201 Created** - Call transfer action created successfully
+
+<ResponseField name="ctx_id" type="string">Request context ID</ResponseField>
+<ResponseField name="data" type="object">
+  <ResponseField name="action_id" type="string">New transfer action ID</ResponseField>
+  <ResponseField name="name" type="string">Action name</ResponseField>
+  <ResponseField name="type" type="string">"CALL_TRANSFER"</ResponseField>
+</ResponseField>
+
+**400 Bad Request** - Invalid phone number or missing fields
+
+**401 Unauthorized** - Invalid token

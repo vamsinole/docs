@@ -6,11 +6,7 @@
     "version": "2.0.0",
     "contact": {
       "name": "ContactSwing API Support",
-      "url": "https://contactswing.ai",
-      "auth": {
-        "method":"bearer",
-        "inputPrefix": "Bearer"
-      }
+      "url": "https://contactswing.ai"
     }
   },
   "servers": [
