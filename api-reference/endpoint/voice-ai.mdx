@@ -1,0 +1,90 @@
+---
+title: Create Voice Assistant
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/new_assistants'
+description: Create new voice AI assistants with comprehensive configuration including instructions, voice settings, and actions.
+---
+
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
+
+### Query Parameters
+
+<ParamField path="force" type="boolean">
+Force recreate (overwrite existing). Example: `true`
+</ParamField>
+
+### Request Body
+
+<ParamField path="name" type="string" required>
+Assistant display name. Example: `"My Voice AI Agent"`
+</ParamField>
+
+<ParamField path="type" type="string" required>
+Assistant type: `"VOICE_INCOMING"`
+</ParamField>
+
+<ParamField path="model" type="string" required>
+LLM model: `"cw-llm-1"`
+</ParamField>
+
+<ParamField path="api_keys" type="array" required>
+API key configuration `[{"api_key_id":442,"type":"MODEL"}]`
+</ParamField>
+
+<ParamField path="instructions" type="string" required>
+Detailed agent instructions and guidelines
+</ParamField>
+
+<ParamField path="prompts" type="object">
+Agent prompts with `agent` and `goal` fields
+</ParamField>
+
+<ParamField path="phone_number" type="string">
+Assigned phone number. Example: `"+13465507166"`
+</ParamField>
+
+<ParamField path="kb_id" type="string">
+Knowledge base ID
+</ParamField>
+
+### Voice & Behavior Settings
+
+<ParamField path="synthesizer" type="string">
+TTS: `"AZURE"`
+</ParamField>
+
+<ParamField path="voice_id" type="string">
+Voice: `"en-US-BrianNeural"`
+</ParamField>
+
+<ParamField path="language" type="string">
+Language: `"english"`
+</ParamField>
+
+<ParamField path="behaviour.speed" type="string">
+Speech speed: `"medium"`
+</ParamField>
+
+<ParamField path="action_ids" type="array">
+Linked action IDs `[]`
+</ParamField>
+
+### Response
+
+**201 Created** - Assistant created successfully
+
+<ResponseField name="ctx_id" type="string">Request context ID</ResponseField>
+<ResponseField name="data" type="object">
+  <ResponseField name="assistant_id" type="string">New assistant ID</ResponseField>
+  <ResponseField name="name" type="string">Assistant name</ResponseField>
+</ResponseField>
+
+**400 Bad Request** - Invalid configuration or missing API keys
+
+**401 Unauthorized** - Invalid token

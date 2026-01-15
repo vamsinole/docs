@@ -1,0 +1,86 @@
+---
+title: Create SMS Assistant
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/new_assistants'
+description: Create SMS-based AI assistants for text messaging automation and recruiter workflows.
+---
+
+### Authorizations
+<ParamField 
+  header="Authorization" 
+  type="string" 
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
+
+### Query Parameters
+
+<ParamField path="force" type="boolean">
+Force recreate (overwrite existing). Example: `true`
+</ParamField>
+
+### Request Body
+
+<ParamField path="name" type="string" required>
+Assistant display name. Example: `"My SMS Assistant"`
+</ParamField>
+
+<ParamField path="type" type="string" required>
+Assistant type: `"SMS"`
+</ParamField>
+
+<ParamField path="model" type="string" required>
+LLM model: `"cw-llm-1"`
+</ParamField>
+
+<ParamField path="api_keys" type="array" required>
+SMS API configuration `[{"api_key_id":134,"type":"SMS"}]`
+</ParamField>
+
+<ParamField path="instructions" type="string" required>
+Detailed recruiter instructions and candidate profiles
+</ParamField>
+
+<ParamField path="prompts" type="object">
+Agent prompts with `agent` and `goal`
+</ParamField>
+
+### SMS-Specific Settings
+
+<ParamField path="sms_type" type="string" required>
+SMS direction: `"OUTBOUND"`
+</ParamField>
+
+<ParamField path="phone_number" type="string">
+Assigned phone number. Example: `"+13465507166"`
+</ParamField>
+
+<ParamField path="kb_id" type="string">
+Knowledge base ID
+</ParamField>
+
+<ParamField path="action_ids" type="array">
+Linked action IDs `[]`
+</ParamField>
+
+<ParamField path="additional_settings.idle_time" type="integer">
+Idle timeout in seconds. Example: `86400`
+</ParamField>
+
+<ParamField path="additional_settings.max_messages" type="integer">
+Maximum messages per conversation. Example: `10`
+</ParamField>
+
+### Response
+
+**201 Created** - SMS assistant created successfully
+
+<ResponseField name="ctx_id" type="string">Request context ID</ResponseField>
+<ResponseField name="data" type="object">
+  <ResponseField name="assistant_id" type="string">New assistant ID</ResponseField>
+  <ResponseField name="name" type="string">Assistant name</ResponseField>
+</ResponseField>
+
+**400 Bad Request** - Invalid SMS configuration or missing API keys
+
+**401 Unauthorized** - Invalid token

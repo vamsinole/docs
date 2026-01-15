@@ -284,7 +284,6 @@
                   "api-reference/endpoint/aircall",
                   "api-reference/endpoint/laboredge",
                   "api-reference/endpoint/dtmf"
-
                 ]
               }
             ]
@@ -294,10 +293,19 @@
             "icon": "robot",
             "pages": [
               "api-reference/endpoint/assistants-get",
-              "api-reference/endpoint/assistants-post",
               "api-reference/endpoint/assistants-get-by-id",
               "api-reference/endpoint/assistants-put",
-              "api-reference/endpoint/assistants-delete"
+              "api-reference/endpoint/assistants-delete",
+              {
+                "group": "Create-Assistants",
+                "pages": [
+                  "api-reference/endpoint/voice-ai",
+                  "api-reference/endpoint/email-ai",
+                  "api-reference/endpoint/sms-ai",
+                  "api-reference/endpoint/chat-ai",
+                  "api-reference/endpoint/what-ai"
+                ]
+              }
             ]
           },
           {
