@@ -28,9 +28,11 @@ Phone number `+1234567890`
 Email address `user@example.com`
 </ParamField>
 
-<ParamField path="tags" type="array">
-Customer tags `["vip", "lead"]`
+<ParamField path="company_name" type="string">
+Company name
 </ParamField>
+
+
 
 ### Response
 
@@ -45,11 +47,3 @@ Customer tags `["vip", "lead"]`
 
 **400 Bad Request** - Invalid input
 
-### Example
-```json
-{
-  "name": "John Doe",
-  "phone": "+1234567890",
-  "email": "john@example.com",
-  "tags": ["vip", "lead"]
-}

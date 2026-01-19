@@ -244,6 +244,13 @@
             ]
           },
           {
+            "group": "Agency",
+            "icon": "building",
+            "pages": [
+              "essentials/docs/agency"
+            ]
+          },
+          {
             "group": "Staffing",
             "pages": [
               "essentials/docs/staffing/intro"
@@ -315,7 +322,15 @@
               "api-reference/endpoint/campaigns-get",
               "api-reference/endpoint/campaigns-post",
               "api-reference/endpoint/campaigns-get-by-id",
-              "api-reference/endpoint/campaigns-delete"
+              "api-reference/endpoint/campaigns-delete",
+              {
+                "group": "Create-Campaign",
+                "pages": [
+                  "api-reference/endpoint/call-camp",
+                  "api-reference/endpoint/email-camp",
+                  "api-reference/endpoint/sms-camp"
+                ]
+              }
             ]
           },
           {
