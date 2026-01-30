@@ -1,6 +1,6 @@
 ---
-title: Create WhatsApp Assistant
-api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/new_assistants'
+title: Create WhatsApp AI Agent
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_new_assistants'
 description: Create WhatsApp AI assistants for messaging automation and customer ordering workflows.
 ---
 
@@ -13,63 +13,69 @@ description: Create WhatsApp AI assistants for messaging automation and customer
 Enter your ContactSwing JWT Bearer token.
 </ParamField>
 
-### Query Parameters
-
-<ParamField path="force" type="boolean">
-Force recreate (overwrite existing). Example: `true`
-</ParamField>
 
 ### Request Body
 
-<ParamField path="name" type="string" required>
+<ParamField body="name" type="string" required>
 Assistant display name. Example: `"My WhatsApp AI Agent"`
 </ParamField>
 
-<ParamField path="type" type="string" required>
+<ParamField body="type" type="string" required>
 Assistant type: `"WHATSAPP"`
 </ParamField>
 
-<ParamField path="model" type="string" required>
+<ParamField body="model" type="string" required>
 LLM model: `"cw-llm-1"`
 </ParamField>
 
-<ParamField path="api_keys" type="array">
+<ParamField body="api_keys" type="string[]">
 API key configuration `[]`
 </ParamField>
 
-<ParamField path="instructions" type="string" required>
+<ParamField body="instructions" type="string" required>
 Detailed agent instructions and restaurant ordering guidelines
 </ParamField>
 
-<ParamField path="prompts" type="object">
+<ParamField body="prompts" type="object">
 Agent prompts with `agent` and `goal` fields
+<ParamField body="agent" type="string">
+</ParamField>
+<ParamField body="goal" type="string">
+</ParamField>
 </ParamField>
 
-<ParamField path="phone_number" type="string" required>
+<ParamField body="phone_number" type="string" required>
 WhatsApp number ID. Example: `"650175178190170"`
 </ParamField>
 
-<ParamField path="kb_id" type="string">
+<ParamField body="kb_id" type="string">
 Knowledge base ID
 </ParamField>
 
 ### WhatsApp Settings
 
-<ParamField path="action_ids" type="array">
+<ParamField body="action_ids" type="string[]">
 Linked action IDs `[]`
 </ParamField>
 
-<ParamField path="additional_settings.idle_time" type="integer">
+<ParamField body="additional_settings" type="object">
+Idle timeout in hours. Example: `24`
+<ParamField body="idle_time" type="integer">
 Idle timeout in hours. Example: `24`
 </ParamField>
-
-<ParamField path="additional_settings.max_messages" type="integer">
+<ParamField body="max_messages" type="integer">
 Maximum messages per conversation. Example: `10`
 </ParamField>
 
-<ParamField path="incoming_call_greeting" type="string">
+
+</ParamField>
+<ParamField body="incoming_call_greeting" type="string">
 WhatsApp greeting message
 </ParamField>
+
+
+
+
 
 ### Response
 

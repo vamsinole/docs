@@ -1,6 +1,6 @@
 ---
 title: Create Email Action
-api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/actions'
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_actions'
 description: Create email notification actions with Gmail integration.
 ---
 
@@ -15,77 +15,85 @@ Enter your ContactSwing JWT Bearer token.
 
 ### Request Body
 
-<ParamField path="name" type="string" required>
-Action display name. Example: `My Email Action`
+<ParamField body="name" type="string" required>
+Action display name. Example: `My Email Action`  
 </ParamField>
 
-<ParamField path="description" type="string" required>
-Action purpose. Example: `Send email when user requests communication`
+<ParamField body="description" type="string" required>
+Action purpose. Example: `Send email when user requests communication ` 
 </ParamField>
 
-<ParamField path="action_timing" type="string" required>
+<ParamField body="action_timing" type="string" required>
 When to trigger: `"DURING"`
 </ParamField>
 
-<ParamField path="type" type="string" required>
+<ParamField body="type" type="string" required>
 Action type: `"SEND_EMAIL"`
 </ParamField>
 
-<ParamField path="webhook" type="object">
-Webhook configuration
+<ParamField body="webhook" type="object">
+Webhook configuration (optional)
+
+<ParamField body="mandatory" type="boolean" default="true">
+Send static content flag
+</ParamField>
 </ParamField>
 
-<ParamField path="email" type="object" required>
+<ParamField body="email" type="object" required>
 Email configuration object
-</ParamField>
-
-### Email Configuration
-
-<ParamField path="email.to" type="object">
+<ParamField body="to" type="object" required>
 Recipient email addresses
-<ResponseField name="value" type="array">`["priyank@bluespacetech.com"]`</ResponseField>
+<ParamField body="value" type="string[]" required>
+Enter your message.
+</ParamField>
 </ParamField>
 
-<ParamField path="email.from" type="string">
-Sender email. Example: `"math.space.me@gmail.com"`
+<ParamField body="from" type="string" required>
+Sender email. Example: tech.space.me@gmail.com
 </ParamField>
 
-<ParamField path="email.from_type" type="string">
-Email provider: `"gmail"`
+<ParamField body="from_type" type="string" required>
+Email provider: `"gmail" ` 
 </ParamField>
 
-<ParamField path="email.user_id" type="string">
+<ParamField body="user_id" type="string" required>
 User ID for authentication
 </ParamField>
 
-<ParamField path="email.cc" type="string">
+<ParamField body="cc" type="string">
 CC recipients (comma-separated)
 </ParamField>
 
-<ParamField path="email.bcc" type="string">
+<ParamField body="bcc" type="string">
 BCC recipients (comma-separated)
 </ParamField>
 
-<ParamField path="email.subject" type="object">
+<ParamField body="subject" type="object" required>
 Email subject line
-<ResponseField name="value" type="string">`"Welcome to Contactswing"`</ResponseField>
+<ParamField body="value" type="string" required>
+Enter your message.
+</ParamField>
 </ParamField>
 
-<ParamField path="email.body" type="object">
+<ParamField body="body" type="object" required>
 Email content (HTML supported)
-<ResponseField name="value" type="string">`"<p>Hello</p>"`</ResponseField>
+<ResponseField name="value" type="string">"<p>Hello</p>"</ResponseField>
+<ParamField body="value" type="string" required>
+Enter your message.
+</ParamField>
 </ParamField>
 
-<ParamField path="email.attachment" type="object">
-File attachments `{}`
+<ParamField body="attachment" type="object">
+File attachments {}
 </ParamField>
 
-<ParamField path="email.send_static_contect" type="boolean">
+<ParamField body="send_static_contect" type="boolean" default="true">
 Send static content flag
 </ParamField>
 
-<ParamField path="email.response_message_context" type="string">
-Response message context
+<ParamField body="response_message_context" type="string" default="I’ve just sent you an email. Please let me know if you received it.">
+Response message context Example: `I’ve just sent you an email. Please let me know if you received it.`
+</ParamField>
 </ParamField>
 
 ### Response

@@ -1,6 +1,6 @@
 ---
 title: Create SMS Action
-api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/actions'
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_actions'
 description: Create SMS notification actions with Twilio integration.
 ---
 
@@ -15,57 +15,80 @@ Enter your ContactSwing JWT Bearer token.
 
 ### Request Body
 
-<ParamField path="name" type="string" required>
+<ParamField body="name" type="string" required>
 Action display name. Example: `My SMS Action`
 </ParamField>
 
-<ParamField path="description" type="string" required>
+<ParamField body="description" type="string" required>
 Action purpose. Example: `Trigger SMS when user requests messaging`
 </ParamField>
 
-<ParamField path="action_timing" type="string" required>
+<ParamField body="action_timing" type="string" required>
 When to trigger: `"DURING"`
 </ParamField>
 
-<ParamField path="type" type="string" required>
+<ParamField body="webhook" type="object">
+Webhook configuration
+  <ParamField body="mandatory" type="boolean">
+  Require confirmation.
+  </ParamField>
+</ParamField>
+
+<ParamField body="type" type="string" required>
 Action type: `"SEND_SMS"`
 </ParamField>
 
-<ParamField path="webhook" type="object">
-Webhook configuration
+
+
+<ParamField body="sms" type="object" required>
+SMS configuration object
+<ParamField body="to" type="object">
+Recipient phone numbers
+<ParamField body="value" type="string[]" required>
+</ParamField>
+</ParamField>
+<ParamField body="provider" type="string">
+SMS provider: `"TWILIO"`
+</ParamField>
+<ParamField body="from" type="string">
+Sender phone number. Example: `"+13465507166"`
+</ParamField>
+<ParamField body="cc" type="string[]">
+CC recipients `[]`
+</ParamField>
+<ParamField body="body" type="object">
+SMS message content
+<ResponseField name="value" type="string">Message template</ResponseField>
+<ParamField body="value" type="string">
+</ParamField>
+</ParamField>
+<ParamField 
+  body="response_message_context" 
+  type="string" 
+  default="I’ve just sent you a text message. Please let me know if you received it."
+>
+  Response message context. Example: `I’ve just sent you a text message. Please let me know if you received it.`
 </ParamField>
 
-<ParamField path="sms" type="object" required>
-SMS configuration object
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </ParamField>
 
 ### SMS Configuration
 
-<ParamField path="sms.to" type="object">
-Recipient phone numbers
-<ResponseField name="value" type="array">`[]` - Array of E.164 phone numbers</ResponseField>
-</ParamField>
-
-<ParamField path="sms.provider" type="string">
-SMS provider: `"TWILIO"`
-</ParamField>
-
-<ParamField path="sms.from" type="string">
-Sender phone number. Example: `"+13465507166"`
-</ParamField>
-
-<ParamField path="sms.cc" type="array">
-CC recipients `[]`
-</ParamField>
-
-<ParamField path="sms.body" type="object">
-SMS message content
-<ResponseField name="value" type="string">Message template</ResponseField>
-</ParamField>
-
-<ParamField path="sms.response_message_context" type="string">
-Context for response messages
-</ParamField>
 
 ### Response
 

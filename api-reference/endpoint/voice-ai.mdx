@@ -1,7 +1,7 @@
 ---
-title: Create Voice Assistant
-api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/new_assistants'
-description: Create new voice AI assistants with comprehensive configuration including instructions, voice settings, and actions.
+title: Create Voice AI Agent
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_new_assistants?force=true'
+description: Create new voice AI assistants with comprehensive configuration including instructions, voice settings, agent behavior, and call handling.
 ---
 
 ### Authorizations
@@ -13,78 +13,308 @@ description: Create new voice AI assistants with comprehensive configuration inc
 Enter your ContactSwing JWT Bearer token.
 </ParamField>
 
-### Query Parameters
 
-<ParamField path="force" type="boolean">
-Force recreate (overwrite existing). Example: `true`
-</ParamField>
+
 
 ### Request Body
 
-<ParamField path="name" type="string" required>
-Assistant display name. Example: `"My Voice AI Agent"`
+<ParamField body="name" type="string" required>
+Assistant display name. Example: `"Insurance Darren"`
 </ParamField>
 
-<ParamField path="type" type="string" required>
-Assistant type: `"VOICE_INCOMING"`
+<ParamField body="type" type="string" required>
+Assistant type. Example: `"VOICE_INCOMING"`
 </ParamField>
 
-<ParamField path="model" type="string" required>
-LLM model: `"cw-llm-1"`
+<ParamField body="model" type="string" required>
+LLM model. Example: `"cw-llm-1"`
 </ParamField>
 
-<ParamField path="api_keys" type="array" required>
-API key configuration `[{"api_key_id":442,"type":"MODEL"}]`
+
+
+### API Keys
+
+<ParamField body="api_keys" type="array">
+API key configuration
+
+<ParamField body="api_key_id" type="number">
+API key ID
 </ParamField>
 
-<ParamField path="instructions" type="string" required>
-Detailed agent instructions and guidelines
+<ParamField body="type" type="string">
+Key type: `MODEL | CALL | DEEPGRAM | VOICE`
 </ParamField>
 
-<ParamField path="prompts" type="object">
-Agent prompts with `agent` and `goal` fields
 </ParamField>
 
-<ParamField path="phone_number" type="string">
-Assigned phone number. Example: `"+13465507166"`
+
+
+### Instructions
+
+<ParamField body="instructions" type="string" required>
+Detailed agent instructions and behavior rules
 </ParamField>
 
-<ParamField path="kb_id" type="string">
-Knowledge base ID
+
+
+### Prompts
+
+<ParamField body="prompts" type="object" required>
+Agent prompt configuration
+
+<ParamField body="agent" type="string">
+Agent system prompt
 </ParamField>
 
-### Voice & Behavior Settings
-
-<ParamField path="synthesizer" type="string">
-TTS: `"AZURE"`
+<ParamField body="goal" type="string">
+Primary agent goal
 </ParamField>
 
-<ParamField path="voice_id" type="string">
-Voice: `"en-US-BrianNeural"`
 </ParamField>
 
-<ParamField path="language" type="string">
-Language: `"english"`
+
+### Phone & Greetings
+
+<ParamField body="phone_number" type="string">
+Assigned phone number. Example: `"+13465842882"`
 </ParamField>
 
-<ParamField path="behaviour.speed" type="string">
-Speech speed: `"medium"`
+<ParamField body="incoming_call_greeting" type="string">
+Greeting played on incoming calls
 </ParamField>
 
-<ParamField path="action_ids" type="array">
-Linked action IDs `[]`
+<ParamField body="outgoing_call_greeting" type="string">
+Greeting played on outgoing calls
 </ParamField>
+
+
+
+### Voice & Language
+
+<ParamField body="synthesizer" type="string">
+Voice synthesizer. Example: `"AZURE"`
+</ParamField>
+
+<ParamField body="voice_id" type="string">
+Voice ID. Example: `"en-US-LunaNeural"`
+</ParamField>
+
+<ParamField body="language" type="string">
+Language. Example: `"english"`
+</ParamField>
+
+<ParamField body="enable_recordings" type="boolean">
+Enable call recordings
+</ParamField>
+
+
+
+### Behaviour Settings
+
+<ParamField body="behaviour" type="object">
+Agent speaking behavior
+
+<ParamField body="speed" type="string">
+Speech speed. Example: `"medium"`
+</ParamField>
+
+<ParamField body="emotions" type="object">
+Emotional tone levels
+
+<ParamField body="anger" type="string" default="medium">
+</ParamField>
+
+<ParamField body="curiosity" type="string" default="medium">
+</ParamField>
+
+<ParamField body="positivity" type="string" default="medium">
+</ParamField>
+
+<ParamField body="surprise" type="string" default="medium">
+</ParamField>
+
+<ParamField body="sadness" type="string" default="medium">
+</ParamField>
+
+</ParamField>
+</ParamField>
+
+
+### Knowledge Base
+
+<ParamField body="kb_id" type="string">
+Knowledge base ID (nullable)
+</ParamField>
+
+
+### Additional Settings
+
+<ParamField body="additional_settings" type="object">
+
+<ParamField body="Synthesizer" type="object">
+
+<ParamField body="Azure" type="object">
+<ParamField body="voice_name" type="string">
+</ParamField>
+<ParamField body="rate" type="string">
+</ParamField>
+<ParamField body="language_code" type="string">
+</ParamField>
+</ParamField>
+
+<ParamField body="Cartesia" type="object">
+<ParamField body="speed" type="string">
+</ParamField>
+<ParamField body="emotion" type="object">
+</ParamField>
+</ParamField>
+
+<ParamField body="ElevenLabs" type="object">
+<ParamField body="stability" type="string">
+</ParamField>
+<ParamField body="style_exaggeration" type="string">
+</ParamField>
+<ParamField body="similarity" type="string">
+</ParamField>
+<ParamField body="optimize_latency" type="string">
+</ParamField>
+</ParamField>
+
+</ParamField>
+
+
+
+<ParamField body="Transcriber" type="object">
+<ParamField body="Deepgram" type="object">
+<ParamField body="language" type="string">
+</ParamField>
+<ParamField body="keywords" type="string[]">
+</ParamField>
+</ParamField>
+</ParamField>
+
+
+
+<ParamField body="Agent" type="object">
+
+<ParamField body="OpenAI" type="object">
+
+<ParamField body="temperature" type="number">
+</ParamField>
+
+<ParamField body="max_tokens" type="number">
+</ParamField>
+
+<ParamField body="backchannel_probability" type="number">
+</ParamField>
+
+</ParamField>
+
+
+<ParamField body="model" type="string">
+</ParamField>
+
+<ParamField body="temperature" type="number">
+</ParamField>
+
+<ParamField body="max_tokens" type="number">
+</ParamField>
+
+<ParamField body="allow_incoming_messages" type="boolean">
+</ParamField>
+
+<ParamField body="time_zone" type="string">
+</ParamField>
+
+<ParamField body="initial_message" type="string">
+</ParamField>
+
+<ParamField body="initial_message_delay" type="number">
+</ParamField>
+
+<ParamField body="interrupt_sensitivity" type="string">
+</ParamField>
+
+<ParamField body="max_call_duration" type="number">
+</ParamField>
+
+<ParamField body="end_conversation_on_goodbye" type="boolean">
+</ParamField>
+
+<ParamField body="goodbye_phrases" type="string[]">
+</ParamField>
+
+<ParamField body="reminder" type="object">
+<ParamField body="allowed_idle_time_seconds" type="number">
+</ParamField>
+<ParamField body="num_check_human_present_times" type="number">
+</ParamField>
+<ParamField body="reminder_messages" type="string[]">
+</ParamField>
+<ParamField body="message_before_termination" type="string">
+</ParamField>
+</ParamField>
+
+</ParamField>
+
+
+
+<ParamField body="SynthesizerUsed" type="string">
+</ParamField>
+
+<ParamField body="TranscriberUsed" type="string">
+</ParamField>
+
+<ParamField body="AgentUsed" type="string">
+</ParamField>
+
+<ParamField body="save_transcripts" type="boolean">
+</ParamField>
+
+<ParamField body="enable_voicemail_detection" type="boolean">
+</ParamField>
+
+<ParamField body="voicemail_message" type="string">
+</ParamField>
+
+<ParamField body="check_idle_time" type="boolean">
+</ParamField>
+
+</ParamField>
+
+
+
+### Actions & Meta
+
+<ParamField body="action_ids" type="string[]">
+Linked action IDs
+</ParamField>
+
+<ParamField body="response_time" type="number">
+</ParamField>
+
+<ParamField body="version" type="string">
+Example: `"v1"`
+</ParamField>
+
+
 
 ### Response
 
-**201 Created** - Assistant created successfully
+**201 Created**
 
-<ResponseField name="ctx_id" type="string">Request context ID</ResponseField>
-<ResponseField name="data" type="object">
-  <ResponseField name="assistant_id" type="string">New assistant ID</ResponseField>
-  <ResponseField name="name" type="string">Assistant name</ResponseField>
+<ResponseField name="ctx_id" type="string">
+Request context ID
 </ResponseField>
 
-**400 Bad Request** - Invalid configuration or missing API keys
+<ResponseField name="data" type="object">
+<ResponseField name="assistant_id" type="string">
+New assistant ID
+</ResponseField>
+<ResponseField name="name" type="string">
+Assistant name
+</ResponseField>
+</ResponseField>
 
-**401 Unauthorized** - Invalid token
+**400 Bad Request** – Invalid configuration  
+**401 Unauthorized** – Invalid token

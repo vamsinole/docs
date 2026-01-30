@@ -1,6 +1,6 @@
 ---
 title: Create Campaign with Call Touchpoint
-api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/campaign/create_with_touchpoint'
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_campaign/create_with_touchpoint'
 description: Create a new campaign with a touchpoint.
 ---
 
@@ -15,79 +15,84 @@ Enter your ContactSwing JWT Bearer token.
 
 ### Request Body
 
-<ParamField path="name" type="string" required>
-Campaign display name
+<ParamField body="name" type="string" required>
+Campaign display name `TalentCare Interview`
 </ParamField>
 
-<ParamField path="type" type="string">
+<ParamField body="type" type="string">
 Campaign type.
 </ParamField>
 
-<ParamField path="business_goal" type="string">
+<ParamField body="business_goal" type="string">
 The business goal of the campaign.
 </ParamField>
 
-<ParamField path="touchpoint" type="object" required>
+<ParamField body="touchpoint" type="object" required>
 The touchpoint object.
-</ParamField>
 
-<ParamField path="touchpoint.name" type="string" required>
+<ParamField body="name" type="string" required>
 The name of the touchpoint.
 </ParamField>
 
-<ParamField path="touchpoint.type" type="string" required>
+<ParamField body="type" type="string" required>
 The type of the touchpoint. e.g. `CALL`.
 </ParamField>
 
-<ParamField path="touchpoint.status" type="string" required>
+<ParamField body="status" type="string" required>
 The status of the touchpoint. e.g. `scheduled`.
 </ParamField>
 
-<ParamField path="touchpoint.start_at" type="string" required>
+<ParamField body="start_at" type="string" required>
 ISO 8601 scheduled date for the touchpoint.
 </ParamField>
 
-<ParamField path="touchpoint.assistant_id" type="integer" required>
+<ParamField body="assistant_id" type="integer" required>
 The ID of the assistant to be used.
 </ParamField>
-
-<ParamField path="touchpoint.additional_settings" type="object" required>
+<ParamField body="additional_settings" type="object" required>
 Additional settings for the touchpoint.
-</ParamField>
-
-<ParamField path="touchpoint.additional_settings.execution_days" type="array" required>
+<ParamField body="execution_days" type="string[]" required>
 Array of days when the campaign will be executed. e.g. `["mon", "tue"]`
 </ParamField>
 
-<ParamField path="touchpoint.additional_settings.start_hour" type="integer" required>
+<ParamField body="start_hour" type="integer" required>
 The start hour for the campaign execution.
 </ParamField>
 
-<ParamField path="touchpoint.additional_settings.end_hour" type="integer" required>
+<ParamField body="end_hour" type="integer" required>
 The end hour for the campaign execution.
 </ParamField>
 
-<ParamField path="touchpoint.additional_settings.time_zone" type="string" required>
+<ParamField body="time_zone" type="string" required>
 The timezone for the campaign execution. e.g. `Asia/Kolkata`.
 </ParamField>
 
-<ParamField path="touchpoint.additional_settings.from_numbers" type="array" required>
+<ParamField body="from_numbers" type="string[]" required>
 The numbers from which the calls will be made.
 </ParamField>
-
-<ParamField path="touchpoint.customer_details" type="array" required>
-An array of customer details objects.
 </ParamField>
 
-<ParamField path="touchpoint.customer_details.id" type="string" required>
+</ParamField>
+
+
+
+
+
+
+
+<ParamField body="customer_details" type="array" required>
+An array of customer details objects.
+<ParamField body="id" type="string" required>
 The customer's ID.
 </ParamField>
-
-<ParamField path="touchpoint.customer_details.to_number" type="string" required>
+<ParamField body="to_number" type="string" required>
 The customer's phone number.
 </ParamField>
+</ParamField>
 
-<ParamField path="touchpoint.from_number" type="string" required>
+
+
+<ParamField body="from_number" type="string" required>
 The number from which the call will be made.
 </ParamField>
 

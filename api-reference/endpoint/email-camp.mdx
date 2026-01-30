@@ -1,6 +1,6 @@
 ---
 title: Create Campaign with Email Touchpoint
-api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/campaign/create_with_touchpoint'
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_campaign/create_with_touchpoint'
 description: Create a new campaign with an email touchpoint.
 ---
 
@@ -15,93 +15,110 @@ Enter your ContactSwing JWT Bearer token.
 
 ### Request Body
 
-<ParamField path="name" type="string" required>
+<ParamField body="name" type="string" required>
 Campaign display name
 </ParamField>
 
-<ParamField path="type" type="string">
+<ParamField body="type" type="string">
 Campaign type.
 </ParamField>
 
-<ParamField path="business_goal" type="string">
+<ParamField body="company_plan_id" type="string">
+Campaign type.
+</ParamField>
+
+<ParamField body="workspace_id" type="string">
+Campaign type.
+</ParamField>
+
+<ParamField body="business_goal" type="string">
 The business goal of the campaign.
 </ParamField>
 
-<ParamField path="touchpoint" type="object" required>
+<ParamField body="touchpoint" type="object" required>
 The touchpoint object.
-</ParamField>
-
-<ParamField path="touchpoint.name" type="string" required>
+<ParamField body="name" type="string" required>
 The name of the touchpoint.
 </ParamField>
 
-<ParamField path="touchpoint.type" type="string" required>
+<ParamField body="type" type="string" required>
 The type of the touchpoint. e.g. `EMAIL`.
 </ParamField>
 
-<ParamField path="touchpoint.status" type="string" required>
+<ParamField body="status" type="string" required>
 The status of the touchpoint. e.g. `scheduled`.
 </ParamField>
 
-<ParamField path="touchpoint.start_at" type="string" required>
+<ParamField body="start_at" type="string" required>
 ISO 8601 scheduled date for the touchpoint.
 </ParamField>
 
-<ParamField path="touchpoint.assistant_id" type="integer" required>
+<ParamField body="assistant_id" type="integer" required>
 The ID of the assistant to be used.
 </ParamField>
 
-<ParamField path="touchpoint.additional_settings" type="object" required>
-Additional settings for the touchpoint.
-</ParamField>
 
-<ParamField path="touchpoint.additional_settings.execution_days" type="array" required>
-Array of days when the campaign will be executed. e.g. `["mon", "tue"]`
-</ParamField>
-
-<ParamField path="touchpoint.additional_settings.start_hour" type="integer" required>
-The start hour for the campaign execution.
-</ParamField>
-
-<ParamField path="touchpoint.additional_settings.end_hour" type="integer" required>
-The end hour for the campaign execution.
-</ParamField>
-
-<ParamField path="touchpoint.additional_settings.time_zone" type="string" required>
-The timezone for the campaign execution. e.g. `Asia/Kolkata`.
-</ParamField>
-
-<ParamField path="touchpoint.additional_settings.email" type="string" required>
-The email address to be used.
-</ParamField>
-
-<ParamField path="touchpoint.additional_settings.from_emails" type="array" required>
-The email addresses from which the emails will be sent.
-</ParamField>
-
-<ParamField path="touchpoint.additional_settings.email_medium" type="string" required>
-The email medium to be used. e.g. `SEND_GRID`.
-</ParamField>
-
-<ParamField path="touchpoint.customer_details" type="array" required>
+<ParamField body="customer_details" type="array" required>
 An array of customer details objects.
-</ParamField>
 
-<ParamField path="touchpoint.customer_details.id" type="string" required>
+
+<ParamField body="id" type="string" required>
 The customer's ID.
 </ParamField>
 
-<ParamField path="touchpoint.customer_details.email" type="string" required>
+<ParamField body="email" type="string" required>
 The customer's email address.
 </ParamField>
 
-<ParamField path="touchpoint.email_subject" type="string" required>
+
+</ParamField>
+
+<ParamField body="additional_settings" type="object" required>
+Additional settings for the touchpoint.
+
+<ParamField body="execution_days" type="string[]" required>
+Array of days when the campaign will be executed. e.g. `["mon", "tue"]`
+</ParamField>
+
+<ParamField body="start_hour" type="integer" required>
+The start hour for the campaign execution.
+</ParamField>
+
+<ParamField body="end_hour" type="integer" required>
+The end hour for the campaign execution.
+</ParamField>
+
+<ParamField body="time_zone" type="string" required>
+The timezone for the campaign execution. e.g. `Asia/Kolkata`.
+</ParamField>
+
+<ParamField body="email" type="string" required>
+The email address to be used.
+</ParamField>
+
+<ParamField body="from_emails" type="string[]" required>
+The email addresses from which the emails will be sent.
+</ParamField>
+
+<ParamField body="email_medium" type="string" required>
+The email medium to be used. e.g. `SEND_GRID`.
+</ParamField>
+</ParamField>
+<ParamField body="email_subject" type="string" required>
 The subject of the email.
 </ParamField>
 
-<ParamField path="touchpoint.email_body" type="string" required>
+<ParamField body="email_body" type="string" required>
 The body of the email in HTML format.
 </ParamField>
+
+<ParamField body="variables" type="string">
+</ParamField>
+</ParamField>
+
+
+
+
 
 ### Response
 

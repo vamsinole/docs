@@ -1,6 +1,6 @@
 ---
-title: Create Email Assistant
-api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/new_assistants'
+title: Create Email AI Agent
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_new_assistants'
 description: Create email-based AI assistants for automated responses and recruiter workflows.
 ---
 
@@ -11,53 +11,58 @@ description: Create email-based AI assistants for automated responses and recrui
   required
 >
 Enter your ContactSwing JWT Bearer token.
+
 </ParamField>
+
+
 
 ### Request Body
 
-<ParamField path="name" type="string" required>
+<ParamField body="name" type="string" required>
 Assistant display name. Example: `"My Email Agent"`
 </ParamField>
 
-<ParamField path="type" type="string" required>
+<ParamField body="type" type="string" required>
 Assistant type: `"EMAIL"`
 </ParamField>
 
-<ParamField path="model" type="string" required>
+<ParamField body="model" type="string" required>
 LLM model: `"cw-llm-1"`
 </ParamField>
 
-<ParamField path="api_keys" type="array">
-API key configuration `[]`
-</ParamField>
 
-<ParamField path="instructions" type="string" required>
+
+<ParamField body="instructions" type="string" required>
 Detailed recruiter instructions and candidate profiles
 </ParamField>
 
-<ParamField path="prompts" type="object">
+<ParamField body="prompts" type="object">
 Agent prompts with `agent` and `goal`
+<ParamField body="agent" type="string">
+</ParamField>
+<ParamField body="goal" type="string">
+</ParamField>
 </ParamField>
 
-<ParamField path="kb_id" type="string">
+<ParamField body="kb_id" type="string">
 Knowledge base ID
 </ParamField>
 
 ### Email-Specific Settings
 
-<ParamField path="gen_ai_response" type="string">
+<ParamField body="gen_ai_response" type="string">
 Response mode: `"SEMI_TOUCH"`
 </ParamField>
 
-<ParamField path="email_setup" type="string">
+<ParamField body="email_setup" type="string">
 Email role: `"Responder"`
 </ParamField>
 
-<ParamField path="labels" type="string">
+<ParamField body="labels" type="string">
 Email labels/categories
 </ParamField>
 
-<ParamField path="action_ids" type="array">
+<ParamField body="action_ids" type="string[]">
 Linked action IDs `[]`
 </ParamField>
 

@@ -16,14 +16,18 @@ Enter your ContactSwing JWT Bearer token.
 ### Request Body
 **JSON: KnowledgeBaseRequest** (see OpenAPI spec)
 
-<ParamField path="name" type="string" required>
+<ParamField body="name" type="string" required>
 Knowledge base display name
 </ParamField>
 
-<ParamField path="description" type="string">
+
+<ParamField body="urls" type="string">
 Knowledge base purpose
 </ParamField>
 
+<ParamField body="files" type="string">
+Knowledge base purpose
+</ParamField>
 ### Response
 
 **201 Created** - Knowledge base created successfully

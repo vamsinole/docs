@@ -1,7 +1,7 @@
 ---
-title: Create Data Extraction Action
-api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/actions'
-description: Create single data extraction actions for user intent capture.
+title: Create API Action
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_actions'
+description: Create webhook/API actions for external integrations.
 ---
 
 ### Authorizations
@@ -13,53 +13,88 @@ description: Create single data extraction actions for user intent capture.
 Enter your ContactSwing JWT Bearer token.
 </ParamField>
 
+---
+
 ### Request Body
 
-<ParamField path="name" type="string" required>
-Action display name. Example: `My Data Extraction Action`
+<ParamField body="name" type="string" required>
+Action display name. Example: `My API Action`
 </ParamField>
 
-<ParamField path="action_timing" type="string" required>
+<ParamField body="description" type="string" required>
+Action purpose. Example: `Post API Action`
+</ParamField>
+
+<ParamField body="action_timing" type="string" required>
 When to trigger: `"DURING"`
 </ParamField>
 
-<ParamField path="type" type="string" required>
-Action type: `"SINGLEDATAEXTRACTION"`
+<ParamField body="type" type="string" required>
+Action type: `"WEBHOOK"`
 </ParamField>
 
-<ParamField path="webhook" type="object" required>
-Data extraction webhook configuration
+<ParamField body="webhook" type="object" required>
+Webhook configuration object
+
+<ParamField body="url" type="string" required>
+Target API endpoint. Example: `"https://api.publicapis.org/entries"`
 </ParamField>
 
-### Data Extraction Configuration
-
-<ParamField path="webhook.mandatory" type="boolean">
-Require user response before proceeding
+<ParamField body="method" type="string" required>
+HTTP method. Example: `"POST"`
 </ParamField>
 
-<ParamField path="webhook.name" type="string">
-Data field name
+<ParamField body="mandatory" type="boolean">
+Require confirmation before execution. Example: `false`
 </ParamField>
 
-<ParamField path="webhook.description" type="string">
-User prompt/description. Example: `"user interested on buying the product"`
+<ParamField body="headers" type="object">
+
+<ParamField body="Content-Type" type="string">
+Request headers. Example: `{"Content-Type": "application/json"}`
+
+</ParamField>
 </ParamField>
 
-<ParamField path="webhook.type" type="string">
-Response type: `"yes/no"`
+<ParamField body="body" type="array">
+Request body definition. Example: `[{"type":"static","values":{"data":"info"}}]`
+<ParamField body="type" type="string">
+Webhook type. Example: `"static"`
+</ParamField>
+<ParamField body="values" type="object">
+<ParamField body="data" type="string">
+Webhook data. Example: `"Information"`
+</ParamField>
+</ParamField>
 </ParamField>
 
-<ParamField path="webhook.sync_data" type="boolean">
-Sync extracted data automatically
+<ParamField body="static_body" type="string">
+Optional static body payload
 </ParamField>
 
-<ParamField path="webhook.sync_module" type="string">
-Target module: `"customers"`
+<ParamField body="required" type="string[]">
+List of required fields
 </ParamField>
 
-<ParamField path="webhook.sync_field" type="string">
-Database field to store data
+<ParamField body="response" type="object">
+Response handling configuration
+<ParamField body="prompt" type="string">
 </ParamField>
+</ParamField>
+
+<ParamField body="run_before_call" type="boolean">
+Run pre-call logic. Example: `false`
+</ParamField>
+<ParamField body="type" type="string">
+Webhook type. Example: `"static"`
+</ParamField>
+
+</ParamField>
+
+
+
+---
+
 
 ### Response
 
@@ -69,10 +104,9 @@ Database field to store data
 <ResponseField name="data" type="object">
   <ResponseField name="action_id" type="string">New extraction action ID</ResponseField>
   <ResponseField name="name" type="string">Action name</ResponseField>
-  <ResponseField name="type" type="string">"SINGLEDATAEXTRACTION"</ResponseField>
+  <ResponseField name="type" type="string">"WEBHOOK"</ResponseField>
 </ResponseField>
 
 **400 Bad Request** - Invalid webhook configuration
 
 **401 Unauthorized** - Invalid token
-

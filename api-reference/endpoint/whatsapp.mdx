@@ -1,6 +1,6 @@
 ---
 title: Create WhatsApp Action
-api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/actions'
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_actions'
 description: Create WhatsApp messaging actions with template support and dynamic parameters.
 ---
 
@@ -15,67 +15,67 @@ Enter your ContactSwing JWT Bearer token.
 
 ### Request Body
 
-<ParamField path="name" type="string" required>
+<ParamField body="name" type="string" required>
 Action display name. Example: `My Whatsapp Action`
 </ParamField>
 
-<ParamField path="description" type="string" required>
+<ParamField body="description" type="string" required>
 Action purpose. Example: `Send WhatsApp when user requests messaging`
 </ParamField>
 
-<ParamField path="type" type="string" required>
+<ParamField body="type" type="string" required>
 Action type: `"SEND_WHATSAPP"`
 </ParamField>
 
-<ParamField path="is_active" type="boolean">
+<ParamField body="is_active" type="boolean">
 Enable/disable action
 </ParamField>
 
-<ParamField path="action_timing" type="string" required>
+<ParamField body="action_timing" type="string" required>
 When to trigger: `"during"`
 </ParamField>
 
-<ParamField path="phone_number" type="string">
+<ParamField body="phone_number" type="string">
 Override phone number (optional)
 </ParamField>
 
-<ParamField path="webhook" type="object" required>
+<ParamField body="webhook" type="object" required>
 WhatsApp webhook configuration
-</ParamField>
 
-### WhatsApp Configuration
-
-<ParamField path="webhook.to" type="string" required>
+<ParamField body="to" type="string" required>
 Recipient WhatsApp number. Example: `"12817126508"`
 </ParamField>
 
-<ParamField path="webhook.from" type="string" required>
+<ParamField body="from" type="string" required>
 Sender WhatsApp ID. Example: `"650175178190170"`
 </ParamField>
 
-<ParamField path="webhook.template_name" type="string" required>
+<ParamField body="template_name" type="string" required>
 WhatsApp template name. Example: `"call_permession_request"`
 </ParamField>
 
-<ParamField path="webhook.body_params" type="array">
+<ParamField body="body_params" type="string[]">
 Template body parameters `[]`
 </ParamField>
 
-<ParamField path="webhook.header_params" type="array">
+<ParamField body="header_params" type="string[]">
 Template header parameters `[]`
 </ParamField>
 
-<ParamField path="webhook.button_params" type="array">
+<ParamField body="button_params" type="string[]">
 Template button parameters `[]`
 </ParamField>
 
-<ParamField path="webhook.language_code" type="string">
+<ParamField body="language_code" type="string">
 Template language. Example: `"en"`
 </ParamField>
 
-<ParamField path="webhook.mandatory" type="boolean">
+<ParamField body="mandatory" type="boolean">
 Require WhatsApp response before proceeding
 </ParamField>
+
+</ParamField>
+
 
 ### Response
 

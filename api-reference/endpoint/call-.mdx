@@ -1,6 +1,6 @@
 ---
 title: Create Call Transfer Action
-api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/actions'
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_actions'
 description: Create call transfer actions to human agents during conversations.
 ---
 
@@ -15,35 +15,38 @@ Enter your ContactSwing JWT Bearer token.
 
 ### Request Body
 
-<ParamField path="name" type="string" required>
+<ParamField body="name" type="string" required>
 Action display name. Example: `My Call Transfer Action`
 </ParamField>
 
-<ParamField path="description" type="string" required>
+<ParamField body="description" type="string" required>
 Action purpose. Example: `Transfer to human when user requests agent or is unhappy`
 </ParamField>
 
-<ParamField path="action_timing" type="string" required>
+<ParamField body="action_timing" type="string" required>
 When to trigger: `"DURING"`
 </ParamField>
 
-<ParamField path="type" type="string" required>
+<ParamField body="type" type="string" required>
 Action type: `"CALL_TRANSFER"`
 </ParamField>
 
-<ParamField path="phone_number" type="string" required>
+<ParamField body="phone_number" type="string" required>
 Destination phone number. Example: `"12817126508"`
 </ParamField>
 
-<ParamField path="webhook" type="object">
+<ParamField body="webhook" type="object">
 Webhook configuration
+<ParamField body="extension_enabled" type="boolean">
+Enable extension support. Example: false  
+</ParamField>
 </ParamField>
 
-<ParamField path="speech" type="string">
+<ParamField body="speech" type="string">
 Custom speech prompt before transfer
 </ParamField>
 
-<ParamField path="runBeforeCall" type="boolean">
+<ParamField body="runBeforeCall" type="boolean">
 Execute actions before transfer
 </ParamField>
 

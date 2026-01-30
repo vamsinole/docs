@@ -1,6 +1,6 @@
 ---
-title: Create SMS Assistant
-api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/new_assistants'
+title: Create SMS AI Agent
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_new_assistants?force=true'
 description: Create SMS-based AI assistants for text messaging automation and recruiter workflows.
 ---
 
@@ -10,66 +10,82 @@ description: Create SMS-based AI assistants for text messaging automation and re
   type="string" 
   required
 >
+
 Enter your ContactSwing JWT Bearer token.
 </ParamField>
-
-### Query Parameters
-
-<ParamField path="force" type="boolean">
+<ParamField header="force" type="boolean">
 Force recreate (overwrite existing). Example: `true`
 </ParamField>
 
+
+
+
 ### Request Body
 
-<ParamField path="name" type="string" required>
+<ParamField body="name" type="string" required>
 Assistant display name. Example: `"My SMS Assistant"`
 </ParamField>
 
-<ParamField path="type" type="string" required>
+<ParamField body="type" type="string" required>
 Assistant type: `"SMS"`
 </ParamField>
 
-<ParamField path="model" type="string" required>
+<ParamField body="model" type="string" required>
 LLM model: `"cw-llm-1"`
 </ParamField>
 
-<ParamField path="api_keys" type="array" required>
+<ParamField body="api_keys" type="array" required>
 SMS API configuration `[{"api_key_id":134,"type":"SMS"}]`
+<ParamField body="api_key_id" type="number">
+API key ID
+</ParamField>
+<ParamField body="type" type="string">
+Key type: `SMS`
+</ParamField>
 </ParamField>
 
-<ParamField path="instructions" type="string" required>
+<ParamField body="instructions" type="string" required>
 Detailed recruiter instructions and candidate profiles
 </ParamField>
 
-<ParamField path="prompts" type="object">
+<ParamField body="prompts" type="object">
 Agent prompts with `agent` and `goal`
+<ParamField body="agent" type="string">
+</ParamField>
+<ParamField body="goal" type="string">
+</ParamField>
 </ParamField>
 
 ### SMS-Specific Settings
 
-<ParamField path="sms_type" type="string" required>
+<ParamField body="sms_type" type="string" required>
 SMS direction: `"OUTBOUND"`
 </ParamField>
 
-<ParamField path="phone_number" type="string">
+<ParamField body="phone_number" type="string">
 Assigned phone number. Example: `"+13465507166"`
 </ParamField>
 
-<ParamField path="kb_id" type="string">
+<ParamField body="kb_id" type="string">
 Knowledge base ID
 </ParamField>
 
-<ParamField path="action_ids" type="array">
+<ParamField body="action_ids" type="array">
 Linked action IDs `[]`
 </ParamField>
 
-<ParamField path="additional_settings.idle_time" type="integer">
+<ParamField body="additional_settings" type="object">
+
+<ParamField body="additional_settings.idle_time" type="integer">
 Idle timeout in seconds. Example: `86400`
 </ParamField>
 
-<ParamField path="additional_settings.max_messages" type="integer">
+<ParamField body="additional_settings.max_messages" type="integer">
 Maximum messages per conversation. Example: `10`
 </ParamField>
+</ParamField>
+
+
 
 ### Response
 

@@ -1,6 +1,6 @@
 ---
 title: Create DTMF Action
-api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/actions'
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_actions'
 description: Create DTMF (Dual-Tone Multi-Frequency) actions for IVR keypad input handling.
 ---
 
@@ -15,35 +15,36 @@ Enter your ContactSwing JWT Bearer token.
 
 ### Request Body
 
-<ParamField path="name" type="string" required>
+<ParamField body="name" type="string" required>
 Action display name. Example: `DTMF Action`
 </ParamField>
 
-<ParamField path="description" type="string" required>
+<ParamField body="description" type="string" required>
 Action purpose. Example: `DTMF Action Test`
 </ParamField>
 
-<ParamField path="action_timing" type="string" required>
+<ParamField body="action_timing" type="string" required>
 When to trigger: `"DURING"`
 </ParamField>
 
-<ParamField path="type" type="string" required>
+<ParamField body="type" type="string" required>
 Action type: `"DTMF_ACTION"`
 </ParamField>
 
-<ParamField path="webhook" type="object" required>
+<ParamField body="webhook" type="object" required>
 DTMF webhook configuration
-</ParamField>
-
-### DTMF Configuration
-
-<ParamField path="webhook.mandatory" type="boolean">
+<ParamField body="webhook.mandatory" type="boolean">
 Require DTMF input before proceeding
 </ParamField>
 
-<ParamField path="webhook.description" type="string">
+<ParamField body="webhook.description" type="string">
 DTMF prompt/description. Example: `DTMF Action Test`
 </ParamField>
+</ParamField>
+
+
+
+
 
 ### Response
 

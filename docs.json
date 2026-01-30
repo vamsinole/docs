@@ -328,7 +328,8 @@
                 "pages": [
                   "api-reference/endpoint/call-camp",
                   "api-reference/endpoint/email-camp",
-                  "api-reference/endpoint/sms-camp"
+                  "api-reference/endpoint/sms-camp",
+                  "api-reference/endpoint/what-camp"
                 ]
               }
             ]
@@ -354,17 +355,8 @@
               "api-reference/endpoint/knowledgebase-put",
               "api-reference/endpoint/knowledgebase-delete"
             ]
-          },
-          {
-            "group": "Calls",
-            "icon": "phone",
-            "pages": [
-              "api-reference/endpoint/get-calls-list",
-              "api-reference/endpoint/make-call",
-              "api-reference/endpoint/get-call-detail",
-              "api-reference/endpoint/unified-voice-call"
-            ]
           }
+      
         ]
       }
     ]

@@ -1,6 +1,6 @@
 ---
 title: Create Laboredge Action
-api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/actions'
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_actions'
 description: Create Laboredge job search and candidate management integration actions.
 ---
 
@@ -15,35 +15,34 @@ Enter your ContactSwing JWT Bearer token.
 
 ### Request Body
 
-<ParamField path="name" type="string" required>
+<ParamField body="name" type="string" required>
 Action display name. Example: `My Laboredge Action`
 </ParamField>
 
-<ParamField path="description" type="string" required>
+<ParamField body="description" type="string" required>
 Action purpose. Example: `Search Jobs - Trigger if user is looking for jobs`
 </ParamField>
 
-<ParamField path="action_timing" type="string" required>
+<ParamField body="action_timing" type="string" required>
 When to trigger: `"DURING"`
 </ParamField>
 
-<ParamField path="type" type="string" required>
+<ParamField body="type" type="string" required>
 Action type: `"LABOREDGE"`
 </ParamField>
 
-<ParamField path="webhook" type="object" required>
+<ParamField body="webhook" type="object" required>
 Laboredge webhook configuration
-</ParamField>
-
-### Laboredge Configuration
-
-<ParamField path="webhook.type" type="string" required>
+<ParamField body="type" type="string" required>
 Operation type. Example: `"upsert_candidate"`
 </ParamField>
 
-<ParamField path="webhook.mandatory" type="boolean">
+<ParamField body="mandatory" type="boolean">
 Require Laboredge response before proceeding
 </ParamField>
+</ParamField>
+
+
 
 ### Response
 

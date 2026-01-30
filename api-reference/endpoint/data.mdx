@@ -1,6 +1,6 @@
 ---
 title: Create Data Extraction Action
-api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/actions'
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_actions'
 description: Create single data extraction actions for user intent capture.
 ---
 
@@ -15,51 +15,53 @@ Enter your ContactSwing JWT Bearer token.
 
 ### Request Body
 
-<ParamField path="name" type="string" required>
+<ParamField body="name" type="string" required>
 Action display name. Example: `My Data Extraction Action`
 </ParamField>
+<ParamField body="description" type="string">
+User prompt/description. Example: `"Trigger this action if the user requests data extraction."`
+</ParamField>
 
-<ParamField path="action_timing" type="string" required>
+<ParamField body="action_timing" type="string" required>
 When to trigger: `"DURING"`
 </ParamField>
 
-<ParamField path="type" type="string" required>
+<ParamField body="type" type="string" required>
 Action type: `"SINGLEDATAEXTRACTION"`
 </ParamField>
 
-<ParamField path="webhook" type="object" required>
+<ParamField body="webhook" type="object" required>
 Data extraction webhook configuration
-</ParamField>
 
-### Data Extraction Configuration
-
-<ParamField path="webhook.mandatory" type="boolean">
+<ParamField body="mandatory" type="boolean">
 Require user response before proceeding
 </ParamField>
 
-<ParamField path="webhook.name" type="string">
+<ParamField body="name" type="string">
 Data field name
 </ParamField>
 
-<ParamField path="webhook.description" type="string">
+<ParamField body="description" type="string">
 User prompt/description. Example: `"user interested on buying the product"`
 </ParamField>
 
-<ParamField path="webhook.type" type="string">
+<ParamField body="type" type="string">
 Response type: `"yes/no"`
 </ParamField>
 
-<ParamField path="webhook.sync_data" type="boolean">
+<ParamField body="sync_data" type="boolean">
 Sync extracted data automatically
 </ParamField>
 
-<ParamField path="webhook.sync_module" type="string">
+<ParamField body="sync_module" type="string">
 Target module: `"customers"`
 </ParamField>
 
-<ParamField path="webhook.sync_field" type="string">
-Database field to store data
+<ParamField body="sync_field" type="string">
+Database field to store data: `"customer_timezone"`
 </ParamField>
+</ParamField>
+
 
 ### Response
 

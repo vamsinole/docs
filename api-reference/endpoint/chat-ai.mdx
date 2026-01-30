@@ -1,6 +1,6 @@
 ---
-title: Create Chat Assistant
-api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/new_assistants'
+title: Create Chat AI Agent
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_new_assistants'
 description: Create web chat-based AI assistants for website integration and customer support.
 ---
 
@@ -15,57 +15,71 @@ Enter your ContactSwing JWT Bearer token.
 
 ### Request Body
 
-<ParamField path="name" type="string" required>
+<ParamField body="name" type="string" required>
 Assistant display name. Example: `"My Chat Assistant"`
 </ParamField>
 
-<ParamField path="type" type="string" required>
+<ParamField body="type" type="string" required>
 Assistant type: `"CHAT"`
 </ParamField>
 
-<ParamField path="model" type="string" required>
+<ParamField body="model" type="string" required>
 LLM model: `"cw-llm-1"`
 </ParamField>
 
-<ParamField path="api_keys" type="array">
+<ParamField body="api_keys" type="string[]">
 API key configuration `[]`
 </ParamField>
 
-<ParamField path="instructions" type="string" required>
+<ParamField body="instructions" type="string" required>
 Detailed agent instructions and restaurant ordering guidelines
 </ParamField>
 
-<ParamField path="prompts" type="object">
+<ParamField body="prompts" type="object">
 Agent prompts with `agent` and `goal` fields
+<ParamField body="agent" type="string">
+</ParamField>
+<ParamField body="goal" type="string">
+</ParamField>
 </ParamField>
 
-<ParamField path="kb_id" type="string">
+<ParamField body="kb_id" type="string">
 Knowledge base ID
 </ParamField>
 
 ### Chat Customization
 
-<ParamField path="additional_settings.ChatbotCustomization.brandName" type="string">
+<ParamField body="additional_settings" type="object">
+Brand name. Example: `"ContactSwing AI"`
+
+<ParamField body="ChatbotCustomization" type="object">
+Brand name. Example: `"ContactSwing AI"`
+<ParamField body="brandName" type="string">
 Brand name. Example: `"ContactSwing AI"`
 </ParamField>
-
-<ParamField path="additional_settings.ChatbotCustomization.logoUrl" type="string">
+<ParamField body="logoUrl" type="string">
 Logo URL
 </ParamField>
-
-<ParamField path="additional_settings.ChatbotCustomization.greetingText" type="string">
+<ParamField body="greetingText" type="string">
 Welcome message. Example: `"Hello welcome back"`
 </ParamField>
-
-<ParamField path="additional_settings.ChatbotCustomization.tagline" type="string">
+<ParamField body="tagline" type="string">
 Tagline. Example: `"Contactswing"`
 </ParamField>
-
-<ParamField path="additional_settings.ChatbotCustomization.initialMessage" type="string">
+<ParamField body="initialMessage" type="string">
 First message. Example: `"Hi, I'm Ashley 👋 Welcome to ContactSwing AI!"`
 </ParamField>
+<ParamField body="finalCloseMessage" type="string">
+</ParamField>
+<ParamField body="checkInMessage" type="string">
+Example: `Just checking in — are you still there?`
+</ParamField>
+</ParamField>
+</ParamField>
 
-<ParamField path="action_ids" type="array">
+
+
+<ParamField body="action_ids" type="array">
 Linked action IDs `[]`
 </ParamField>
 

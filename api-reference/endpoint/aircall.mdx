@@ -1,6 +1,6 @@
 ---
 title: Create Aircall Action
-api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/actions'
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_actions'
 description: Create Aircall telephony integration actions for call routing and management.
 ---
 
@@ -15,43 +15,42 @@ Enter your ContactSwing JWT Bearer token.
 
 ### Request Body
 
-<ParamField path="name" type="string" required>
+<ParamField body="name" type="string" required>
 Action display name. Example: `My Aircall Action`
 </ParamField>
 
-<ParamField path="description" type="string">
+<ParamField body="description" type="string">
 Action purpose. Example: `Test`
 </ParamField>
 
-<ParamField path="action_timing" type="string" required>
+<ParamField body="action_timing" type="string" required>
 When to trigger: `"DURING"`
 </ParamField>
 
-<ParamField path="type" type="string" required>
+<ParamField body="type" type="string" required>
 Action type: `"AIRCALL"`
 </ParamField>
 
-<ParamField path="webhook" type="object" required>
+<ParamField body="webhook" type="object" required>
 Aircall webhook configuration
-</ParamField>
-
-<ParamField path="tags" type="array">
-Call tags `[]`
-</ParamField>
-
-### Aircall Configuration
-
-<ParamField path="webhook.from" type="integer" required>
+<ParamField body="from" type="integer" required>
 Source number ID. Example: `1768408427`
 </ParamField>
 
-<ParamField path="webhook.to" type="integer" required>
+<ParamField body="to" type="integer" required>
 Destination number ID. Example: `1768408427`
 </ParamField>
 
-<ParamField path="webhook.mandatory" type="boolean">
+<ParamField body="mandatory" type="boolean">
 Require Aircall response before proceeding
 </ParamField>
+</ParamField>
+
+<ParamField body="tags" type="string[]">
+Call tags `[]`
+</ParamField>
+
+
 
 ### Response
 

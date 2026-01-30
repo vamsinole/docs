@@ -15,15 +15,15 @@ Enter your ContactSwing JWT Bearer token.
 
 ### Request Body Parameters
 
-<ParamField path="name" type="string" required>
+<ParamField body="name" type="string" required>
 Action display name. Example: `My SMS Action`
 </ParamField>
 
-<ParamField path="description" type="string" required>
+<ParamField body="description" type="string" required>
 Action description for when to trigger it.
 </ParamField>
 
-<ParamField path="type" type="string" required>
+<ParamField body="type" type="string" required>
 **Action Type** (select one):
 - `SEND_SMS` - SMS via Twilio
 - `SEND_EMAIL` - Email automation  
@@ -35,7 +35,7 @@ Action description for when to trigger it.
 - `SINGLEDATAEXTRACTION` - Data extraction
 </ParamField>
 
-<ParamField path="round_robin_emails" type="array" required>
+<ParamField body="round_robin_emails" type="array" required>
 {}
 []
 </ParamField>

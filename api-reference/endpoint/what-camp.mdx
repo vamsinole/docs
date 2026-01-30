@@ -1,0 +1,187 @@
+---
+title: Create Campaign with WhatsApp Touchpoint
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/campaign/create_with_touchpoint'
+description: Create a new campaign with a WhatsApp touchpoint.
+---
+
+### Authorizations
+<ParamField
+  header="Authorization"
+  type="string"
+  required
+>
+Enter your ContactSwing JWT Bearer token.
+</ParamField>
+
+### Request Body
+
+<ParamField body="name" type="string" required>
+Campaign display name.
+</ParamField>
+
+<ParamField body="type" type="string">
+Campaign type. (e.g. `None`)
+</ParamField>
+
+<ParamField body="company_plan_id" type="string">
+Company plan ID.
+</ParamField>
+
+<ParamField body="workspace_id" type="string">
+Workspace ID.
+</ParamField>
+
+<ParamField body="business_goal" type="string">
+The business goal of the campaign.
+</ParamField>
+
+<ParamField body="touchpoint" type="object" required>
+The touchpoint object.
+
+<ParamField body="name" type="string" required>
+The name of the touchpoint.
+</ParamField>
+
+<ParamField body="type" type="string" required>
+The type of the touchpoint. e.g. `WHATSAPP`.
+</ParamField>
+
+<ParamField body="is_consultants" type="boolean">
+Whether consultants are involved in execution.
+</ParamField>
+
+<ParamField body="status" type="string" required>
+The status of the touchpoint. e.g. `scheduled`.
+</ParamField>
+
+<ParamField body="start_at" type="string" required>
+ISO 8601 scheduled date for the touchpoint.
+</ParamField>
+
+<ParamField body="assistant_id" type="integer" required>
+The ID of the assistant to be used.
+</ParamField>
+
+<ParamField body="attachment_url" type="string">
+URL for any attachment sent with WhatsApp.
+</ParamField>
+
+
+
+<ParamField body="additional_settings" type="object" required>
+Additional settings for WhatsApp touchpoint.
+
+<ParamField body="execution_days" type="string[]" required>
+Array of days when the campaign will run. e.g. `["mon", "tue", "wed"]`
+</ParamField>
+
+<ParamField body="start_hour" type="integer" required>
+Start hour for campaign execution.
+</ParamField>
+
+<ParamField body="end_hour" type="integer" required>
+End hour for campaign execution.
+</ParamField>
+
+<ParamField body="delay" type="integer" required>
+Delay between executions (in minutes).
+</ParamField>
+
+<ParamField body="time_zone" type="string" required>
+Timezone for campaign execution. e.g. `Asia/Kolkata`.
+</ParamField>
+
+<ParamField body="ignore_suppression" type="boolean">
+Whether to bypass suppression rules.
+</ParamField>
+
+<ParamField body="from_numbers" type="string[]" required>
+WhatsApp numbers from which the message will be sent.
+</ParamField>
+</ParamField>
+
+
+
+<ParamField body="customer_details" type="array" required>
+Array of customer details.
+
+<ParamField body="id" type="string" required>
+The customer's ID.
+</ParamField>
+
+<ParamField body="to_number" type="string" required>
+The customer's WhatsApp number.
+</ParamField>
+</ParamField>
+
+
+<ParamField body="whatsapp_data" type="object" required>
+WhatsApp template & message content.
+
+<ParamField body="template" type="string">
+Template name.
+</ParamField>
+
+<ParamField body="language_code" type="string">
+Language code. e.g. `en`.
+</ParamField>
+
+<ParamField body="body_params" type="object">
+Parameters for body section of template.
+
+<ParamField body="is_static" type="boolean">
+Whether parameters are static.
+</ParamField>
+
+<ParamField body="params" type="array">
+Body template parameters.
+</ParamField>
+</ParamField>
+
+<ParamField body="header_params" type="object">
+Header template parameters.
+
+<ParamField body="is_static" type="boolean">
+Whether parameters are static.
+</ParamField>
+
+<ParamField body="params" type="array">
+Header template parameters.
+</ParamField>
+</ParamField>
+
+<ParamField body="button_params" type="object">
+Button template parameters.
+
+<ParamField body="is_static" type="boolean">
+Whether parameters are static.
+</ParamField>
+
+<ParamField body="params" type="array">
+Button template parameters.
+</ParamField>
+</ParamField>
+
+<ParamField body="whatsapp_body" type="string">
+Plain text WhatsApp message body (if not using template).
+</ParamField>
+</ParamField>
+
+<ParamField body="variables" type="array">
+Dynamic variables used inside campaign.
+</ParamField>
+
+</ParamField>
+
+### Response
+
+**201 Created** – Campaign created successfully
+
+<ResponseField name="ctx_id" type="string">Request context ID</ResponseField>
+<ResponseField name="data" type="object">
+  <ResponseField name="id" type="string">Campaign ID</ResponseField>
+  <ResponseField name="name" type="string">Campaign name</ResponseField>
+  <ResponseField name="status" type="string">Campaign status</ResponseField>
+</ResponseField>
+
+**400 Bad Request** – Invalid input

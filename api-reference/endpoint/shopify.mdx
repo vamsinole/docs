@@ -1,6 +1,6 @@
 ---
 title: Create Shopify Action
-api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/actions'
+api: 'POST https://prod-contactswing-fastapi-962560522883.us-central1.run.app/v2/_actions'
 description: Create Shopify integration actions for product lookup, order status, and e-commerce automation.
 ---
 
@@ -15,39 +15,39 @@ Enter your ContactSwing JWT Bearer token.
 
 ### Request Body
 
-<ParamField path="name" type="string" required>
+<ParamField body="name" type="string" required>
 Action display name. Example: `My Shopify Action`
 </ParamField>
 
-<ParamField path="description" type="string">
+<ParamField body="description" type="string">
 Action purpose. Example: `Test`
 </ParamField>
 
-<ParamField path="action_timing" type="string" required>
+<ParamField body="action_timing" type="string" required>
 When to trigger: `"DURING"`
 </ParamField>
 
-<ParamField path="type" type="string" required>
+<ParamField body="type" type="string" required>
 Action type: `"SHOPIFY"`
 </ParamField>
 
-<ParamField path="webhook" type="object" required>
+<ParamField body="webhook" type="object" required>
 Shopify webhook configuration
-</ParamField>
 
-### Shopify Configuration
-
-<ParamField path="webhook.type" type="string" required>
+<ParamField body="type" type="string" required>
 Shopify operation type. Example: `"contactswing_shopify_search"`
 </ParamField>
 
-<ParamField path="webhook.mandatory" type="boolean">
+<ParamField body="mandatory" type="boolean">
 Require Shopify response before proceeding
 </ParamField>
 
-<ParamField path="webhook.url" type="string">
+<ParamField body="url" type="string">
 Shopify store URL or endpoint
 </ParamField>
+
+</ParamField>
+
 
 ### Response
 
